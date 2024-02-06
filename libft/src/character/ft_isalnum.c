@@ -20,12 +20,12 @@
 	c = character (int variable as it uses ascii).
 
 	Outputs
-	an int, 1 if the character is alphanumerical, 0 if it's not.
+	true if the character is alphanumerical, false if it's not.
 */
-int	ft_isalnum(int c)
+bool	ft_isalnum(int c)
 {
 	if (ft_isalpha(c) || ft_isdigit(c))
-		return (1);
+		return (true);
 	else
-		return (0);
+		return (false);
 }

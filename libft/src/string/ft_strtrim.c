@@ -64,7 +64,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 		end--;
 	trimmed_str = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!trimmed_str)
-		return (NULL);
+		return (error("ft_strtrim malloc error"), NULL);
 	trimmed_str = ft_memmove(trimmed_str, s1 + start, end - start);
 	trimmed_str[end - start] = '\0';
 	return (trimmed_str);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_last_node.c                                    :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 09:16:07 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 10:31:12 by tday             ###   ########.fr       */
+/*   Created: 2024/02/06 18:38:52 by tday              #+#    #+#             */
+/*   Updated: 2024/02/06 18:38:52 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,15 @@
 
 /*
 	Summary
-	itterates through the given singularly linked list and returns the last
-	node.
+	prints an debug message in red colour.
 
 	Inputs
-	[t_list *] lst_head: a pointer to the beginning of the linked list.
+	str: a string containing the debug message to be printed.
 
 	Outputs
-	[t_list *] last_node: a pointer to the last node in the linked list.
+	none.
 */
-t_list	*lst_last_node(t_list *lst_head)
+void	debug(const char *str)
 {
-	t_list	*last_node;
-
-	if (!lst_head)
-	{
-		error("lst_last_node error: !lst_head");
-		return (NULL);
-	}
-	last_node = lst_head;
-	while (last_node->next)
-		last_node = last_node->next;
-	return (last_node);
+	ft_printf(CYAN"%s\n"DEF, str);
 }

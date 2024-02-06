@@ -20,12 +20,12 @@
 	c = character (int variable as it uses ascii).
 
 	Outputs
-	an int, 1 if the character is a printable character, 0 if it's not.
+	true if the character is a printable character, false if it's not.
 */
-int	ft_isprint(int c)
+bool	ft_isprint(int c)
 {
 	if (32 <= c && c <= 126)
-		return (1);
+		return (true);
 	else
-		return (0);
+		return (false);
 }

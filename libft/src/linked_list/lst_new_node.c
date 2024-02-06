@@ -28,7 +28,10 @@ t_list	*lst_new_node(void *data)
 
 	new_node = malloc(sizeof(t_list));
 	if (!new_node)
+	{
+		error("lst_new_node malloc error");
 		return (0);
+	}
 	new_node->data = data;
 	new_node->next = 0;
 	return (new_node);

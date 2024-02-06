@@ -29,7 +29,7 @@ void	ft_striteri(char *str, void (*f)(unsigned int, char *))
 	int	i;
 
 	if (!str || !f)
-		return ;
+		return (error("ft_striteri !str or !f"));
 	i = 0;
 	while (str[i] != '\0')
 	{

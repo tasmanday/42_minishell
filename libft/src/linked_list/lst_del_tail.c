@@ -32,7 +32,7 @@ void	lst_del_tail(t_list **lst_head, void (*ft_del)(void*))
 
 	if (!lst_head || !*lst_head)
 	{
-		put_error("lst_del_tail error");
+		error("lst_del_tail error: !lst_head");
 		return ;
 	}
 	if (!(*lst_head)->next)

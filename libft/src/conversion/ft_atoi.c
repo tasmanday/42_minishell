@@ -35,13 +35,16 @@ static int	exceeds_llong_max(long long nb, char next_digit, int sign)
 	else if (nb == LLONG_MAX / 10 && next_digit <= '8' && sign == -1)
 		exceeds_limit = 0;
 	else if (nb >= LLONG_MAX / 10)
+	{
+		error("ft_atoi error: string exceeds long long max");
 		exceeds_limit = 1;
+	}
 	return (exceeds_limit);
 }
 
 /*
 	Summary
-	converts a string replressentation of an integer to a 'long long' integer.
+	converts a string repressentation of an integer to a 'long long' integer.
 
 	Inputs
 	str = a pointer to a string representing an integer.

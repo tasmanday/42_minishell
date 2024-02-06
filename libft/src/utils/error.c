@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_last_node.c                                    :+:      :+:    :+:   */
+/*   error.c   	                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 09:16:07 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 10:31:12 by tday             ###   ########.fr       */
+/*   Created: 2024/01/28 14:02:22 by tday              #+#    #+#             */
+/*   Updated: 2024/01/28 14:08:05 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,15 @@
 
 /*
 	Summary
-	itterates through the given singularly linked list and returns the last
-	node.
+	prints an error message in red colour.
 
 	Inputs
-	[t_list *] lst_head: a pointer to the beginning of the linked list.
+	error: a string containing the error message to be printed.
 
 	Outputs
-	[t_list *] last_node: a pointer to the last node in the linked list.
+	none.
 */
-t_list	*lst_last_node(t_list *lst_head)
+void	error(const char *error)
 {
-	t_list	*last_node;
-
-	if (!lst_head)
-	{
-		error("lst_last_node error: !lst_head");
-		return (NULL);
-	}
-	last_node = lst_head;
-	while (last_node->next)
-		last_node = last_node->next;
-	return (last_node);
+	ft_printf(RED"%s\n"DEF, error);
 }

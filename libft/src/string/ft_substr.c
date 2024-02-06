@@ -40,8 +40,8 @@ char	*ft_substr(char const *str, unsigned int start, size_t sub_len)
 	else if (start + sub_len > str_len)
 		sub_len = str_len - start;
 	substr = (char *) malloc((sub_len + 1) * sizeof(char));
-	if (substr == NULL)
-		return (NULL);
+	if (!substr)
+		return (error("ft_substr malloc error"), NULL);
 	i = 0;
 	while (str[start + i] != '\0' && i < sub_len)
 	{

@@ -31,7 +31,7 @@ t_list	*lst_get_prev(t_list *lst_head, t_list *curr)
 
 	if (!lst_head || !curr || curr == lst_head)
 	{
-		put_error("lst_get_prev error");
+		error("lst_get_prev error");
 		return (NULL);
 	}
 	prev = lst_head;

@@ -43,7 +43,7 @@ void	*ft_realloc(void *pointer, size_t orig_size, size_t new_size)
 	{
 		new_pointer = malloc(new_size);
 		if (!new_pointer)
-			return (NULL);
+			return (error("ft_realloc malloc error"), NULL);
 	}
 	else if (new_size <= orig_size)
 		return (pointer);
@@ -51,7 +51,7 @@ void	*ft_realloc(void *pointer, size_t orig_size, size_t new_size)
 	{
 		new_pointer = malloc(new_size);
 		if (!new_pointer)
-			return (NULL);
+			return (error("ft_realloc malloc error"), NULL);
 		ft_memcpy(new_pointer, pointer, orig_size);
 		free(pointer);
 	}

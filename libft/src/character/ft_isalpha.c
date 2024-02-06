@@ -20,12 +20,12 @@
 	c = character (int variable as it uses ascii).
 
 	Outputs
-	an int, 1 if the character is alphabetical, 0 if it's not.
+	true if the character is alphabetical, false if it's not.
 */
-int	ft_isalpha(int c)
+bool	ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
+		return (true);
 	else
-		return (0);
+		return (false);
 }

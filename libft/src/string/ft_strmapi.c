@@ -33,7 +33,7 @@ char	*ft_strmapi(const char *str, char (*f)(unsigned int, char))
 		return (NULL);
 	result = malloc((ft_strlen(str) + 1) * sizeof(char));
 	if (!result)
-		return (NULL);
+		return (error("ft_strmapi malloc error"), NULL);
 	i = 0;
 	while (str[i] != '\0')
 	{

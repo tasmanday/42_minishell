@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_last_node.c                                    :+:      :+:    :+:   */
+/*   dlst_last_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 09:16:07 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 10:31:12 by tday             ###   ########.fr       */
+/*   Created: 2024/02/04 22:00:19 by tday              #+#    #+#             */
+/*   Updated: 2024/02/04 22:00:19 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 /*
 	Summary
-	itterates through the given singularly linked list and returns the last
-	node.
+	itterates through the given doubly linked list and returns the last node.
 
 	Inputs
-	[t_list *] lst_head: a pointer to the beginning of the linked list.
+	[t_dlist *] dlst_head: a pointer to the beginning of the linked list.
 
 	Outputs
-	[t_list *] last_node: a pointer to the last node in the linked list.
+	[t_dlist *] last_node: a pointer to the last node in the linked list.
 */
-t_list	*lst_last_node(t_list *lst_head)
+t_dlist	*dlst_last_node(t_dlist *dlst_head)
 {
-	t_list	*last_node;
+	t_dlist	*last_node;
 
-	if (!lst_head)
+	if (!dlst_head)
 	{
-		error("lst_last_node error: !lst_head");
+		error("dlst_last_node error: !dlst_head");
 		return (NULL);
 	}
-	last_node = lst_head;
+	last_node = dlst_head;
 	while (last_node->next)
 		last_node = last_node->next;
 	return (last_node);

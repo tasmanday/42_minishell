@@ -37,7 +37,7 @@ void	lst_del_node(t_list **lst_head, t_list *node_to_del, \
 	if (!lst_head || !*lst_head || !node_to_del || \
 	!lst_has_node(*lst_head, node_to_del))
 	{
-		put_error("lst_del_node error");
+		error("lst_del_node error");
 		return ;
 	}
 	if (node_to_del == *lst_head)
@@ -45,7 +45,7 @@ void	lst_del_node(t_list **lst_head, t_list *node_to_del, \
 	prev = lst_get_prev(*lst_head, node_to_del);
 	if (!prev)
 	{
-		put_error("lst_del_node -> lst_get_prev error");
+		error("lst_del_node -> lst_get_prev error");
 		return ;
 	}
 	prev->next = node_to_del->next;

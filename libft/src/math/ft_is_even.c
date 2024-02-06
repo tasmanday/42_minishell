@@ -20,9 +20,9 @@
 	n = given integer.
 
 	Outputs
-	1 if the given integer is even, 0 if it's odd.
+	true if the given integer is even, false if it's odd.
 */
-int	ft_is_even(long long n)
+bool	ft_is_even(long long n)
 {
 	return (n % 2 == 0);
 }

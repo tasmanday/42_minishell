@@ -15,7 +15,7 @@
 NAME			:=		libft.a
 SRC_DIRS		:=		src/array src/character src/conversion src/ft_printf	\
 						src/linked_list src/math src/memory src/put src/string	\
-						src/utils
+						src/utils src/double_linked_list
 INC_DIR			:=		inc
 SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 									reverse_int_arr.c reverse_str_arr.c)		\
@@ -52,7 +52,13 @@ SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 									ft_strrchr.c ft_strstr.c ft_strtrim.c		\
 									ft_substr.c get_next_line.c)				\
 						$(addprefix src/utils/, error_exit.c no_op.c			\
-									put_error.c)								
+									error.c debug.c)							\
+						$(addprefix src/double_linked_list/, dlst_add_head.c	\
+									dlst_add_tail.c dlst_del_all.c 				\
+									dlst_del_head.c	dlst_del_node.c 			\
+									dlst_del_tail.c	dlst_has_node.c				\
+									dlst_insert_after.c dlst_last_node.c		\
+									dlst_new_node.c dlst_size.c)
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		cc
 CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR)

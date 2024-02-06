@@ -49,8 +49,6 @@
 ** structs
 */
 
-/* linked lists */
-
 /* singularly linked list */
 typedef struct s_list
 {
@@ -72,12 +70,12 @@ typedef struct s_dlist
 
 /* characters */
 
-int			ft_isalpha(int c);
-int			ft_isdigit(int c);
-int			ft_isalnum(int c);
-int			ft_isascii(int c);
-int			ft_isprint(int c);
-int			ft_isspace(int c);
+bool		ft_isalpha(int c);
+bool		ft_isdigit(int c);
+bool		ft_isalnum(int c);
+bool		ft_isascii(int c);
+bool		ft_isprint(int c);
+bool		ft_isspace(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 
@@ -124,8 +122,8 @@ char		*ft_itoa(long long n);
 
 long long	ft_abs(long long n);
 long double	ft_fabs(long double n);
-int			ft_is_even(long long n);
-int			ft_is_odd(long long n);
+bool		ft_is_even(long long n);
+bool		ft_is_odd(long long n);
 long long	ft_power(long long n, long long power);
 long long	ft_sqrt(long long n);
 long double	ft_remainder(long double numerator, long double denominator);
@@ -164,9 +162,10 @@ void		reverse_str_arr(char **arr, int size);
 
 /* utils */
 
-void		put_error(const char *error);
+void		error(const char *error);
 void		error_exit(const char *error);
 void		no_op(void *arg);
+void		debug(const char *str);
 
 /* singularly linked lists */
 
@@ -183,5 +182,20 @@ void		lst_del_node(t_list **lst_head, t_list *node_to_del, \
 void		lst_del_head(t_list **lst_head, void (*ft_del)(void*));
 void		lst_del_tail(t_list **lst_head, void (*ft_del)(void*));
 void		lst_del_all(t_list **lst_head, void (*ft_del)(void*));
+
+/* doubly linked lists */
+
+t_dlist		*dlst_new_node(void *data);
+void		dlst_add_head(t_dlist **dlst_head, t_dlist *new_node);
+void		dlst_add_tail(t_dlist **dlst_head, t_dlist *new_node);
+void		dlst_insert_after(t_dlist *original_node, t_dlist *node_to_insert);
+t_dlist		*dlst_last_node(t_dlist *dlst_head);
+int			dlst_size(t_dlist *dlst);
+bool		dlst_has_node(t_dlist *dlst_head, t_dlist *node_to_find);
+void		dlst_del_node(t_dlist **dlst_head, t_dlist *node_to_del, \
+			void (*ft_del)(void*));
+void		dlst_del_head(t_dlist **dlst_head, void (*ft_del)(void*));
+void		dlst_del_tail(t_dlist **dlst_head, void (*ft_del)(void*));
+void		dlst_del_all(t_dlist **dlst_head, void (*ft_del)(void*));
 
 #endif

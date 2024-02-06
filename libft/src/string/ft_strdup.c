@@ -30,8 +30,11 @@ char	*ft_strdup(char *src)
 
 	len = ft_strlen(src);
 	dest = (char *) malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
+	if (!dest)
+	{
+		error("ft_strdup malloc error");
 		return (NULL);
+	}
 	dest = ft_memmove(dest, src, len + 1);
 	return (dest);
 }

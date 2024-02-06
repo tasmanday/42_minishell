@@ -32,7 +32,7 @@ char	*ft_itoa(long long n)
 	len = ft_get_len_int(n);
 	str = ft_calloc((len + 1), sizeof(char));
 	if (!str)
-		return (NULL);
+		return (error("ft_itoa malloc error"), NULL);
 	if (n == 0)
 		str[0] = '0';
 	else if (n < 0)

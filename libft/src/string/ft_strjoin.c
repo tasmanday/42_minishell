@@ -36,7 +36,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	len_s2 = ft_strlen(s2);
 	result = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!result)
-		return (NULL);
+		return (error("ft_strjoin malloc error"), NULL);
 	ft_memmove(result, s1, len_s1);
 	ft_memmove(result + len_s1, s2, len_s2 + 1);
 	return (result);

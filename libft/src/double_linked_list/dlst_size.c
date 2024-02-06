@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_last_node.c                                    :+:      :+:    :+:   */
+/*   dlst_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 09:16:07 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 10:31:12 by tday             ###   ########.fr       */
+/*   Created: 2024/02/04 22:04:16 by tday              #+#    #+#             */
+/*   Updated: 2024/02/04 22:04:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 /*
 	Summary
-	itterates through the given singularly linked list and returns the last
-	node.
+	counts the number of nodes in a doubly linked list.
 
 	Inputs
-	[t_list *] lst_head: a pointer to the beginning of the linked list.
+	[t_dlist *] dlst: a pointer to the linked list.
 
 	Outputs
-	[t_list *] last_node: a pointer to the last node in the linked list.
+	[int] count: the number of nodes in the linked list.
 */
-t_list	*lst_last_node(t_list *lst_head)
+int	dlst_size(t_dlist *dlst)
 {
-	t_list	*last_node;
+	int	count;
 
-	if (!lst_head)
+	count = 0;
+	while (dlst)
 	{
-		error("lst_last_node error: !lst_head");
-		return (NULL);
+		count++;
+		dlst = dlst->next;
 	}
-	last_node = lst_head;
-	while (last_node->next)
-		last_node = last_node->next;
-	return (last_node);
+	return (count);
 }

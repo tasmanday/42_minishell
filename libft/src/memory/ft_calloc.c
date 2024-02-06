@@ -31,7 +31,10 @@ void	*ft_calloc(size_t number, size_t size)
 
 	pointer = malloc(number * size);
 	if (!pointer)
+	{
+		error("ft_calloc malloc error");
 		return (NULL);
+	}
 	ft_bzero(pointer, number * size);
 	return (pointer);
 }

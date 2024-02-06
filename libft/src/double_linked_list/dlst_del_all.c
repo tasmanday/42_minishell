@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_del_head.c                                     :+:      :+:    :+:   */
+/*   dlst_del_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 11:41:03 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 15:02:47 by tday             ###   ########.fr       */
+/*   Created: 2024/02/04 22:39:34 by tday              #+#    #+#             */
+/*   Updated: 2024/02/04 22:39:34 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /*
 	Summary
-	deletes the head/first node of a singularly linked list.
+	deletes all nodes in a doubly linked list.
 
 	Inputs
-	[t_list **] lst_head: a pointer to a pointer to the head of the linked
+	[t_dlist **] dlst_head: a pointer to a pointer to the head of the linked
 			list. needs to be a double pointer so that changes to lst_head
 			will occur outside the function as well.
 	ft_del: a function pointer to a function that will be used to delete the
@@ -27,23 +27,13 @@
 	Outputs
 	none.
 */
-void	lst_del_head(t_list **lst_head, void (*ft_del)(void*))
+void	dlst_del_all(t_dlist **dlst_head, void (*ft_del)(void*))
 {
-	t_list	*temp;
-
-	if (!lst_head || !*lst_head)
+	if (!dlst_head || !*dlst_head)
 	{
-		error("lst_del_head error: !lst_head");
+		error("dlst_del_all error: !dlst_head");
 		return ;
 	}
-	if (!(*lst_head)->next)
-	{
-		ft_del((*lst_head)->data);
-		free_null((void **)lst_head);
-		return ;
-	}
-	temp = (*lst_head)->next;
-	ft_del((*lst_head)->data);
-	free_null((void **)lst_head);
-	*lst_head = temp;
+	while (*dlst_head)
+		dlst_del_head(dlst_head, ft_del);
 }

@@ -38,8 +38,8 @@ static char	*allocate_word(const char *input_str, char delimeter, int *i)
 		j++;
 	}
 	word = (char *) malloc((j + 1) * sizeof(char));
-	if (word == NULL)
-		return (NULL);
+	if (!word)
+		return (error("ft_split allocate_word malloc error"), NULL);
 	k = 0;
 	while ((input_str[*i] != '\0') && (input_str[*i] != delimeter))
 	{
@@ -129,8 +129,8 @@ char	**ft_split(const char *input_str, char delimeter)
 	j = 0;
 	word_count = count_words(input_str, delimeter);
 	result = (char **) malloc((word_count + 1) * sizeof(char *));
-	if (result == NULL)
-		return (NULL);
+	if (!result)
+		return (error("ft_split malloc error"), NULL);
 	while (input_str[i] != '\0' && j < word_count)
 	{
 		while (input_str[i] == delimeter)
