@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_H
-#define	MINISHELL_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 /*
 ** includes
 */
 
-#include "../libft/inc/libft.h"
+# include "../libft/inc/libft.h"
 
 /*
 ** prototypes
@@ -26,5 +26,6 @@
 /* builtins */
 
 int			ft_pwd(void);
+int			ft_echo(char **argv);
 
 #endif

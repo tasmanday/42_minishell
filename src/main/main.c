@@ -14,9 +14,10 @@
 
 int	main(int argc, char **argv, char **envv)
 {
-	if (argc != 1)
+	/*if (argc != 1)
 		error_exit("Incorrect number of arguments");
-	(void)argv;
+	(void)argv; */
+	(void)argc;
 	(void)envv; // remove later when duplicating envv
-	return (ft_pwd());
+	return (ft_echo(argv));
 }
