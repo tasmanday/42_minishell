@@ -15,9 +15,14 @@
 int	main(int argc, char **argv, char **envv)
 {
 	/*if (argc != 1)
-		error_exit("Incorrect number of arguments");
-	(void)argv; */
+		error_exit("Incorrect number of arguments"); */
+	(void)argv;
 	(void)argc;
-	(void)envv; // remove later when duplicating envv
-	return (ft_echo(argv));
+	//(void)envv; // remove later when duplicating envv
+	t_dlist	*env_dlist;
+
+	env_dlist = NULL;
+	clone_envv_to_dlist(envv, &env_dlist);
+	/* write function for freeing allocated memory from clone_envv_to_dlist */
+	return (ft_env(env_dlist));
 }

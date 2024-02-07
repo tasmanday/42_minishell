@@ -17,7 +17,8 @@ SRC_DIRS		:=		src/builtins src/main #src/(add folder names)
 INC_DIR			:=		inc
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
-SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c)				\
+SRCS 			:= 		$(addprefix src/initialisation/, clone_envv_to_dlist.c)	\
+						$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/main/, main.c)							\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)

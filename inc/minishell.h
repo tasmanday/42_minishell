@@ -20,12 +20,28 @@
 # include "../libft/inc/libft.h"
 
 /*
+** structs
+*/
+
+typedef struct s_envv
+{
+	char	*env_variable;
+}				t_envv;
+
+
+/*
 ** prototypes
 */
+
+/* initialisation */
+
+void	clone_envv_to_dlist(char **envv, t_dlist **env_list);
 
 /* builtins */
 
 int			ft_pwd(void);
 int			ft_echo(char **argv);
+int			ft_env(t_dlist *env_dlist);
+
 
 #endif
