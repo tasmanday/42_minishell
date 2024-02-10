@@ -12,14 +12,14 @@
 
 #include "../../inc/minishell.h"
 
-static char	*copy_string(char *envv)
+static char	*split_variables(char *envv)
 {
-	char	*cloned_string;
+	char	**cloned_substrs;
 
-	cloned_string = ft_strdup(envv);
-	if (!cloned_string)
-		error_exit("clone_envv ft_str_dup failed");
-	return (cloned_string);
+	cloned_substrs = ft_split(envv, '=');
+	if (!cloned_substrs)
+		error_exit("clone_envv ft_split failed");
+	return (cloned_substrs);
 }
 
 static t_envv	*put_str_in_envv_struct(char *cloned_string)

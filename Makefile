@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/02/03 21:50:54 by tday             ###   ########.fr        #
+#    Updated: 2024/02/10 17:50:25 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ SRC_DIRS		:=		src/builtins src/main #src/(add folder names)
 INC_DIR			:=		inc
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
-SRCS 			:= 		$(addprefix src/initialisation/, clone_envv_to_dlist.c)	\
-						$(addprefix src/builtins/, pwd.c echo.c env.c)			\
+SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c)			\
 						$(addprefix src/main/, main.c)							\
-						#$(addprefix src/(add folder names)/, (add file names))
+						#$(addprefix src/initialisation/, clone_envv_to_dlist.c)\
+						#$(addprefix src/(add folder names)/, (add file names)) add env.c back to builtins
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
 CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR)

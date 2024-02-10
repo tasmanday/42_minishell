@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/03 22:45:23 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/10 16:28:53 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 
 typedef struct s_envv
 {
-	char	*env_variable;
+	char	*env_key;
+	char	*env_value;
 }				t_envv;
 
 

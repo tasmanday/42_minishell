@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_first.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 09:07:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/10 15:20:44 by tday             ###   ########.fr       */
+/*   Created: 2024/02/10 16:36:18 by tday              #+#    #+#             */
+/*   Updated: 2024/02/10 18:09:29 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 	Outputs
 	word = the substring extracted from the input string.
-*/
+
 static char	*allocate_word(const char *input_str, char delimeter, \
 int *start_pos)
 {
@@ -52,7 +52,7 @@ int *start_pos)
 	}
 	word[word_index] = '\0';
 	return (word);
-}
+} */
 
 /*
 	Summary
@@ -66,25 +66,18 @@ int *start_pos)
 	Outputs
 	count = the number of words in the input string.
 */
-static int	count_words(const char *input_str, char delimeter)
+static int	find_delimeter(const char *input_str, char delimeter)
 {
-	int		count;
 	int		i;
 
-	count = 0;
 	i = 0;
 	while (input_str[i] != '\0')
 	{
-		while (input_str[i] == delimeter && input_str[i] != '\0')
-			i++;
-		if (input_str[i] != delimeter && input_str[i] != '\0')
-		{
-			count++;
-			while (input_str[i] != delimeter && input_str[i] != '\0')
-				i++;
-		}
+		if (input_str[i] == delimeter)
+			return (i);
+		i++;
 	}
-	return (count);
+	return (0);
 }
 
 /*
@@ -121,31 +114,37 @@ static void	free_allocated(char **result, int i)
 	Outputs
 	result = array of substrings.
 */
-char	**ft_split(const char *input_str, char delimeter)
+
+//***** fix this so it creates an empty array if the first char is the delimeter
+char	**ft_split_first(const char *input_str, char delimeter)
 {
 	char	**result;
-	int		i;
-	int		current_word;
+	int		length;
+	int		first_delimeter;
 	int		word_count;
+	int		current_word;
 
-	i = 0;
 	current_word = 0;
-	word_count = count_words(input_str, delimeter);
+	word_count = 1;
+	first_delimeter = find_delimeter(input_str, delimeter);
+	if (first_delimeter)
+		word_count = 2;
 	result = (char **) malloc((word_count + 1) * sizeof(char *));
 	if (!result)
 		return (error("ft_split malloc error"), NULL);
-	while (input_str[i] != '\0' && current_word < word_count)
+	if (word_count == 2)
 	{
-		while (input_str[i] == delimeter)
-			i++;
-		result[current_word] = allocate_word(input_str, delimeter, &i);
+		result[current_word] = ft_substr(input_str, 0, first_delimeter);
 		if (!result[current_word])
-		{
-			free_allocated(result, current_word);
-			return (NULL);
-		}
+			return (free_allocated(result, current_word), NULL);
 		current_word++;
 	}
-	result[current_word] = NULL;
+	if (input_str[first_delimeter] == delimeter)
+		first_delimeter++;
+	length = ft_strlen(input_str + first_delimeter);
+	result[current_word] = ft_substr(input_str, first_delimeter, length);
+	if (!result[current_word])
+		return (free_allocated(result, current_word), NULL);
+	result[current_word + 1] = NULL;
 	return (result);
 }
