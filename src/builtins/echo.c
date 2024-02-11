@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 21:50:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 22:06:25 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,18 @@ static bool	is_nl_flag(char *str)
 	returns 0 to represent successfully completing the function. this will
 	possibly be replaced with void when implementing as part of minishell.
 */
-int	ft_echo(char **argv)
+void	ft_echo(t_dlist *envvar, char **argv)
 {
 	int		i;
 	bool	newline_flag;
 
+	(void)envvar;
 	newline_flag = true;
 	if (!argv[1])
-		return (ft_printf("\n"), 0);
+	{
+		ft_printf("\n");
+		return ;
+	}
 	i = 1;
 	while (argv[i] && is_nl_flag(argv[i]))
 	{
@@ -73,6 +77,7 @@ int	ft_echo(char **argv)
 	}
 	while (argv[i])
 	{
+		// handle $ for env variables
 		ft_printf("%s", argv[i]);
 		i++;
 		if (argv[i])
@@ -80,5 +85,4 @@ int	ft_echo(char **argv)
 	}
 	if (newline_flag)
 		ft_printf("\n");
-	return (EXIT_SUCCESS);
 }
