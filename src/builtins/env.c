@@ -6,16 +6,19 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:21 by tday              #+#    #+#             */
-/*   Updated: 2024/02/07 23:24:21 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 19:51:06 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	print_envv(t_envv *envv_element) {
-    if (envv_element != NULL) {
-        ft_printf("%s\n", envv_element->env_variable);
-    }
+static void	print_envv(t_envv *envv_element)
+{
+	if (envv_element != NULL)
+	{
+		ft_printf("%s=%s\n", envv_element->env_key, \
+		envv_element->env_value);
+	}
 }
 
 int	ft_env(t_dlist *env_dlist)

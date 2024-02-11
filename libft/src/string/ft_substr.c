@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 16:59:31 by tday              #+#    #+#             */
-/*   Updated: 2024/01/21 17:07:57 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:52:39 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 /*
 	Summary
 	allocates memory and returns a substring from the string ’str’.
-	the substring begins at index ’start’ and is of maximum size ’sub_len’.
+	the substring begins at index ’start’ and is of maximum size ’length’.
 	
 	Inputs
 	str = original string.
 	start = start index of the substring.
-	sub_len = maximum length of substring.
+	length = maximum length of substring.
 
 	Outputs
 	returns the substring or NULL if malloc fails
 */
-char	*ft_substr(char const *str, unsigned int start, size_t sub_len)
+char	*ft_substr(char const *str, size_t start, size_t length)
 {
 	char	*substr;
 	size_t	i;
@@ -35,15 +35,15 @@ char	*ft_substr(char const *str, unsigned int start, size_t sub_len)
 	if (start >= str_len)
 	{
 		start = str_len;
-		sub_len = 0;
+		length = 0;
 	}
-	else if (start + sub_len > str_len)
-		sub_len = str_len - start;
-	substr = (char *) malloc((sub_len + 1) * sizeof(char));
+	else if (start + length > str_len)
+		length = str_len - start;
+	substr = (char *) malloc((length + 1) * sizeof(char));
 	if (!substr)
 		return (error("ft_substr malloc error"), NULL);
 	i = 0;
-	while (str[start + i] != '\0' && i < sub_len)
+	while (str[start + i] != '\0' && i < length)
 	{
 		substr[i] = str[start + i];
 		i++;

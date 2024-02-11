@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_envv_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 19:50:54 by tday             ###   ########.fr       */
+/*   Created: 2024/02/11 19:25:10 by tday              #+#    #+#             */
+/*   Updated: 2024/02/11 19:50:59 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+void	free_envv_struct(void *data)
 {
-	if (argc != 1)
-		error_exit("Incorrect number of arguments"); 
-	(void)argv;
-	(void)argc;
-	//(void)envv; // remove later when duplicating envv
-	t_dlist	*env_dlist;
+	t_envv	*envv;
 
-	env_dlist = NULL;
-	clone_envv_to_dlist(envv, &env_dlist);
-	// write function for freeing allocated memory from clone_envv_to_dlist 
-	return (ft_env(env_dlist));
+	envv = (t_envv *)data;
+	if (envv)
+	{
+		free(envv->env_key);
+		free(envv->env_value);
+		free(envv);
+	}
 }

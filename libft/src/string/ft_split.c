@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:07:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/10 15:20:44 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 18:53:29 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 /*
 	Summary
 	allocates memory and returning a substring from the input_str based on
-	the delimeter character.
+	the delimiter character.
 
 	Inputs
 	input_str = The original string from which the substring is extracted.
-	delimeter = The character used as a delimiter to split the string.
+	delimiter = The character used as a delimiter to split the string.
 	start_pos = A pointer to an integer that keeps track of the current position
 	in the input_str.
 
 	Outputs
 	word = the substring extracted from the input string.
 */
-static char	*allocate_word(const char *input_str, char delimeter, \
+static char	*allocate_word(const char *input_str, char delimiter, \
 int *start_pos)
 {
 	char	*word;
@@ -35,7 +35,7 @@ int *start_pos)
 
 	length = 0;
 	while ((input_str[*start_pos + length] != '\0') && \
-	(input_str[*start_pos + length] != delimeter))
+	(input_str[*start_pos + length] != delimiter))
 	{
 		length++;
 	}
@@ -44,7 +44,7 @@ int *start_pos)
 		return (error("ft_split allocate_word malloc error"), NULL);
 	word_index = 0;
 	while ((input_str[*start_pos] != '\0') && \
-	(input_str[*start_pos] != delimeter))
+	(input_str[*start_pos] != delimiter))
 	{
 		word[word_index] = input_str[*start_pos];
 		word_index++;
@@ -66,7 +66,7 @@ int *start_pos)
 	Outputs
 	count = the number of words in the input string.
 */
-static int	count_words(const char *input_str, char delimeter)
+static int	count_words(const char *input_str, char delimiter)
 {
 	int		count;
 	int		i;
@@ -75,12 +75,12 @@ static int	count_words(const char *input_str, char delimeter)
 	i = 0;
 	while (input_str[i] != '\0')
 	{
-		while (input_str[i] == delimeter && input_str[i] != '\0')
+		while (input_str[i] == delimiter && input_str[i] != '\0')
 			i++;
-		if (input_str[i] != delimeter && input_str[i] != '\0')
+		if (input_str[i] != delimiter && input_str[i] != '\0')
 		{
 			count++;
-			while (input_str[i] != delimeter && input_str[i] != '\0')
+			while (input_str[i] != delimiter && input_str[i] != '\0')
 				i++;
 		}
 	}
@@ -116,12 +116,12 @@ static void	free_allocated(char **result, int i)
 
 	Inputs
 	input_str = original string.
-	delimeter = delimiter character used to split the string.
+	delimiter = delimiter character used to split the string.
 
 	Outputs
 	result = array of substrings.
 */
-char	**ft_split(const char *input_str, char delimeter)
+char	**ft_split(const char *input_str, char delimiter)
 {
 	char	**result;
 	int		i;
@@ -130,15 +130,15 @@ char	**ft_split(const char *input_str, char delimeter)
 
 	i = 0;
 	current_word = 0;
-	word_count = count_words(input_str, delimeter);
+	word_count = count_words(input_str, delimiter);
 	result = (char **) malloc((word_count + 1) * sizeof(char *));
 	if (!result)
 		return (error("ft_split malloc error"), NULL);
 	while (input_str[i] != '\0' && current_word < word_count)
 	{
-		while (input_str[i] == delimeter)
+		while (input_str[i] == delimiter)
 			i++;
-		result[current_word] = allocate_word(input_str, delimeter, &i);
+		result[current_word] = allocate_word(input_str, delimiter, &i);
 		if (!result[current_word])
 		{
 			free_allocated(result, current_word);

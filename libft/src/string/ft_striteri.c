@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:43:22 by tday              #+#    #+#             */
-/*   Updated: 2024/01/26 12:57:41 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:51:20 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	Outputs
 	none.
 */
-void	ft_striteri(char *str, void (*f)(unsigned int, char *))
+void	ft_striteri(char *str, void (*f)(size_t, char *))
 {
 	int	i;
 

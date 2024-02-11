@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 17:44:03 by tday              #+#    #+#             */
-/*   Updated: 2024/01/27 17:47:47 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:37:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 	Outputs
 	result: a pointer to the allocated memory.
 */
-void	*safe_malloc(size_t bytes)
+void	*safe_malloc(size_t bytes, char *error_message)
 {
 	void	*result;
 
 	result = malloc(bytes);
-	if (result == NULL)
-		error_exit("error with malloc");
+	if (!result)
+		error_exit(error_message);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 09:35:35 by tday              #+#    #+#             */
-/*   Updated: 2024/01/26 09:39:17 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:50:58 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 	Outputs
 	result = new modified string.
 */
-char	*ft_strmapi(const char *str, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *str, char (*f)(size_t, char))
 {
-	unsigned int	i;
-	char			*result;
+	size_t	i;
+	char	*result;
 
 	if (!str || !f)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:50:58 by tday              #+#    #+#             */
-/*   Updated: 2024/02/10 17:40:40 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 18:54:45 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_calloc(size_t number, size_t size);
 void		*ft_realloc(void *pointer, size_t orig_size, size_t new_size);
 void		free_null(void **mem_ptr);
-void		*safe_malloc(size_t bytes);
+void		*safe_malloc(size_t bytes, char *error_message);
 
 /* conversion */
 
@@ -145,13 +145,13 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strdup(char *src);
-char		*ft_substr(char const *str, unsigned int start, size_t sub_len);
+char		*ft_substr(char const *str, size_t start, size_t length);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strtrim(const char *s1, const char *set);
-char		**ft_split(const char *input_str, char delimeter);
-char		**ft_split_first(const char *input_str, char delimeter);
-char		*ft_strmapi(const char *str, char (*f)(unsigned int, char));
-void		ft_striteri(char *str, void (*f)(unsigned int, char *));
+char		**ft_split(const char *input_str, char delimiter);
+char		**ft_split_first(const char *input_str, char delimiter);
+char		*ft_strmapi(const char *str, char (*f)(size_t, char));
+void		ft_striteri(char *str, void (*f)(size_t, char *));
 char		*get_next_line(int fd);
 
 /* arrays */

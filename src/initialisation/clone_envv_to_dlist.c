@@ -12,27 +12,34 @@
 
 #include "../../inc/minishell.h"
 
-static char	*split_variables(char *envv)
+static char	**split_variables(char *envv)
 {
 	char	**cloned_substrs;
 
-	cloned_substrs = ft_split(envv, '=');
+	cloned_substrs = ft_split_first(envv, '=');
 	if (!cloned_substrs)
-		error_exit("clone_envv ft_split failed");
+	{
+		error("clone_envv ft_split failed");
+		return (NULL);
+	}
 	return (cloned_substrs);
 }
 
-static t_envv	*put_str_in_envv_struct(char *cloned_string)
+static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 {
 	t_envv	*envv_struct;
 
+	if (!cloned_substrs)
+		return (NULL);
 	envv_struct = (t_envv *)malloc(sizeof(t_envv));
 	if (!envv_struct)
 	{
-		free(cloned_string);
-		error_exit("clone_envv envv_struct malloc failed");
+		free_array((void **)cloned_substrs);
+		error("clone_envv envv_struct malloc failed");
+		return (NULL);
 	}
-	envv_struct->env_variable = cloned_string;
+	envv_struct->env_key = cloned_substrs[0];
+	envv_struct->env_value = cloned_substrs[1];
 	return (envv_struct);
 }
 
@@ -40,11 +47,12 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 {
 	t_dlist	*new_node;
 
+	if (!envv_struct)
+		error_exit("no envv_struct");
 	new_node = dlst_new_node(envv_struct);
 	if (!new_node)
 	{
-		free(envv_struct->env_variable);
-		free(envv_struct);
+		dlst_del_all(env_list, free_envv_struct);
 		error_exit("clone_envv new_node malloc error");
 	}
 	dlst_add_tail(env_list, new_node);
@@ -75,13 +83,13 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 */
 void	clone_envv_to_dlist(char **envv, t_dlist **env_dlist)
 {
-	char	*cloned_string;
+	char	**cloned_substrs;
 	t_envv	*envv_struct;
 
 	while (*envv)
 	{
-		cloned_string = copy_string(*envv);
-		envv_struct = put_str_in_envv_struct(cloned_string);
+		cloned_substrs = split_variables(*envv);
+		envv_struct = put_str_in_envv_struct(cloned_substrs);
 		add_envv_struct_to_dlist(env_dlist, envv_struct);
 		envv++;
 	}
