@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 19:51:01 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 21:50:31 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ typedef struct s_envv
 
 /* initialisation */
 
-void		clone_envv_to_dlist(char **envv, t_dlist **env_list);
+void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
 
 /* builtins */
 
-int			ft_pwd(void);
+void		ft_pwd(t_dlist *envvar);
 int			ft_echo(char **argv);
-int			ft_env(t_dlist *env_dlist);
+int			ft_env(t_dlist *envvar);
+
+/* envv */
+t_dlist		*find_node_key(t_dlist *envvar, char *key);
 
 /* clean_up */
 void		free_envv_struct(void *data);

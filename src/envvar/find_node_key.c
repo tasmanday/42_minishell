@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   find_node_key.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 21:50:26 by tday             ###   ########.fr       */
+/*   Created: 2024/02/11 21:04:47 by tday              #+#    #+#             */
+/*   Updated: 2024/02/11 21:50:30 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+t_dlist	*find_node_key(t_dlist *envvar, char *key)
 {
-	if (argc != 1)
-		error_exit("Incorrect number of arguments"); 
-	(void)argv;
-	(void)argc;
-	t_dlist	*envar;
+	t_dlist	*current;
+	t_envv	*envv_struct;
 
-	envar = NULL;
-	clone_envv_to_dlist(envv, &envar);
-	ft_pwd(envar);
-	return (0);
+	current = envvar;
+	while (current)
+	{
+		envv_struct = (t_envv *)current->data;
+		if (ft_strcmp(key, envv_struct->env_key) == 0)
+			return (current);
+		current = current->next;
+	}
+	return (NULL);
 }

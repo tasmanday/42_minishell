@@ -120,7 +120,7 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 	for each node, free the envv_struct->env_variables, then the t_envv struct,
 	then lastly the t_dlist node.
 */
-void	clone_envv_to_dlist(char **envv, t_dlist **env_dlist)
+void	clone_envv_to_dlist(char **envv, t_dlist **envvar)
 {
 	char	**cloned_substrs;
 	t_envv	*envv_struct;
@@ -129,7 +129,7 @@ void	clone_envv_to_dlist(char **envv, t_dlist **env_dlist)
 	{
 		cloned_substrs = split_variables(*envv);
 		envv_struct = put_str_in_envv_struct(cloned_substrs);
-		add_envv_struct_to_dlist(env_dlist, envv_struct);
+		add_envv_struct_to_dlist(envvar, envv_struct);
 		envv++;
 	}
 }

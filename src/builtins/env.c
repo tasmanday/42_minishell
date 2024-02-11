@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:21 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 20:30:21 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 21:50:34 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	none. the function only prints the key-value pair of the environment
 	variable.
 */
-static void	print_envv(t_envv *envv_element)
+static void	print_envvar(t_envv *envv_element)
 {
 	if (envv_element != NULL)
 	{
@@ -37,20 +37,20 @@ static void	print_envv(t_envv *envv_element)
 	prints the key-value pairs of each element in a given doubly linked list.
 
 	Inputs
-	[t_dlist *] env_dlist: a doubly linked list of environment variables.
+	[t_dlist *] envvar: a doubly linked list of environment variables.
 
 	Outputs
 	none. the function only prints the key-value pairs of the environment
 	variables.
 */
-int	ft_env(t_dlist *env_dlist)
+int	ft_env(t_dlist *envvar)
 {
 	t_dlist	*current;
 
-	current = env_dlist;
+	current = envvar;
 	while (current)
 	{
-		print_envv((t_envv *)current->data);
+		print_envvar((t_envv *)current->data);
 		current = current->next;
 	}
 	return (EXIT_SUCCESS);
