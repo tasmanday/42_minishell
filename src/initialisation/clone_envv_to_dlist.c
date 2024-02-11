@@ -12,6 +12,20 @@
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	takes a string representing an environmental variable and splits it into
+	two substrings based on the first occurrence of the '=' character.
+
+	Inputs
+	[char *] envv: a pointer to a string representing an environmental
+		variable.
+
+	Outputs
+	[char **] cloned_substrs: an array of two strings, where the first element
+		is the substring before the '=' character and the second element is the
+		substring after the '=' character.
+*/
 static char	**split_variables(char *envv)
 {
 	char	**cloned_substrs;
@@ -25,6 +39,20 @@ static char	**split_variables(char *envv)
 	return (cloned_substrs);
 }
 
+/*
+	Summary
+	takes an array of two strings and creates a t_envv struct by allocating
+	memory for it. it then assigns the first string to the env_key field of
+	the struct and the second string to the env_value field.
+
+	Inputs
+	[char **] cloned_substrs: a pointer to an array of two strings
+		representing the cloned substrings.
+
+	Outputs
+	[t_envv *] envv_struct: a pointer to a t_envv struct containing the
+		env_key and env_value strings.
+*/
 static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 {
 	t_envv	*envv_struct;
@@ -43,6 +71,17 @@ static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 	return (envv_struct);
 }
 
+/*
+	Summary
+	adds a t_envv struct to the end of a doubly linked list.
+
+	Inputs
+	[t_dlist **] env_list: a pointer to a doubly linked list.
+	[t_envv *] envv_struct: a pointer to a t_envv struct.
+
+	Outputs
+	none.
+*/
 static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 {
 	t_dlist	*new_node;
@@ -65,7 +104,7 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 
 	Inputs
 	[char **] envv: A pointer to an array of strings representing the
-	environmental variables.
+		environmental variables.
 	[t_dlist **] env_list: A pointer to a doubly linked list.
 
 	Outputs
@@ -78,7 +117,7 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 	- a t_envv struct
 	- a t_dlist node
 	when freeing:
-	for each node, free the envv_struct->env_variable, then the t_envv struct,
+	for each node, free the envv_struct->env_variables, then the t_envv struct,
 	then lastly the t_dlist node.
 */
 void	clone_envv_to_dlist(char **envv, t_dlist **env_dlist)

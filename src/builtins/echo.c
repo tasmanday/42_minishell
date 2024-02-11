@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/06 19:13:56 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/11 20:22:20 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_echo(char **argv)
 
 	newline_flag = true;
 	if (!argv[1])
-		return(ft_printf("\n"), 0);
+		return (ft_printf("\n"), 0);
 	i = 1;
 	while (argv[i] && is_nl_flag(argv[i]))
 	{
