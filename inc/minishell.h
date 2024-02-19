@@ -45,7 +45,7 @@ void		ft_echo(t_dlist *envvar, char **argv);
 void		ft_env(t_dlist *envvar);
 
 /* envv */
-t_dlist		*find_node_key(t_dlist *envvar, char *key);
+t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 
 /* clean_up */
 void		free_envv_struct(void *data);

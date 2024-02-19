@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_node_key.c                                    :+:      :+:    :+:   */
+/*   find_envvar_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,19 @@
 
 #include "../../inc/minishell.h"
 
-t_dlist	*find_node_key(t_dlist *envvar, char *key)
+/*
+	Summary
+	finds a node in a doubly linked list based on a given key string.
+
+	Inputs
+	[t_dlist *] envvar: a pointer to the head of the doubly linked list.
+	[char *] key: the key string to search for in the list.
+
+	Outputs
+	a pointer to the node with the matching key if found or NULL if no node
+	with the matching key is found in the list.
+*/
+t_dlist	*find_envvar_node(t_dlist *envvar, char *key)
 {
 	t_dlist	*current;
 	t_envv	*envv_struct;
