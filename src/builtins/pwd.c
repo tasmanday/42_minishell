@@ -46,6 +46,6 @@ void	ft_pwd(t_dlist *envvar)
 {
 	t_dlist	*pwd_node;
 
-	pwd_node = find_node_key(envvar, "PWD");
+	pwd_node = find_envvar_node(envvar, "PWD");
 	print_env_value((t_envv *)pwd_node->data);
 }

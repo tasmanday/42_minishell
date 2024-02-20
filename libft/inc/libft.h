@@ -152,6 +152,7 @@ char		**ft_split(const char *input_str, char delimiter);
 char		**ft_split_first(const char *input_str, char delimiter);
 char		*ft_strmapi(const char *str, char (*f)(size_t, char));
 void		ft_striteri(char *str, void (*f)(size_t, char *));
+void		ft_replace_substr(char **str, int start, int end, char *substr);
 char		*get_next_line(int fd);
 
 /* arrays */

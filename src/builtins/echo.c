@@ -48,6 +48,8 @@ static bool	is_nl_flag(char *str)
 	Summary
 	replicates the echo command by printing given strings to the standard output.
 	also checks for a new line flag (-n) and handles it as echo would.
+	also checks for environmental variable keys ('$' followed by the name) and
+	expands them to their values.
 
 	Inputs
 	[char **] argv: an array of strings passed to the ft_echo function.
@@ -77,7 +79,7 @@ void	ft_echo(t_dlist *envvar, char **argv)
 	}
 	while (argv[i])
 	{
-		// handle $ for env variables
+		expand_envvar(envvar, &argv[i]);
 		ft_printf("%s", argv[i]);
 		i++;
 		if (argv[i])

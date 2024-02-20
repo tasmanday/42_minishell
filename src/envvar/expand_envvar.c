@@ -36,6 +36,8 @@ char	*ft_get_env_value(t_dlist *envvar, char * key)
 	t_envv	*envv_struct;
 
 	node = find_envvar_node(envvar, key);
+	if (!node)
+		return (NULL);
 	envv_struct = (t_envv *)node->data;
 	return (envv_struct->env_value);
 }
@@ -46,7 +48,6 @@ void	expand_envvar(t_dlist *envvar, char **str)
 	int		length;
 	char	*key;
 	char	*value;
-	char	*modified;
 	
 	i = 0;
 	key = NULL;
@@ -54,11 +55,14 @@ void	expand_envvar(t_dlist *envvar, char **str)
 	{
 		if (str[0][i] == '$')
 			{
-				key = ft_get_env_key(str[0][i]);
+				key = ft_get_env_key(&str[0][i + 1]);
 				value = ft_get_env_value(envvar, key);
 				length = ft_strlen(key);
-				//ft_replace_substr()
+				ft_replace_substr(str, i, (i + length + 1), value);
+				free(key);
 			}
 		i++;
 	}
 }
+
+// separate functions to thier own files. move the quotes struct to a header file. write comments
