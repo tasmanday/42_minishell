@@ -50,7 +50,6 @@ void	expand_envvar(t_dlist *envvar, char **str, int *i)
 	char	*value;
 	
 	key = ft_get_env_key(&str[0][*i + 1]);
-	// error handle
 	value = ft_get_env_value(envvar, key);
 	length = ft_strlen(key);
 	ft_replace_substr(str, *i, (*i + length + 1), value);

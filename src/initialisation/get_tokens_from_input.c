@@ -22,20 +22,82 @@ bool	is_meta_char(char c)
 	return (false);
 }
 
-// make handle_meta_chars()
+t_list	*safe_new_node(t_msh *msh, char *str)
+{
+	t_list	*new_node;
+
+	new_node = lst_new_node(str);
+	if (!new_node)
+	{
+		lst_del_all(&msh->tokens, free_string);
+		error_exit("safe_new_node_error");
+	}
+	return (new_node);
+}
+
+void	add_redirection_tokens(t_msh *msh, char *str, int *i)
+{
+	t_list	*new_node;
+
+	if (str[*i] == '<')
+	{
+		if (str[(*i) + 1] == '<')
+			new_node = safe_new_node(msh, "<<");
+		else
+			new_node = safe_new_node(msh, "<");
+	}
+	else if (str[*i] == '>')
+	{
+		if (str[(*i) + 1] == '>')
+			new_node = safe_new_node(msh, ">>");
+		else
+			new_node = safe_new_node(msh, ">");
+	}
+	lst_add_tail(&(msh->tokens), new_node);
+	*i += ft_strlen((char *)new_node->data);
+}
+
+void	add_pipe_token(t_msh *msh, char *str, int *i)
+{
+	t_list	*new_node;
+
+	if (str[*i] == '|')
+	{
+		new_node = safe_new_node(msh, "|");
+		lst_add_tail(&(msh->tokens), new_node);
+		*i += 1;
+	}
+}
+
+// make quote handling functions
+
+void	handle_meta_chars(t_msh *msh, char *str, int *i)
+{
+	if (str[*i] == '<' || str[*i] == '>')
+		add_redirection_tokens(msh, str, i);
+	else if (str[*i] == '|')
+		add_pipe_token(msh, str, i);
+	else if (str[*i] == '\'')
+		handle_s_quote_token(msh, str, i);
+	else if (str[*i] == '\"')
+		handle_d_quote_token(msh, str, i);
+	else
+		return ;
+}
 
 void	add_tokens_to_list(t_msh *msh, char *str)
 {
 	int		i;
 	int		start;
 	char	*temp_substr;
+	t_list	*new_node;
 
 	i = 0;
 	start = 0;
 	while(str[i])
 	{
 		if (is_meta_char(str[i]))
-			handle_meta_chars(str, &i);
+			handle_meta_chars(msh, str, &i);
 		else if (!ft_isprint(str[i]))
 			i++;
 		else
@@ -49,7 +111,10 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 					i++;
 			}
 			temp_substr = ft_substr(str, start, i - start);
-			//add temp_substr to t_list
+			if (!temp_substr)
+				error("token substr error");
+			new_node = safe_new_node(msh, temp_substr);
+			lst_add_tail(&(msh->tokens), new_node);
 		}
 	}
 }
@@ -63,5 +128,6 @@ void	get_tokens_from_input(t_msh *msh, char **argv)
 	while (argv[i])
 	{
 		add_tokens_to_list(msh, argv[i]);
+		i++;
 	}
 }

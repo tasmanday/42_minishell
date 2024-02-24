@@ -63,5 +63,6 @@ void		parse_str(t_dlist *envvar, char **str);
 /* clean_up */
 
 void		free_envv_struct(void *data);
+void		free_string(void *data);
 
 #endif
