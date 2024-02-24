@@ -23,6 +23,13 @@
 ** structs
 */
 
+typedef struct	s_msh
+{
+	t_dlist	*envvar;
+	t_list	*tokens;
+}				t_msh;
+
+
 typedef struct s_envv
 {
 	char	*env_key;

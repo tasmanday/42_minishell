@@ -30,7 +30,7 @@ t_list	*lst_new_node(void *data)
 	if (!new_node)
 	{
 		error("lst_new_node malloc error");
-		return (0);
+		return (NULL);
 	}
 	new_node->data = data;
 	new_node->next = 0;

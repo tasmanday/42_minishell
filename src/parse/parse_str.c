@@ -12,7 +12,9 @@
 
 #include "../../inc/minishell.h"
 
-void	parse_str(t_dlist *envvar, char **str)
+
+// possibly redundant
+/* void	parse_str(t_dlist *envvar, char **str)
 {
 	int	i;
 
@@ -24,3 +26,4 @@ void	parse_str(t_dlist *envvar, char **str)
 		i++;
 	}
 }
+*/
