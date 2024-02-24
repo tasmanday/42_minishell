@@ -23,6 +23,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/clean_up/, free_envv_struct.c)			\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
 									expand_envvar.c)							\
+						$(addprefix src/parse/, parse_str.c)					\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc

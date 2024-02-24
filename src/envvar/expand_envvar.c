@@ -20,6 +20,7 @@ typedef enum	e_quote
 	both_quotes,
 }				t_quote;
 
+/* allocates memory, returned string needs to be freed */
 char	*ft_get_env_key(char *str)
 {
 	int 	length;
@@ -42,27 +43,19 @@ char	*ft_get_env_value(t_dlist *envvar, char * key)
 	return (envv_struct->env_value);
 }
 
-void	expand_envvar(t_dlist *envvar, char **str)
+void	expand_envvar(t_dlist *envvar, char **str, int *i)
 {
-	int		i;
 	int		length;
 	char	*key;
 	char	*value;
 	
-	i = 0;
-	key = NULL;
-	while (str[0][i])
-	{
-		if (str[0][i] == '$')
-			{
-				key = ft_get_env_key(&str[0][i + 1]);
-				value = ft_get_env_value(envvar, key);
-				length = ft_strlen(key);
-				ft_replace_substr(str, i, (i + length + 1), value);
-				free(key);
-			}
-		i++;
-	}
+	key = ft_get_env_key(&str[0][*i + 1]);
+	// error handle
+	value = ft_get_env_value(envvar, key);
+	length = ft_strlen(key);
+	ft_replace_substr(str, *i, (*i + length + 1), value);
+	free(key);
+	*i += ft_strlen(value);
 }
 
 // separate functions to thier own files. move the quotes struct to a header file. write comments

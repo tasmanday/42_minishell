@@ -79,7 +79,7 @@ void	ft_echo(t_dlist *envvar, char **argv)
 	}
 	while (argv[i])
 	{
-		expand_envvar(envvar, &argv[i]);
+		parse_str(envvar, &argv[i]);
 		ft_printf("%s", argv[i]);
 		i++;
 		if (argv[i])
