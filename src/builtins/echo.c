@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 22:06:25 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 14:53:43 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	is_nl_flag(char *str)
 	returns 0 to represent successfully completing the function. this will
 	possibly be replaced with void when implementing as part of minishell.
 */
-void	ft_echo(t_dlist *envvar, char **argv)
+/*void	ft_echo(t_dlist *envvar, char **argv)
 {
 	int		i;
 	bool	newline_flag;
@@ -83,6 +83,34 @@ void	ft_echo(t_dlist *envvar, char **argv)
 		ft_printf("%s", argv[i]);
 		i++;
 		if (argv[i])
+			ft_printf(" ");
+	}
+	if (newline_flag)
+		ft_printf("\n");
+} */
+
+void	ft_echo(t_msh *msh)
+{
+	bool	newline_flag;
+	t_list	*current;
+
+	current = msh->tokens;
+	newline_flag = true;
+	if (!current->data)
+	{
+		ft_printf("\n");
+		return ;
+	}
+	while (current->data && is_nl_flag((char *)current->data))
+	{
+		newline_flag = false;
+		current = current->next;
+	}
+	while (current && (char *)current->data)
+	{
+		ft_printf("%s", (char *)current->data);
+		current = current->next;
+		if (current && (char *)current->data)
 			ft_printf(" ");
 	}
 	if (newline_flag)

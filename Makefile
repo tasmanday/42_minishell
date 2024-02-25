@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/02/11 21:50:36 by tday             ###   ########.fr        #
+#    Updated: 2024/02/25 14:53:32 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,13 @@ LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/main/, main.c)							\
-						$(addprefix src/initialisation/, clone_envv_to_dlist.c)	\
-						$(addprefix src/clean_up/, free_envv_struct.c)			\
+						$(addprefix src/initialisation/, init_minishell.c		\
+									clone_envv_to_dlist.c 						\
+									get_tokens_from_input.c)					\
+						$(addprefix src/clean_up/, free_envv_struct.c			\
+									free_string.c)								\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
 									expand_envvar.c)							\
-						$(addprefix src/parse/, parse_str.c)					\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
