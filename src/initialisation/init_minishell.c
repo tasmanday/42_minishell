@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:42:47 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 18:28:32 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 19:22:25 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 */
 void	init_minishell(t_msh *msh, char **argv, char **envv) // remove argv later when termcaps set up
 {
-	int	debug_count;
+//	int	debug_count;
 
-	debug_count = -1;
+//	debug_count = -1;
 	clone_envv_to_dlist(envv, &msh->envvar);
 	get_tokens_from_input(msh, argv); // change function when termcaps set up
-	debug_count = lst_size(msh->tokens);
-	ft_printf("%i\n", debug_count);
+//	debug_count = lst_size(msh->tokens);
+//	ft_printf("%i\n", debug_count);
 }

@@ -6,13 +6,15 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 16:59:31 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 17:52:39 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 21:36:12 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
 /*
+	**** ALLOCATES MEMORY ****
+
 	Summary
 	allocates memory and returns a substring from the string ’str’.
 	the substring begins at index ’start’ and is of maximum size ’length’.

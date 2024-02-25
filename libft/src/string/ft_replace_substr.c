@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:06:16 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 13:36:06 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 21:39:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ static void	copy_substr(char **str, char *substr, int *i)
 		copied.
 	[int *] i: a pointer to an integer representing the current index in the str
 		string.
-	[int] end: an integer representing the index after which the characters should
-		be copied.
+	[int] end: an integer representing the index after which the characters
+		should be copied.
 
 	Outputs
 	none. The function modifies the string str in place.
 */
 static void	copy_post_substr(char **str, char *temp, int *i, int end)
 {
-	int j;
+	int	j;
 
 	j = end + 1;
 	while (temp[j])
@@ -111,7 +111,7 @@ static void	copy_post_substr(char **str, char *temp, int *i, int end)
 */
 void	ft_replace_substr(char **str, int start, int end, char *substr)
 {
-	int 	total_length;
+	int		total_length;
 	int		str_length;
 	int		substr_length;
 	int		i;

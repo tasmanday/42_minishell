@@ -6,13 +6,15 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 08:31:21 by tday              #+#    #+#             */
-/*   Updated: 2024/01/28 08:40:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 21:41:07 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
 /*
+	**** ALLOCATES MEMORY ****
+
 	Summary
 	creates a new node for a linked list.
 

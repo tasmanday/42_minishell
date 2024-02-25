@@ -6,13 +6,15 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 17:44:03 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 17:37:16 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 21:36:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
 /*
+	**** ALLOCATES MEMORY ****
+
 	Summary
 	a wrapper around the malloc function. allocates memory and returns a
 	pointer to the allocated memory. If the malloc function fails, the

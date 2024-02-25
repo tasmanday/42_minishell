@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 18:16:43 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 22:25:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void		ft_env(t_msh *msh);
 /* envv */
 
 void		expand_envvar(t_dlist *envvar, char **str, int *i);
+char		*get_env_key(char *str);
+char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 
 /* parse */

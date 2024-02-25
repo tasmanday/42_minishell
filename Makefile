@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/02/25 18:16:11 by tday             ###   ########.fr        #
+#    Updated: 2024/02/25 22:25:34 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_string.c)								\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
-									expand_envvar.c)							\
+									expand_envvar.c get_env_key.c				\
+									get_env_value.c)							\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc

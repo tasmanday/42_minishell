@@ -6,13 +6,15 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:48:39 by tday              #+#    #+#             */
-/*   Updated: 2024/01/14 14:01:25 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 21:37:40 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
 /*
+	**** ALLOCATES MEMORY ****
+
 	Summary
 	reallocates memory for a given pointer.
 
