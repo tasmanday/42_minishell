@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 17:53:12 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 18:16:43 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 
 /* parse */
 
-// void		parse_str(t_dlist *envvar, char **str);
+void		add_tokens_to_list(t_msh *msh, char *str);
+void		handle_meta_chars(t_msh *msh, char *str, int *i);
+t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 /* clean_up */
 

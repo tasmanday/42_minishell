@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_str.c                                        :+:      :+:    :+:   */
+/*   safe_new_token_node.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 13:20:37 by tday              #+#    #+#             */
-/*   Updated: 2024/02/24 13:20:37 by tday             ###   ########.fr       */
+/*   Created: 2024/02/25 18:04:18 by tday              #+#    #+#             */
+/*   Updated: 2024/02/25 18:18:30 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-
-// possibly redundant
-/* void	parse_str(t_dlist *envvar, char **str)
+t_list	*safe_new_token_node(t_msh *msh, char *str)
 {
-	int	i;
+	t_list	*new_node;
 
-	i = 0;
-	while (str[0][i])
+	new_node = lst_new_node(str);
+	if (!new_node)
 	{
-		if (str[0][i] == '$')
-			expand_envvar(envvar, str, &i);
-		i++;
+		lst_del_all(&msh->tokens, free_string);
+		error_exit("safe_new_token_node_error");
 	}
+	return (new_node);
 }
-*/

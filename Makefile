@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/02/25 17:53:10 by tday             ###   ########.fr        #
+#    Updated: 2024/02/25 18:16:11 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/initialisation/, init_minishell.c		\
 									clone_envv_to_dlist.c 						\
 									get_tokens_from_input.c)					\
+						$(addprefix src/parse/, add_tokens_to_list.c			\
+									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_string.c)								\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
