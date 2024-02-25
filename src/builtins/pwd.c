@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:52:38 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 21:50:32 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 15:02:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static void	print_env_value(t_envv *envv_element)
 	Outputs
 	none.
 */
-void	ft_pwd(t_dlist *envvar)
+void	ft_pwd(t_msh *msh)
 {
 	t_dlist	*pwd_node;
 
-	pwd_node = find_envvar_node(envvar, "PWD");
+	pwd_node = find_envvar_node(msh->envvar, "PWD");
 	print_env_value((t_envv *)pwd_node->data);
 }

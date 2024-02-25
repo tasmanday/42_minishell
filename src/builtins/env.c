@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:21 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 22:06:26 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 15:02:52 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static void	print_envvar(t_envv *envv_element)
 	none. the function only prints the key-value pairs of the environment
 	variables.
 */
-void	ft_env(t_dlist *envvar)
+void	ft_env(t_msh *msh)
 {
 	t_dlist	*current;
 
-	current = envvar;
+	current = msh->envvar;
 	while (current)
 	{
 		print_envvar((t_envv *)current->data);

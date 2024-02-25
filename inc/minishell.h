@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 14:53:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 15:01:41 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void		get_tokens_from_input(t_msh *msh, char **argv);
 
 /* builtins */
 
-void		ft_pwd(t_dlist *envvar);
+void		ft_pwd(t_msh *msh);
 void		ft_echo(t_msh *msh);
-void		ft_env(t_dlist *envvar);
+void		ft_env(t_msh *msh);
 
 /* envv */
 
