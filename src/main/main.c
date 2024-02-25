@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 15:07:48 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 17:53:13 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envv)
 	msh->envvar = NULL;
 	msh->tokens = NULL;
 	init_minishell(msh, argv, envv);
-//	ft_echo(msh);
+	ft_echo(msh);
 //	ft_env(msh);
 //	ft_pwd(msh);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:52:38 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 15:02:49 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 15:28:24 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	print_env_value(t_envv *envv_element)
 	prints the current working directory to the standard output.
 
 	Inputs
-	[t_dlist *] envvar: a pointer to the doubly linked list that contains a
-	clone of the envirnmental variables.
+	[t_msh *] msh: the main struct of minishell contianing a doubly linked
+		list of cloned environment variables.
 
 	Outputs
 	none.

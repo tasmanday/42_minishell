@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 14:58:00 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 17:53:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,73 +46,77 @@ static bool	is_nl_flag(char *str)
 
 /*
 	Summary
-	replicates the echo command by printing given strings to the standard output.
-	also checks for a new line flag (-n) and handles it as echo would.
-	also checks for environmental variable keys ('$' followed by the name) and
-	expands them to their values.
+	a helper function that checks for new line flags and updates the current
+	token pointer in the linked list to be the first non new line flag token.
 
 	Inputs
-	[char **] argv: an array of strings passed to the ft_echo function.
+	[t_list **] curr_token: a pointer to the current token in the linked list.
+	[bool *] print_newline: a pointer to a boolean variable that indicates
+		whether a new line should be printed.
+
+	Outputs
+	none.
+*/
+static void	check_for_nl_flags(t_list **curr_token, bool *print_newline)
+{
+	while (*curr_token && (*curr_token)->data && \
+		is_nl_flag((char *)(*curr_token)->data))
+	{
+		*print_newline = false;
+		*curr_token = (*curr_token)->next;
+	}
+}
+
+/*
+	Summary
+	prints the tokens stored in a linked list to the standard output.
+	it also adds a space between tokens except for the last one.
+
+	Inputs
+	[t_list *] curr_token: a pointer to the current token in the linked list.
+
+	Outputs
+	none. the function prints the tokens stored in the linked list to the
+	standard output. Each token is printed as a string, with a space between
+	tokens except for the last one.
+*/
+static void	print_tokens(t_list *curr_token)
+{
+	while (curr_token && (char *)curr_token->data)
+	{
+		ft_printf("%s", (char *)curr_token->data);
+		curr_token = curr_token->next;
+		if (curr_token && (char *)curr_token->data)
+			ft_printf(" ");
+	}
+}
+
+/*
+	Summary
+	replicates the echo command by printing given strings to the standard output.
+	also checks for a new line flag (-n) and handles it as echo would.
+
+	Inputs
+	[t_msh *] msh: the main struct of minishell contianing a linked	list of
+		strings from the user imput that are separated into relevant tokens.
 
 	Outputs
 	prints the given strings to the standard output.
-	returns 0 to represent successfully completing the function. this will
-	possibly be replaced with void when implementing as part of minishell.
 */
-/*void	ft_echo(t_dlist *envvar, char **argv)
-{
-	int		i;
-	bool	newline_flag;
-
-	(void)envvar;
-	newline_flag = true;
-	if (!argv[1])
-	{
-		ft_printf("\n");
-		return ;
-	}
-	i = 1;
-	while (argv[i] && is_nl_flag(argv[i]))
-	{
-		newline_flag = false;
-		i++;
-	}
-	while (argv[i])
-	{
-		parse_str(envvar, &argv[i]);
-		ft_printf("%s", argv[i]);
-		i++;
-		if (argv[i])
-			ft_printf(" ");
-	}
-	if (newline_flag)
-		ft_printf("\n");
-} */
-
 void	ft_echo(t_msh *msh)
 {
-	bool	newline_flag;
-	t_list	*current;
+	bool	print_newline;
+	t_list	*curr_token;
 
-	current = msh->tokens;
-	newline_flag = true;
-	if (! current || !(char *)current->data)
+	curr_token = msh->tokens;
+	print_newline = true;
+	if (! curr_token || !(char *)curr_token->data)
 	{
 		ft_printf("\n");
 		return ;
 	}
-	while (current->data && is_nl_flag((char *)current->data))
-	{
-		newline_flag = false;
-		current = current->next;
-	}
-	while (current && (char *)current->data)
-	{
-		ft_printf("%s", (char *)current->data);
-		current = current->next;
-		if (current && (char *)current->data)
-			ft_printf(" ");
-	}
-	if (newline_flag)
+	check_for_nl_flags(&curr_token, &print_newline);
+	print_tokens(curr_token);
+	if (print_newline)
 		ft_printf("\n");
 }

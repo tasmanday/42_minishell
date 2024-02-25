@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:01:45 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 14:53:37 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 17:53:15 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	get_tokens_from_input(t_msh *msh, char **argv)
 {
 	int		i;
 
-	i = 1;
+	i = 1; // skips ./minishell
 
 	while (argv[i])
 	{

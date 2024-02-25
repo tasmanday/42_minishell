@@ -6,12 +6,25 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:42:47 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 15:04:41 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 17:53:14 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	initializes the t_msh structure with environment variables and tokens from
+	user input.
+
+	Inputs
+	[t_msh *] msh: a pointer to a t_msh structure that will be initialized.
+	[char **] argv: an array of strings representing command-line arguments. (will be removed once I have set up termcaps as I will be getting input from the terminal rather than argv then)
+	[char **] envv: an array of strings representing environment variables.
+
+	Outputs
+	none.
+*/
 void	init_minishell(t_msh *msh, char **argv, char **envv) // remove argv later when termcaps set up
 {
 //	int	debug_count;
