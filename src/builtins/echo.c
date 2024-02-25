@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 14:53:43 by tday             ###   ########.fr       */
+/*   Updated: 2024/02/25 14:58:00 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_echo(t_msh *msh)
 
 	current = msh->tokens;
 	newline_flag = true;
-	if (!current->data)
+	if (! current || !(char *)current->data)
 	{
 		ft_printf("\n");
 		return ;
