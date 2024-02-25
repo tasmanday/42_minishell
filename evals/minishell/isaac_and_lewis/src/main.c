@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lxu <lxu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 18:51:11 by tday             ###   ########.fr       */
+/*   Created: 2023/08/01 17:58:34 by lxu               #+#    #+#             */
+/*   Updated: 2023/09/11 17:51:46 by lxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
 int	main(int argc, char **argv, char **envv)
 {
-	//if (argc != 1)
-	//	error_exit("Incorrect number of arguments"); 
-	(void)argc;
-	t_msh	*msh;
+	char	**msh_envv;
 
-	msh = safe_malloc(sizeof(t_msh), "msh malloc error");
-	msh->envvar = NULL;
-	msh->tokens = NULL;
-	init_minishell(msh, argv, envv);
-	debug("init_minishell works");
-	ft_echo(msh);
-
-	return (0);
+	(void)argv;
+	msh_envv = msh_clone_envv(envv);
+	msh_update_shlvl(&msh_envv);
+	if (argc != 1)
+	{
+		print_err("Incorrect number of args. Exiting\n");
+		exit(1);
+	}
+	repl(&msh_envv);
 }
