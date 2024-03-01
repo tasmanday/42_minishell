@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 13:16:59 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/01 16:36:41 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 */
 
 # include "../libft/inc/libft.h"
+# include <termios.h>
+# include <termcaps.h>
 
 /*
 ** structs
@@ -25,8 +27,9 @@
 
 typedef struct s_msh
 {
-	t_dlist	*envvar;
-	t_list	*tokens;
+	t_dlist		*envvar;
+	t_list		*tokens;
+	t_termcaps	*termcaps;
 }				t_msh;
 
 
@@ -35,6 +38,13 @@ typedef struct s_envv
 	char	*env_key;
 	char	*env_value;
 }				t_envv;
+
+typedef struct s_termcaps
+{
+	struct termios	original_term;
+	struct termios	new_term;
+	char			*buffer;
+}				t_termcaps;
 
 
 /*
@@ -68,6 +78,7 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 /* clean_up */
 
+void		clean_exit(t_msh *msh, int exit_status);
 void		free_envv_struct(void *data);
 void		free_string(void *data);
 void		free_everything(t_msh *msh);

@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_termcaps.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 16:36:38 by tday             ###   ########.fr       */
+/*   Created: 2024/03/01 15:40:25 by tday              #+#    #+#             */
+/*   Updated: 2024/03/01 16:36:26 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+void	init_termcaps(t_msh *msh)
 {
-	//if (argc != 1)
-	//	error_exit("Incorrect number of arguments"); 
-	(void)argc;
-	t_msh	*msh;
+	char	*term_value;
 
-	msh = safe_malloc(sizeof(t_msh), "msh malloc error");
-	msh->envvar = NULL;
-	msh->tokens = NULL;
-	init_minishell(msh, argv, envv);
-//	ft_echo(msh);
-//	ft_env(msh);
-//	ft_pwd(msh);
-	free_everything(msh);
-//	debug("free_everything successful");
-	return (0);
+	if (tcgetattr(STDIN_FILENO, &msh->termcaps->original_term) == -1)
+		clean_exit(msh, EXIT_FAILURE);
+	term_value = get_env_value(msh->envvar, "TERM");
+	if (!term_value)
+		clean_exit(msh, EXIT_FAILURE);
+	if (tgetent(msh->termcaps->buffer, term_value) <= 0)
+		clean_exit(msh, EXIT_FAILURE);
+	// check capabilities
 }
