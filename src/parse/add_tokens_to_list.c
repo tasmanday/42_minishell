@@ -92,6 +92,7 @@ static void	create_and_add_token(t_msh *msh, char *str, int start, int end)
 /*
 	**** ALLOCATES MEMORY ****
 	memory allocated for strings and nodes in msh->tokens linked list.
+	responsible sub functions: handle_meta_chars, create_and_add_token.
 
 	Summary
 	separates a given string into tokens and adds them to a linked list.

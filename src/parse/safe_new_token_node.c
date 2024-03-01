@@ -14,6 +14,19 @@
 
 /*
 	**** ALLOCATES MEMORY ****
+	memory is allocated for new_node
+
+	Summary
+	creates a new node for a linked list and assigns a given string to it.
+	it also handles the case when memory allocation fails.
+
+	Inputs
+	[t_msh *] msh: a pointer to a t_msh struct, which is the minishell
+		program's main data structure.
+	[char *] str: a pointer to a string that will be assigned to the new node.
+
+	Outputs
+	[t_list *] new_node: a pointer to the newly created node.
 */
 t_list	*safe_new_token_node(t_msh *msh, char *str)
 {
