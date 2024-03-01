@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:06:28 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 13:15:50 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:34:13 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	free_everything(t_msh *msh)
 			lst_del_all(&(msh->tokens), free_string);
 			msh->tokens = NULL;
 		}
+		free(msh);
 	}
 }

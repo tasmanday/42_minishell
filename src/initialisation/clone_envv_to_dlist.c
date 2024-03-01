@@ -13,6 +13,9 @@
 #include "../../inc/minishell.h"
 
 /*
+	**** ALLOCATES MEMORY ****
+	memory allocated for cloned_substrings in ft_split_first
+
 	Summary
 	takes a string representing an environmental variable and splits it into
 	two substrings based on the first occurrence of the '=' character.
@@ -98,6 +101,15 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 }
 
 /*
+	**** ALLOCATES MEMMORY ****
+	for each environmental veriable, memory is allocated for:
+	- a cloned string
+	- a t_envv struct
+	- a t_dlist node
+	when freeing:
+	for each node, free the envv_struct->env_variables, then the t_envv struct,
+	then lastly the t_dlist node.
+
 	Summary
 	duplicates the environmental variable strings, wraps them in a t_envv struct
 	and then inserts them into a doubly linked list.
@@ -111,14 +123,6 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 	none. the function modifies the env_list doubly linked list by adding the
 	duplicated environmental variable strings wrapped in t_envv structs.
 
-	Memory
-	for each environmental veriable, memory is allocated for:
-	- a cloned string
-	- a t_envv struct
-	- a t_dlist node
-	when freeing:
-	for each node, free the envv_struct->env_variables, then the t_envv struct,
-	then lastly the t_dlist node.
 */
 void	clone_envv_to_dlist(char **envv, t_dlist **envvar)
 {
@@ -130,6 +134,7 @@ void	clone_envv_to_dlist(char **envv, t_dlist **envvar)
 		cloned_substrs = split_variables(*envv);
 		envv_struct = put_str_in_envv_struct(cloned_substrs);
 		add_envv_struct_to_dlist(envvar, envv_struct);
+		free(cloned_substrs);
 		envv++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 16:36:18 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 19:50:56 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:31:50 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ static void	store_first_word(const char *input_str, char **result, \
 }
 
 /*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the returned array of substrings.
+	this will need to be freed later when it is no longer needed.
+
 	Summary
 	allocates memory and returns an array of substrings obtained by splitting
 	the original using the first instance of the character ’delimeter’ as a

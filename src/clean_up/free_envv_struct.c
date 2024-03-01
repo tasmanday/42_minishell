@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 19:25:10 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 20:26:13 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/01 14:34:04 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	free_envv_struct(void *data)
 	envv = (t_envv *)data;
 	if (envv)
 	{
-		free(envv->env_key);
-		free(envv->env_value);
+		if (envv->env_key)
+			free(envv->env_key);
+		if (envv->env_value)
+			free(envv->env_value);
 		free(envv);
 	}
 }
