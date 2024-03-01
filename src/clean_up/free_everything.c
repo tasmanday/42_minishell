@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_everything.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 13:17:00 by tday             ###   ########.fr       */
+/*   Created: 2024/03/01 13:06:28 by tday              #+#    #+#             */
+/*   Updated: 2024/03/01 13:15:50 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	main(int argc, char **argv, char **envv)
+void	free_everything(t_msh *msh)
 {
-	//if (argc != 1)
-	//	error_exit("Incorrect number of arguments"); 
-	(void)argc;
-	t_msh	*msh;
-
-	msh = safe_malloc(sizeof(t_msh), "msh malloc error");
-	msh->envvar = NULL;
-	msh->tokens = NULL;
-	init_minishell(msh, argv, envv);
-	ft_echo(msh);
-//	ft_env(msh);
-//	ft_pwd(msh);
-	free_everything(msh);
-	return (0);
+	if (msh)
+	{
+		if (msh->envvar)
+		{
+			dlst_del_all(&(msh->envvar), free_envv_struct);
+			msh->envvar = NULL;
+		}
+		if (msh->tokens)
+		{
+			lst_del_all(&(msh->tokens), free_string);
+			msh->tokens = NULL;
+		}
+	}
 }

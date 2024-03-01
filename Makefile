@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/02/25 22:25:34 by tday             ###   ########.fr        #
+#    Updated: 2024/03/01 13:16:55 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/parse/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
-									free_string.c)								\
+									free_string.c free_everything.c)			\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
 									expand_envvar.c get_env_key.c				\
 									get_env_value.c)							\

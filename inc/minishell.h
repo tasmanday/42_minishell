@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:25:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/01 13:16:59 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 void		free_envv_struct(void *data);
 void		free_string(void *data);
+void		free_everything(t_msh *msh);
 
 #endif
