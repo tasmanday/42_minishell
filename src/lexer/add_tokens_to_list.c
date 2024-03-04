@@ -48,7 +48,8 @@ static bool	is_meta_char(char c)
 */
 static int	process_token_and_envvar(t_msh *msh, char *str, int i)
 {
-	while (str[i] && ft_isprint(str[i]) && !is_meta_char(str[i]))
+	while (str[i] && ft_isprint(str[i]) && !ft_isspace(str[i]) \
+	&& !is_meta_char(str[i]))
 	{
 		if (str[i] == '$')
 			expand_envvar(msh->envvar, &str, &i);
@@ -117,7 +118,7 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 	{
 		if (is_meta_char(str[i]))
 			handle_meta_chars(msh, str, &i);
-		else if (!ft_isprint(str[i]))
+		else if (!ft_isprint(str[i]) || ft_isspace(str[i]))
 			i++;
 		else
 		{

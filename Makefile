@@ -22,15 +22,15 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/initialisation/, init_minishell.c		\
 									clone_envv_to_dlist.c 						\
 									get_tokens_from_input.c)					\
+						$(addprefix src/envvar/, find_envvar_node.c 			\
+									expand_envvar.c get_env_key.c				\
+									get_env_value.c)							\
 						$(addprefix src/get_input/, get_input.c)				\
-						$(addprefix src/parse/, add_tokens_to_list.c			\
+						$(addprefix src/lexer/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_string.c free_everything.c				\
 									clean_exit.c)								\
-						$(addprefix src/envvar/, find_envvar_node.c 			\
-									expand_envvar.c get_env_key.c				\
-									get_env_value.c)							\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc

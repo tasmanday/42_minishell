@@ -57,10 +57,6 @@ void		init_minishell(t_msh *msh, char **argv, char **envv);
 void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
 void		get_tokens_from_input(t_msh *msh, char **argv);
 
-/* get_input */
-
-char		*get_input(t_msh *msh, char *prompt);
-
 /* envv */
 
 void		expand_envvar(t_dlist *envvar, char **str, int *i);
@@ -68,17 +64,23 @@ char		*get_env_key(char *str);
 char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 
+/* get_input */
+
+char		*get_input(t_msh *msh, char *prompt);
+
+/* lexer */
+
+void		add_tokens_to_list(t_msh *msh, char *str);
+void		handle_meta_chars(t_msh *msh, char *str, int *i);
+t_list		*safe_new_token_node(t_msh *msh, char *str);
+
+/* parse */
+
 /* builtins */
 
 void		ft_pwd(t_msh *msh);
 void		ft_echo(t_msh *msh);
 void		ft_env(t_msh *msh);
-
-/* parse */
-
-void		add_tokens_to_list(t_msh *msh, char *str);
-void		handle_meta_chars(t_msh *msh, char *str, int *i);
-t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 /* clean_up */
 

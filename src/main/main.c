@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv, char **envv)
 {
-	//if (argc != 1)
-	//	error_exit("Incorrect number of arguments"); 
+	if (argc != 1)
+		error_exit("Incorrect number of arguments"); 
 	(void)argc;
 	t_msh	*msh;
 	char	*input = NULL;
@@ -24,17 +24,23 @@ int	main(int argc, char **argv, char **envv)
 	msh->envvar = NULL;
 	msh->tokens = NULL;
 	init_minishell(msh, argv, envv);
-//	ft_echo(msh);
-//	ft_env(msh);
-//	ft_pwd(msh);
-	debug("working up to loop");
 	while (1)
 	{
-		debug("loop started");
 		input = get_input(msh, "prompt: ");
-		if (input[0] == '1')
+		if (input[0] == '1') // enter 1 to exit input loop
 			break;
-		ft_printf("input: %s\n", input);
+		add_tokens_to_list(msh, input);
+		if (ft_strcmp((char *)msh->tokens->data, "echo") == 0)
+			ft_echo(msh);
+		if (ft_strcmp((char *)msh->tokens->data, "env") == 0)
+			ft_env(msh);
+		if (ft_strcmp((char *)msh->tokens->data, "pwd") == 0)
+			ft_pwd(msh);
+		if (msh->tokens)
+		{
+			lst_del_all(&(msh->tokens), free_string);
+			msh->tokens = NULL;
+		}
 		free(input);
 	}
 	free_everything(msh);

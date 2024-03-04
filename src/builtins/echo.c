@@ -108,7 +108,8 @@ void	ft_echo(t_msh *msh)
 	bool	print_newline;
 	t_list	*curr_token;
 
-	curr_token = msh->tokens;
+	curr_token = msh->tokens->next;
+//	ft_printf("current token: %s\n", (char *)curr_token->data);
 	print_newline = true;
 	if (! curr_token || !(char *)curr_token->data)
 	{
