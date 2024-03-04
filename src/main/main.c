@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **envv)
 	//	error_exit("Incorrect number of arguments"); 
 	(void)argc;
 	t_msh	*msh;
+	char	*input = NULL;
 
 	msh = safe_malloc(sizeof(t_msh), "msh malloc error");
 	msh->envvar = NULL;
@@ -26,6 +27,16 @@ int	main(int argc, char **argv, char **envv)
 //	ft_echo(msh);
 //	ft_env(msh);
 //	ft_pwd(msh);
+	debug("working up to loop");
+	while (1)
+	{
+		debug("loop started");
+		input = get_input(msh, "prompt: ");
+		if (input[0] == '1')
+			break;
+		ft_printf("input: %s\n", input);
+		free(input);
+	}
 	free_everything(msh);
 //	debug("free_everything successful");
 	return (0);

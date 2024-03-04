@@ -22,6 +22,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c)			\
 						$(addprefix src/initialisation/, init_minishell.c		\
 									clone_envv_to_dlist.c 						\
 									get_tokens_from_input.c)					\
+						$(addprefix src/get_input/, get_input.c)				\
 						$(addprefix src/parse/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
@@ -61,7 +62,7 @@ WHITE			:=		\033[1;37m
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJS)
-				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -lreadline -o $(NAME)
 				@echo "$(CYAN)Everything compiled and linked into executable: $(BLUE)$(NAME)$(DEFAULT_COLOUR)"
 				@echo "\n"
 

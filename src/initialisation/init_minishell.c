@@ -29,7 +29,7 @@ void	init_minishell(t_msh *msh, char **argv, char **envv) // remove argv later w
 {
 //	int	debug_count;
 
-//	(void)argv;
+	(void)argv;
 //	(void)envv;
 //	debug_count = -1;
 	clone_envv_to_dlist(envv, &msh->envvar);

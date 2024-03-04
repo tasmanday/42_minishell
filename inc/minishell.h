@@ -18,8 +18,8 @@
 */
 
 # include "../libft/inc/libft.h"
-# include <termios.h>
-# include <termcaps.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 /*
 ** structs
@@ -29,7 +29,7 @@ typedef struct s_msh
 {
 	t_dlist		*envvar;
 	t_list		*tokens;
-	t_termcaps	*termcaps;
+//	t_termcaps	*termcaps;
 }				t_msh;
 
 
@@ -39,12 +39,12 @@ typedef struct s_envv
 	char	*env_value;
 }				t_envv;
 
-typedef struct s_termcaps
+/* typedef struct s_termcaps
 {
 	struct termios	original_term;
 	struct termios	new_term;
 	char			*buffer;
-}				t_termcaps;
+}				t_termcaps; */
 
 
 /*
@@ -57,11 +57,9 @@ void		init_minishell(t_msh *msh, char **argv, char **envv);
 void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
 void		get_tokens_from_input(t_msh *msh, char **argv);
 
-/* builtins */
+/* get_input */
 
-void		ft_pwd(t_msh *msh);
-void		ft_echo(t_msh *msh);
-void		ft_env(t_msh *msh);
+char		*get_input(t_msh *msh, char *prompt);
 
 /* envv */
 
@@ -69,6 +67,12 @@ void		expand_envvar(t_dlist *envvar, char **str, int *i);
 char		*get_env_key(char *str);
 char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
+
+/* builtins */
+
+void		ft_pwd(t_msh *msh);
+void		ft_echo(t_msh *msh);
+void		ft_env(t_msh *msh);
 
 /* parse */
 
