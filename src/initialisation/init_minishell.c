@@ -33,7 +33,7 @@ void	init_minishell(t_msh *msh, char **argv, char **envv) // remove argv later w
 //	(void)envv;
 //	debug_count = -1;
 	clone_envv_to_dlist(envv, &msh->envvar);
-	get_tokens_from_input(msh, argv); // change function when termcaps set up
+//	get_tokens_from_input(msh, argv); // change function when termcaps set up
 //	debug_count = lst_size(msh->tokens);
 //	ft_printf("%i\n", debug_count);
 }
