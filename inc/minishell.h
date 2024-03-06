@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 16:36:41 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/06 22:21:25 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_msh
 {
 	t_dlist		*envvar;
 	t_list		*tokens;
-//	t_termcaps	*termcaps;
+	int			last_exit_status;
 }				t_msh;
 
 
@@ -39,14 +39,6 @@ typedef struct s_envv
 	char	*env_value;
 }				t_envv;
 
-/* typedef struct s_termcaps
-{
-	struct termios	original_term;
-	struct termios	new_term;
-	char			*buffer;
-}				t_termcaps; */
-
-
 /*
 ** prototypes
 */
@@ -55,7 +47,7 @@ typedef struct s_envv
 
 void		init_minishell(t_msh *msh, char **argv, char **envv);
 void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
-void		get_tokens_from_input(t_msh *msh, char **argv);
+void		get_tokens_from_input(t_msh *msh, char **argv); // not used any more
 
 /* envv */
 
