@@ -12,6 +12,21 @@
 
 #include "../../inc/minishell.h"
 
+void	export_no_args(msh)
+{
+	t_dlist	*curr_variable;
+	t_envv	*data;
+
+	curr_variable = msh->envvar;
+	while (curr_variable)
+	{
+		data = (t_envv *)curr_variable->data;
+		if (data->value == NULL)
+			ft_printf("declare -x %s\n", data->key);
+		else
+			ft_printf("
+}
+
 void	ft_export(t_msh *msh)
 {
 	t_list	*curr_token;
