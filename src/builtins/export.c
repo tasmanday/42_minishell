@@ -25,6 +25,8 @@ void	export_no_args(msh)
 			ft_printf("declare -x %s\n", data->key);
 		else
 			ft_printf("declare -x %s=\"%s\"\n", data->key, data->value);
+		curr_variable =curr_variable->next;
+	}
 }
 
 void	ft_export(t_msh *msh)
