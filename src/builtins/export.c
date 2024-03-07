@@ -24,7 +24,7 @@ void	export_no_args(msh)
 		if (data->value == NULL)
 			ft_printf("declare -x %s\n", data->key);
 		else
-			ft_printf("
+			ft_printf("declare -x %s=\"%s\"\n", data->key, data->value);
 }
 
 void	ft_export(t_msh *msh)
