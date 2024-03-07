@@ -17,7 +17,11 @@ void	export_no_args(msh)
 	t_dlist	*curr_variable;
 	t_envv	*data;
 
+	// clone envvar list
 	curr_variable = msh->envvar;
+	// while (curr->next != NULL)
+	//	 bubble sort cloned list using ft_strcmp
+	// curr_variable = cloned list head
 	while (curr_variable)
 	{
 		data = (t_envv *)curr_variable->data;
@@ -27,6 +31,7 @@ void	export_no_args(msh)
 			ft_printf("declare -x %s=\"%s\"\n", data->key, data->value);
 		curr_variable =curr_variable->next;
 	}
+	// free cloned list
 }
 
 void	ft_export(t_msh *msh)
