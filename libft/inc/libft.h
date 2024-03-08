@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:50:58 by tday              #+#    #+#             */
-/*   Updated: 2024/02/11 18:54:45 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/08 21:59:05 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void		dlst_insert_after(t_dlist *original_node, t_dlist *node_to_insert);
 t_dlist		*dlst_last_node(t_dlist *dlst_head);
 int			dlst_size(t_dlist *dlst);
 bool		dlst_has_node(t_dlist *dlst_head, t_dlist *node_to_find);
+void		dlst_swap_nodes(t_dlist **head, t_dlist *node1, t_dlist *node2);
 void		dlst_del_node(t_dlist **dlst_head, t_dlist *node_to_del, \
 			void (*ft_del)(void*));
 void		dlst_del_head(t_dlist **dlst_head, void (*ft_del)(void*));

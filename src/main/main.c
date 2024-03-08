@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 16:36:38 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/08 22:03:30 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv, char **envv)
 			ft_env(msh);
 		if (ft_strcmp((char *)msh->tokens->data, "pwd") == 0)
 			ft_pwd(msh);
+		if (ft_strcmp((char *)msh->tokens->data, "export") == 0)
+			ft_export(msh);
 		if (msh->tokens)
 		{
 			lst_del_all(&(msh->tokens), free_string);

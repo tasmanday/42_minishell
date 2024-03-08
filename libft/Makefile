@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 11:33:08 by tday              #+#    #+#              #
-#    Updated: 2024/02/10 17:40:39 by tday             ###   ########.fr        #
+#    Updated: 2024/03/08 21:59:03 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 									dlst_del_head.c	dlst_del_node.c 			\
 									dlst_del_tail.c	dlst_has_node.c				\
 									dlst_insert_after.c dlst_last_node.c		\
-									dlst_new_node.c dlst_size.c)
+									dlst_new_node.c dlst_size.c 				\
+									dlst_swap_nodes.c)
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		cc
 CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR)
