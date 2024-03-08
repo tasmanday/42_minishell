@@ -38,16 +38,27 @@ void	sort_dlist(t_dlist *head)
 {
 	t_dlist	*curr;
 	t_dlist	*next;
-	t_envv	
+	t_envv	*curr_envv;
+	t_envv	*next_envv;
 	
-
 	curr = head;
-	next = curr->next
+	next = curr->next;
 	while (next != NULL)
 	{
-		
-		if (
-		
+		curr_envv = (t_envv *)(curr->data);
+		next_envv = (t_envv *)(next->data);
+		if (ft_strcmp(curr_envv->env_key, next_envv->env_key) > 0)
+		{
+			dlst_swap_nodes(&head, curr, next); // write this function
+			curr = head;
+			next = curr->next;
+		}
+		else
+		{
+			curr = curr->next;
+			next = curr->next;
+		}
+	}
 }
 
 void	export_no_args(msh)
@@ -58,8 +69,7 @@ void	export_no_args(msh)
 
 	cloned_list = clone_list(msh->envvar);
 	curr_variable = cloned_list;
-	// while (curr->next != NULL)
-	//	 bubble sort cloned list using ft_strcmp
+	// sort_list
 	// curr_variable = cloned list head
 	while (curr_variable)
 	{
