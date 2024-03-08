@@ -34,6 +34,22 @@ t_dlist	*clone_list(t_dlist *original)
 	return (new_list);
 }
 
+void	sort_dlist(t_dlist *head)
+{
+	t_dlist	*curr;
+	t_dlist	*next;
+	t_envv	
+	
+
+	curr = head;
+	next = curr->next
+	while (next != NULL)
+	{
+		
+		if (
+		
+}
+
 void	export_no_args(msh)
 {
 	t_dlist	*cloned_list;
