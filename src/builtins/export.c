@@ -12,13 +12,36 @@
 
 #include "../../inc/minishell.h"
 
+t_dlist	*clone_list(t_dlist *original)
+{
+	t_dlist	*new_list;
+	t_dlist	*new_node;
+	void	*envv;
+
+	new_list = NULL;
+	while (original != NULL)
+	{
+		envv = original->data;
+		new_node = dlst_new_node(envv);
+		if (!new_list)
+		{
+			error("clone list new node error\n";
+			return (NULL);
+		}
+		dlst_add_tail(&new_list, new_node);
+		original = original->next;
+	}
+	return (new_list);
+}
+
 void	export_no_args(msh)
 {
+	t_dlist	*cloned_list;
 	t_dlist	*curr_variable;
 	t_envv	*data;
 
-	// clone envvar list
-	curr_variable = msh->envvar;
+	cloned_list = clone_list(msh->envvar);
+	curr_variable = cloned_list;
 	// while (curr->next != NULL)
 	//	 bubble sort cloned list using ft_strcmp
 	// curr_variable = cloned list head
