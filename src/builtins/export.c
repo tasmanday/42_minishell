@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 21:23:16 by tday              #+#    #+#             */
-/*   Updated: 2024/03/08 22:07:43 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 14:34:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ static t_dlist	*clone_list(t_dlist *original)
 	return (new_list);
 }
 
-static void	sort_dlist(t_dlist *head)
+static void	sort_dlist(t_dlist **head)
 {
 	t_dlist	*curr;
 	t_envv	*curr_envv;
 	t_envv	*next_envv;
 
-	curr = head;
+	curr = *head;
 	while (curr->next != NULL)
 	{
 		curr_envv = (t_envv *)(curr->data);
 		next_envv = (t_envv *)(curr->next->data);
 		if (ft_strcmp(curr_envv->env_key, next_envv->env_key) > 0)
 		{
-			dlst_swap_nodes(&head, curr, curr->next);
-			curr = head;
+			dlst_swap_nodes(head, curr, curr->next);
+			curr = *head;
 		}
 		else
 			curr = curr->next;
@@ -62,7 +62,7 @@ void	export_no_args(t_msh *msh)
 	t_envv	*data;
 
 	cloned_list = clone_list(msh->envvar);
-	sort_dlist(cloned_list);
+	sort_dlist(&cloned_list);
 	curr_variable = cloned_list;
 	while (curr_variable)
 	{

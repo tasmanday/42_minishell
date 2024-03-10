@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:20:56 by tday              #+#    #+#             */
-/*   Updated: 2024/03/08 21:59:07 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 14:20:13 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	swap_non_adjacent(t_dlist **head, t_dlist *node1, t_dlist *node2)
 	t_dlist	*temp_next;
 	t_dlist	*temp_prev;
 
+	(void)head;
 	temp_next = node1->next;
 	node1->next = node2->next;
 	node2->next = temp_next;

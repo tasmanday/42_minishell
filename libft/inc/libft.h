@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:50:58 by tday              #+#    #+#             */
-/*   Updated: 2024/03/08 21:59:05 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 14:32:06 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void		error(const char *error);
 void		error_exit(const char *error);
 void		no_op(void *arg);
 void		debug(const char *str);
+void		debug_int(int num);
 
 /* singularly linked lists */
 

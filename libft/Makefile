@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 11:33:08 by tday              #+#    #+#              #
-#    Updated: 2024/03/08 21:59:03 by tday             ###   ########.fr        #
+#    Updated: 2024/03/10 14:27:39 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 									ft_substr.c get_next_line.c 				\
 									ft_split_first.c ft_replace_substr.c)		\
 						$(addprefix src/utils/, error_exit.c no_op.c			\
-									error.c debug.c)							\
+									error.c debug.c debug_int.c)				\
 						$(addprefix src/double_linked_list/, dlst_add_head.c	\
 									dlst_add_tail.c dlst_del_all.c 				\
 									dlst_del_head.c	dlst_del_node.c 			\
