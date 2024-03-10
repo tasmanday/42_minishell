@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/08 22:04:14 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 18:29:51 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,31 @@
 ** structs
 */
 
+/* main struct */
 typedef struct s_msh
 {
-	t_dlist		*envvar;
-	t_list		*tokens;
-	int			last_exit_status;
+	t_dlist	*envvar;
+	t_list	*tokens;
+	t_dlist	*cmd_list;
+	int		last_exit_status;
 }				t_msh;
 
-
+/* elements in envvar*/
 typedef struct s_envv
 {
 	char	*env_key;
 	char	*env_value;
 }				t_envv;
+
+/* elements in cmd_list */
+typedef struct s_cmd
+{
+	char	*command;
+	t_list	*arguments;
+	char	*input;
+	char	*output;
+	bool	is_pipe;
+}				t_cmd;
 
 /*
 ** prototypes
@@ -45,9 +57,8 @@ typedef struct s_envv
 
 /* initialisation */
 
-void		init_minishell(t_msh *msh, char **argv, char **envv);
+t_msh		*init_minishell(char **envv);
 void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
-void		get_tokens_from_input(t_msh *msh, char **argv); // not used any more
 
 /* envv */
 

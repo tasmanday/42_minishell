@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:07:01 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:25:28 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 15:46:55 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
 		*i += ft_strlen((char *)new_node->data);
 	}
 }
+
 /*
 	**** ALLOCATES MEMORY ****
 	memory is allocated for a linked list node in safe_new_token_node function.
@@ -82,6 +83,7 @@ static void	add_pipe_token(t_msh *msh, char *str, int *i)
 		*i += 1;
 	}
 }
+
 /*
 	**** ALLOCATES MEMORY ****
 	memory allocated for token_str and new_node. token_str is stored in

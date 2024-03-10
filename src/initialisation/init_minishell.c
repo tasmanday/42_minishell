@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:42:47 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 16:36:28 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/10 18:29:52 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 /*
 	Summary
-	initializes the t_msh structure with environment variables and tokens from
-	user input.
+	initializes the t_msh structure with environment variables
 
 	Inputs
 	[t_msh *] msh: a pointer to a t_msh structure that will be initialized.
-	[char **] argv: an array of strings representing command-line arguments. (will be removed once I have set up termcaps as I will be getting input from the terminal rather than argv then)
 	[char **] envv: an array of strings representing environment variables.
 
 	Outputs
 	none.
 */
-void	init_minishell(t_msh *msh, char **argv, char **envv) // remove argv later when termcaps set up
+t_msh	*init_minishell(char **envv)
 {
-//	int	debug_count;
+	t_msh	*msh;
 
-	(void)argv;
-//	(void)envv;
-//	debug_count = -1;
+	msh = safe_malloc(sizeof(t_msh), "msh malloc error");
+	msh->envvar = NULL;
+	msh->tokens = NULL;
+	msh->cmd_list = NULL;
 	clone_envv_to_dlist(envv, &msh->envvar);
-//	get_tokens_from_input(msh, argv); // change function when termcaps set up
-//	debug_count = lst_size(msh->tokens);
-//	ft_printf("%i\n", debug_count);
+	return (msh);
 }

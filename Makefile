@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/03/08 22:05:09 by tday             ###   ########.fr        #
+#    Updated: 2024/03/10 18:29:50 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ LIBFT			:=		$(LIBFT_DIR)/libft.a
 SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c)	\
 						$(addprefix src/main/, main.c)							\
 						$(addprefix src/initialisation/, init_minishell.c		\
-									clone_envv_to_dlist.c 						\
-									get_tokens_from_input.c)					\
+									clone_envv_to_dlist.c)						\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
 									expand_envvar.c get_env_key.c				\
 									get_env_value.c)							\
@@ -34,7 +33,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c)	\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
-CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR)
+CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR) -g
 RM				:=		rm -f
 
 # Function definition
