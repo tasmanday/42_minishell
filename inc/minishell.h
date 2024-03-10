@@ -30,7 +30,7 @@ typedef struct s_msh
 {
 	t_dlist	*envvar;
 	t_list	*tokens;
-	t_dlist	*cmd_list;
+	t_dlist	*cmd_queue;
 	int		last_exit_status;
 }				t_msh;
 
@@ -46,8 +46,8 @@ typedef struct s_cmd
 {
 	char	*command;
 	t_list	*arguments;
-	char	*input;
-	char	*output;
+	char	*input_file;
+	char	*output_file;
 	bool	is_pipe;
 }				t_cmd;
 
@@ -58,7 +58,7 @@ typedef struct s_cmd
 /* initialisation */
 
 t_msh		*init_minishell(char **envv);
-void		clone_envv_to_dlist(char **envv, t_dlist **envvar);
+void		clone_envv_to_dlist(t_msh *msh, char **envv, t_dlist **envvar);
 
 /* envv */
 
@@ -79,6 +79,8 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 /* parse */
 
+void		extract_commands(t_msh *msh);
+
 /* builtins */
 
 void		ft_pwd(t_msh *msh);
@@ -89,9 +91,12 @@ void		ft_export(t_msh *msh);
 /* clean_up */
 
 void		clean_exit(t_msh *msh, int exit_status);
+void		msh_error_exit(t_msh *msh, char *error_message);
+void		free_cloned_list(t_dlist *head);
+void		free_everything(t_msh *msh);
 void		free_envv_struct(void *data);
 void		free_string(void *data);
-void		free_everything(t_msh *msh);
-void		free_cloned_list(t_dlist *head);
+void		free_tokens(t_msh *msh);
+void		free_cmd_struct(void *data);
 
 #endif

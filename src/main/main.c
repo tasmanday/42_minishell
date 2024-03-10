@@ -30,19 +30,21 @@ int	main(int argc, char **argv, char **envv)
 			break ;
 		}
 		add_tokens_to_list(msh, input);
-		if (ft_strcmp((char *)msh->tokens->data, "echo") == 0)
+		extract_commands(msh);
+		/* if (ft_strcmp((char *)msh->tokens->data, "echo") == 0)
 			ft_echo(msh);
 		if (ft_strcmp((char *)msh->tokens->data, "env") == 0)
 			ft_env(msh);
 		if (ft_strcmp((char *)msh->tokens->data, "pwd") == 0)
 			ft_pwd(msh);
 		if (ft_strcmp((char *)msh->tokens->data, "export") == 0)
-			ft_export(msh);
+			ft_export(msh); 
 		if (msh->tokens)
 		{
+			debug("still tokens");
 			lst_del_all(&(msh->tokens), free_string);
 			msh->tokens = NULL;
-		}
+		} */
 		free(input);
 	}
 	free_everything(msh);

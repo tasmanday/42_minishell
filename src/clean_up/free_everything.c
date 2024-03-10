@@ -12,6 +12,12 @@
 
 #include "../../inc/minishell.h"
 
+void	free_tokens(t_msh *msh)
+{
+	lst_del_all(&(msh->tokens), free_string);
+	msh->tokens = NULL;
+}
+
 void	free_everything(t_msh *msh)
 {
 	if (msh)
@@ -25,6 +31,11 @@ void	free_everything(t_msh *msh)
 		{
 			lst_del_all(&(msh->tokens), free_string);
 			msh->tokens = NULL;
+		}
+		if (msh->cmd_queue)
+		{
+			dlst_del_all(&(msh->cmd_queue), free_cmd_struct);
+			msh->cmd_queue = NULL;
 		}
 		free(msh);
 	}

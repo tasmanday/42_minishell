@@ -40,7 +40,7 @@ SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 						$(addprefix src/memory/, free_null.c ft_bzero.c			\
 									ft_calloc.c ft_memchr.c ft_memcmp.c			\
 									ft_memcpy.c ft_memmove.c ft_memset.c		\
-									ft_realloc.c safe_malloc.c)					\
+									ft_realloc.c safe_malloc.c safe_calloc.c)	\
 						$(addprefix src/put/, ft_putchar_fd.c ft_putchar.c		\
 									ft_putendl_fd.c ft_putnbr_fd.c ft_putnbr.c	\
 									ft_putstr_fd.c ft_putstr.c)					\

@@ -112,6 +112,7 @@ void		*ft_calloc(size_t number, size_t size);
 void		*ft_realloc(void *pointer, size_t orig_size, size_t new_size);
 void		free_null(void **mem_ptr);
 void		*safe_malloc(size_t bytes, char *error_message);
+void		*safe_calloc(size_t number, size_t size, char *error_message);
 
 /* conversion */
 

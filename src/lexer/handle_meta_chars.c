@@ -29,7 +29,7 @@
 	none. the function modifies the minishell structure by adding tokens to the
 	msh->tokens linked list.
 */
-static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
+static void	add_redirection_tokens(t_msh *msh, char *str, int *i) // need to fix using ft_substr like add_pipe_token function below or will cause issues with free
 {
 	t_list	*new_node;
 
@@ -75,10 +75,12 @@ static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
 static void	add_pipe_token(t_msh *msh, char *str, int *i)
 {
 	t_list	*new_node;
+	char 	*temp_str;
 
 	if (str[*i] == '|')
 	{
-		new_node = safe_new_token_node(msh, "|");
+		temp_str = ft_substr(str, (*i), 1);
+		new_node = safe_new_token_node(msh, temp_str);
 		lst_add_tail(&(msh->tokens), new_node);
 		*i += 1;
 	}

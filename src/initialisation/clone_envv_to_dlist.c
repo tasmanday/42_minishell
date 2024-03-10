@@ -85,18 +85,15 @@ static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 	Outputs
 	none.
 */
-static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
+static void	add_envv_to_dlist(t_msh *msh, t_dlist **env_list, t_envv *s_envv)
 {
 	t_dlist	*new_node;
 
-	if (!envv_struct)
-		error_exit("no envv_struct");
-	new_node = dlst_new_node(envv_struct);
+	if (!s_envv)
+		msh_error_exit(msh, "clone_envv no envv_struct");
+	new_node = dlst_new_node(s_envv);
 	if (!new_node)
-	{
-		dlst_del_all(env_list, free_envv_struct);
-		error_exit("clone_envv new_node malloc error");
-	}
+		msh_error_exit(msh, "clone_envv new_node malloc error");
 	dlst_add_tail(env_list, new_node);
 }
 
@@ -124,7 +121,7 @@ static void	add_envv_struct_to_dlist(t_dlist **env_list, t_envv *envv_struct)
 	duplicated environmental variable strings wrapped in t_envv structs.
 
 */
-void	clone_envv_to_dlist(char **envv, t_dlist **envvar)
+void	clone_envv_to_dlist(t_msh *msh, char **envv, t_dlist **envvar)
 {
 	char	**cloned_substrs;
 	t_envv	*envv_struct;
@@ -133,7 +130,7 @@ void	clone_envv_to_dlist(char **envv, t_dlist **envvar)
 	{
 		cloned_substrs = split_variables(*envv);
 		envv_struct = put_str_in_envv_struct(cloned_substrs);
-		add_envv_struct_to_dlist(envvar, envv_struct);
+		add_envv_to_dlist(msh, envvar, envv_struct);
 		free(cloned_substrs);
 		envv++;
 	}
