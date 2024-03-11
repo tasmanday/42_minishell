@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 17:53:16 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/11 17:12:04 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static bool	is_nl_flag(char *str)
 	Outputs
 	none.
 */
-static void	check_for_nl_flags(t_list **curr_token, bool *print_newline)
+static void	check_for_nl_flags(t_list **curr_arg, bool *print_newline)
 {
-	while (*curr_token && (*curr_token)->data && \
-		is_nl_flag((char *)(*curr_token)->data))
+	while (*curr_arg && (*curr_arg)->data && \
+		is_nl_flag((char *)(*curr_arg)->data))
 	{
 		*print_newline = false;
-		*curr_token = (*curr_token)->next;
+		*curr_arg = (*curr_arg)->next;
 	}
 }
 
@@ -80,13 +80,13 @@ static void	check_for_nl_flags(t_list **curr_token, bool *print_newline)
 	standard output. Each token is printed as a string, with a space between
 	tokens except for the last one.
 */
-static void	print_tokens(t_list *curr_token)
+static void	print_tokens(t_list *curr_arg)
 {
-	while (curr_token && (char *)curr_token->data)
+	while (curr_arg && (char *)curr_arg->data)
 	{
-		ft_printf("%s", (char *)curr_token->data);
-		curr_token = curr_token->next;
-		if (curr_token && (char *)curr_token->data)
+		ft_printf("%s", (char *)curr_arg->data);
+		curr_arg = curr_arg->next;
+		if (curr_arg && (char *)curr_arg->data)
 			ft_printf(" ");
 	}
 }
@@ -106,18 +106,17 @@ static void	print_tokens(t_list *curr_token)
 void	ft_echo(t_msh *msh)
 {
 	bool	print_newline;
-	t_list	*curr_token;
+	t_cmd	*cmd_struct;
 
-	curr_token = msh->tokens->next;
-//	ft_printf("current token: %s\n", (char *)curr_token->data);
+	cmd_struct = (t_cmd *)msh->cmd_queue->data;
 	print_newline = true;
-	if (! curr_token || !(char *)curr_token->data)
+	if (!cmd_struct->arguments)
 	{
 		ft_printf("\n");
 		return ;
 	}
-	check_for_nl_flags(&curr_token, &print_newline);
-	print_tokens(curr_token);
+	check_for_nl_flags(&(cmd_struct->arguments), &print_newline);
+	print_tokens(cmd_struct->arguments);
 	if (print_newline)
 		ft_printf("\n");
 }

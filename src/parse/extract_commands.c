@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 18:29:45 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/11 16:56:38 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,21 @@ static void	fill_command_element(t_cmd **cmd, t_list **curr_token_ptr)
 	}
 }
 
+bool	is_redirect(char *str)
+{
+	if (!ft_strcmp(str, "<") || !ft_strcmp(str, "<<") || \
+		!ft_strcmp(str, ">") || !ft_strcmp(str, ">>"))
+		return (true);
+	else
+		return (false);
+}
+
 static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 {
 	t_cmd	*cmd;
 	t_list	*arg_node;
 	t_list	*token;
+	char	*arg;
 
 	if (!curr_token_ptr || !*curr_token_ptr)
 		return (error("fill_cmd_struct no token_ptr"), NULL);
@@ -61,7 +71,8 @@ static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 			handle_redirection(&cmd, &token);
 		else
 		{
-			arg_node = lst_new_node(token->data);
+			arg = ft_strdup((char *)token->data);
+			arg_node = lst_new_node(arg);
 			if (!arg_node)
 				{
 					free_cmd_struct(cmd);
@@ -99,9 +110,9 @@ void	extract_commands(t_msh *msh)
 		cmd_struct = fill_cmd_struct(msh, &curr_token);
 		add_cmd_to_dlist(msh, cmd_struct);
 		queue++;
-		debug("commands in queue");
-		debug_int(queue);
+//		debug("commands in queue");
+//		debug_int(queue);
 	}
-	debug("about to free_tokens");
+//	debug("about to free_tokens");
 	free_tokens(msh);
 }

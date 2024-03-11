@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 21:23:16 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 16:41:24 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/11 17:07:01 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	export_no_args(t_msh *msh)
 
 void	ft_export(t_msh *msh)
 {
-	t_list	*curr_token;
-	char	*command;
+	t_cmd	*cmd_struct;
 
-	curr_token = msh->tokens;
-	command = (char *)curr_token->data;
-	if (ft_strcmp(command, "export") == 0 && !curr_token->next)
+	cmd_struct = (t_cmd *)msh->cmd_queue->data;
+	if (!cmd_struct->arguments)
 		export_no_args(msh);
+	else 
+		error("export with args not coded yet");
 //	else if (command == "export" && curr_token->next)
 //		export_args(msh); // write function to handle export with arguments
 }
