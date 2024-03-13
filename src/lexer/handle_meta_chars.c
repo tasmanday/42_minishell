@@ -29,29 +29,45 @@
 	none. the function modifies the minishell structure by adding tokens to the
 	msh->tokens linked list.
 */
-static void	add_redirection_tokens(t_msh *msh, char *str, int *i) // need to fix using ft_substr like add_pipe_token function below or will cause issues with free
+static void	add_redirection_tokens(t_msh *msh, char *str, int *i) 
 {
 	t_list	*new_node;
+	char	*temp_str;
 
 	new_node = NULL;
 	if (str[*i] == '<')
 	{
 		if (str[(*i) + 1] == '<')
-			new_node = safe_new_token_node(msh, "<<");
+		{
+			temp_str = ft_substr(str, (*i), 2);
+			new_node = safe_new_token_node(msh, temp_str);
+			*i += 2;
+		}
 		else
-			new_node = safe_new_token_node(msh, "<");
+		{
+			temp_str = ft_substr(str, (*i), 1);
+			new_node = safe_new_token_node(msh, temp_str);
+			*i += 1;
+		}
 	}
 	else if (str[*i] == '>')
 	{
 		if (str[(*i) + 1] == '>')
-			new_node = safe_new_token_node(msh, ">>");
+		{
+			temp_str = ft_substr(str, (*i), 2);
+			new_node = safe_new_token_node(msh, temp_str);
+			*i += 2;
+		}
 		else
-			new_node = safe_new_token_node(msh, ">");
+		{
+			temp_str = ft_substr(str, (*i), 1);
+			new_node = safe_new_token_node(msh, temp_str);
+			*i += 1;
+		}
 	}
 	if (new_node)
 	{
 		lst_add_tail(&(msh->tokens), new_node);
-		*i += ft_strlen((char *)new_node->data);
 	}
 }
 

@@ -37,15 +37,7 @@ int	main(int argc, char **argv, char **envv)
 		add_tokens_to_list(msh, input);
 		extract_commands(msh);
 //		debug("extract_commands complete");
-		t_cmd	*cmd_struct = (t_cmd *)msh->cmd_queue->data;
-		if (ft_strcmp(cmd_struct->command, "env") == 0)
-			ft_env(msh);
-		if (ft_strcmp(cmd_struct->command, "pwd") == 0)
-			ft_pwd(msh);
-		if (ft_strcmp(cmd_struct->command, "export") == 0)
-			ft_export(msh);
-		if (ft_strcmp(cmd_struct->command, "echo") == 0)
-			ft_echo(msh);
+		execute_builtin(msh);
 		if (msh->cmd_queue)
 		{
 			dlst_del_all(&(msh->cmd_queue), free_cmd_struct);

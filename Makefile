@@ -27,7 +27,8 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c)	\
 						$(addprefix src/get_input/, get_input.c)				\
 						$(addprefix src/lexer/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
-						$(addprefix src/parse/, extract_commands.c)				\
+						$(addprefix src/parse/, extract_commands.c 				\
+									execute_builtin.c)							\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_string.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\

@@ -12,34 +12,37 @@
 
 #include "../../inc/minishell.h"
 
-static void	handle_redirection(t_cmd **cmd, t_list **token_ptr) // can probably be cleaned up by using t_cmd *cmd instead
+static void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
 {
 	if ((*token_ptr)->next)
 	{
 		if (ft_strcmp((char *)(*token_ptr)->data, "<") == 0)
 		{
 			*token_ptr = (*token_ptr)->next;
-			(*cmd)->input_file = (char *)(*token_ptr)->data;
+			cmd->input_file = ft_strdup((char *)(*token_ptr)->data);
 		}
-		else if (ft_strcmp((char *)(*token_ptr)->data, ">") == 0)
+		else if (ft_strcmp((char *)(*token_ptr)->data, ">") == 0 || \
+			ft_strcmp((char *)(*token_ptr)->data, ">>") == 0)
 		{
+			if (ft_strlen((char *)(*token_ptr)->data) == 2) // I was using ft_strcmp((char *)(*token_ptr)->data, ">>") == 0 but it would set > as is_append due to error with ft_strcmp
+				cmd->is_append = true;
 			*token_ptr = (*token_ptr)->next;
-			(*cmd)->input_file = (char *)(*token_ptr)->data;
+			cmd->output_file = ft_strdup((char *)(*token_ptr)->data);
 		}
-		// update to handle "<<" & ">>"
+		// update to handle "<<"
 		else
-			error("<< & >> not coded yet");
+			error("<< not coded yet");
 	}
 }
 
-static void	fill_command_element(t_cmd **cmd, t_list **curr_token_ptr) // can probably be cleaned up by using t_cmd *cmd instead
+static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 {
-	(*cmd)->command = ft_strdup((char *)(*curr_token_ptr)->data);
-	if (!(*cmd)->command)
+	cmd->command = ft_strdup((char *)(*curr_token_ptr)->data);
+	if (!cmd->command)
 		error_exit("extract_commands strdup error");
-	if (ft_strcmp((*cmd)->command, "|") == 0)
+	if (ft_strcmp(cmd->command, "|") == 0)
 	{
-		(*cmd)->is_pipe = true;
+		cmd->is_pipe = true;
 		*curr_token_ptr = (*curr_token_ptr)->next;
 	}
 }
@@ -76,14 +79,14 @@ static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 	if (!curr_token_ptr || !*curr_token_ptr)
 		return (error("fill_cmd_struct no token_ptr"), NULL);
 	cmd = safe_calloc(1, sizeof(t_cmd), "extract_commands cmd malloc error");
-	fill_command_element(&cmd, curr_token_ptr);
+	fill_command_element(cmd, curr_token_ptr);
 	if (cmd->is_pipe)
 		return (cmd);
 	token = (*curr_token_ptr)->next;
 	while (token && ft_strcmp((char *)token->data, "|") != 0)
 	{
 		if (token->next && is_redirect((char *)token->data))
-			handle_redirection(&cmd, &token);
+			handle_redirection(cmd, &token);
 		else
 			add_args_to_cmd(msh, cmd, (char *)token->data);
 		token = token->next;
@@ -146,11 +149,24 @@ void	extract_commands(t_msh *msh)
 	while (curr_token)
 	{
 		cmd_struct = fill_cmd_struct(msh, &curr_token);
+//		if (cmd_struct->is_append == true)
+//			debug("is_append");
 		add_cmd_to_dlist(msh, cmd_struct);
 		queue++;
-		debug("commands in queue");
-		debug_int(queue);
+//		debug("commands in queue");
+//		debug_int(queue);
 	}
+/*	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
+	char	*arg;
+	t_list	*curr = debug_struct->arguments;
+	while (curr)
+	{
+		arg = curr->data;
+		debug(arg);
+		curr = curr->next;
+	}
+	if (debug_struct->output_file)
+		debug(debug_struct->output_file); */
 //	debug("about to free_tokens");
 	free_tokens(msh);
 }

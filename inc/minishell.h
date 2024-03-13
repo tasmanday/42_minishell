@@ -49,6 +49,7 @@ typedef struct s_cmd
 	char	*input_file;
 	char	*output_file;
 	bool	is_pipe;
+	bool	is_append;
 }				t_cmd;
 
 /*
@@ -80,6 +81,7 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 /* parse */
 
 void		extract_commands(t_msh *msh);
+void		execute_builtin(t_msh *msh);
 
 /* builtins */
 
