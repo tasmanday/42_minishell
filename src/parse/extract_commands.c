@@ -6,13 +6,29 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/03/11 23:35:43 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/14 22:22:31 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the input and output files
+
+	Summary
+	handles the redirection of input and output files in a command structure.
+	
+	Inputs
+	[t_cmd *] cmd: a pointer to the command structure (t_cmd) that will
+		contain input and output file information.
+	[t_tlist **] token_ptr: a pointer to the current token in the token list.
+
+	Outputs
+	none. modifies the cmd struct input and output elements based on the
+	redirection token.
+*/
+static void	handle_redirection(t_cmd *cmd, t_list **token_ptr) // prompt: echo test < jdsfg > sdgh mest - prints test mest, need to fix so it will finish adding arguments when it encounters a redirect.
 {
 	if ((*token_ptr)->next)
 	{
@@ -35,6 +51,25 @@ static void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
 	}
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the string in the command element
+
+	Summary
+	fills the command element of a t_cmd structure with the data from the
+	current token in the token list. If the command is a pipe symbol (|),
+	it sets the is_pipe flag to true.
+
+	Inputs
+	[t_cmd *] cmd: a pointer to a t_cmd structure that needs to be filled
+		with data.
+	[t_list **] curr_token_ptr: a pointer to the current token in the token
+		list.
+
+	Outputs
+	none. it modifies the "command" and "is_pipe" elements of the cmd
+	structure.
+*/
 static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 {
 	cmd->command = ft_strdup((char *)(*curr_token_ptr)->data);
@@ -43,10 +78,21 @@ static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 	if (ft_strcmp(cmd->command, "|") == 0)
 	{
 		cmd->is_pipe = true;
-		*curr_token_ptr = (*curr_token_ptr)->next;
+//		*curr_token_ptr = (*curr_token_ptr)->next; // I think unnecessary
 	}
 }
 
+/*
+	Summary
+	checks if a given string is a redirection symbol.
+
+	Inputs
+	[char *] str: The string to be checked for redirection symbol.
+
+	Outputs
+	returns true if the given string is a redirection symbol, and false
+	if it's not.
+*/
 bool	is_redirect(char *str)
 {
 	if (!ft_strcmp(str, "<") || !ft_strcmp(str, "<<") || \
@@ -56,6 +102,23 @@ bool	is_redirect(char *str)
 		return (false);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory allocated for the argument and the list node
+
+	Summary
+	adds tokens representing command line arguments to arguments list within
+	cmd struct.
+
+	Inputs
+	[t_msh *] msh: a pointer to the main shell structure.
+	[t_cmd *] cmd: the command struct that contains the "arguments" linked list
+		to be filled.
+	[char *] data: the token string to be added to the "arguments" linked list.
+
+	Outputs
+	none. modifies the msh->cmd_queue->arguments linked list.
+*/
 void	add_args_to_cmd(t_msh *msh, t_cmd *cmd, char *data)
 {
 	char	*arg;
@@ -64,13 +127,27 @@ void	add_args_to_cmd(t_msh *msh, t_cmd *cmd, char *data)
 	arg = ft_strdup(data);
 	arg_node = lst_new_node(arg);
 	if (!arg_node)
-		{
-			free_cmd_struct(cmd);
-			msh_error_exit(msh, "fill_cmd_struct error");
-		}
+	{
+		free_cmd_struct(cmd);
+		msh_error_exit(msh, "fill_cmd_struct error");
+	}
 	lst_add_tail(&(cmd->arguments), arg_node);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for cmd struct
+
+	Summary
+	fills a cmd structure with data from a list of tokens
+
+	Inputs
+	[t_msh *] msh: a pointer to the main shell structure.
+	[t_list **] curr_token_ptr: a pointer to the current token in the list.
+
+	Outputs
+	[t_cmd *] cmd: a filled command structure.
+*/
 static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 {
 	t_cmd	*cmd;
@@ -156,15 +233,17 @@ void	extract_commands(t_msh *msh)
 //		debug("commands in queue");
 //		debug_int(queue);
 	}
-/*	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
-	char	*arg;
+//	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
+/*	char	*arg;
 	t_list	*curr = debug_struct->arguments;
 	while (curr)
 	{
 		arg = curr->data;
 		debug(arg);
 		curr = curr->next;
-	}
+	} */
+/*	if (debug_struct->input_file)
+		debug(debug_struct->input_file);
 	if (debug_struct->output_file)
 		debug(debug_struct->output_file); */
 //	debug("about to free_tokens");
