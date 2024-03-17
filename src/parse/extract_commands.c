@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/03/14 22:22:31 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/17 18:17:53 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 	if (ft_strcmp(cmd->command, "|") == 0)
 	{
 		cmd->is_pipe = true;
-//		*curr_token_ptr = (*curr_token_ptr)->next; // I think unnecessary
+		*curr_token_ptr = (*curr_token_ptr)->next;
 	}
 }
 
@@ -226,14 +226,14 @@ void	extract_commands(t_msh *msh)
 	while (curr_token)
 	{
 		cmd_struct = fill_cmd_struct(msh, &curr_token);
-//		if (cmd_struct->is_append == true)
-//			debug("is_append");
+		if (cmd_struct->is_append == true)
+			debug("is_append");
 		add_cmd_to_dlist(msh, cmd_struct);
 		queue++;
-//		debug("commands in queue");
-//		debug_int(queue);
+		debug("commands in queue");
+		debug_int(queue);
 	}
-//	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
+	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
 /*	char	*arg;
 	t_list	*curr = debug_struct->arguments;
 	while (curr)
@@ -242,10 +242,10 @@ void	extract_commands(t_msh *msh)
 		debug(arg);
 		curr = curr->next;
 	} */
-/*	if (debug_struct->input_file)
+	if (debug_struct->input_file)
 		debug(debug_struct->input_file);
 	if (debug_struct->output_file)
-		debug(debug_struct->output_file); */
-//	debug("about to free_tokens");
+		debug(debug_struct->output_file);
+	debug("about to free_tokens");
 	free_tokens(msh);
 }
