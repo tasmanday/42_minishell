@@ -59,7 +59,10 @@ typedef struct s_cmd
 /* initialisation */
 
 t_msh		*init_minishell(char **envv);
-void		clone_envv_to_dlist(t_msh *msh, char **envv, t_dlist **envvar);
+void		clone_envv_to_dlist(t_msh *msh, char **envv);
+char		**split_variables(char *envv);
+t_envv		*put_str_in_envv_struct(char **cloned_substrs);
+void		add_envv_to_dlist(t_msh *msh, t_envv *s_envv);
 
 /* envv */
 
@@ -67,6 +70,7 @@ void		expand_envvar(t_dlist *envvar, char **str, int *i);
 char		*get_env_key(char *str);
 char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
+void		update_node_value(t_dlist *envvar_node, char *new_value);
 
 /* get_input */
 

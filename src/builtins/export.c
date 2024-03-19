@@ -55,7 +55,7 @@ static void	sort_dlist(t_dlist **head)
 	}
 }
 
-void	export_no_args(t_msh *msh)
+static void	export_no_args(t_msh *msh)
 {
 	t_dlist	*cloned_list;
 	t_dlist	*curr_variable;
@@ -76,6 +76,33 @@ void	export_no_args(t_msh *msh)
 	free_cloned_list(cloned_list);
 }
 
+static void	export_args(t_msh *msh, t_cmd *cmd_struct)
+{
+	char	**str_array;
+	t_list	*args;
+	t_envv	*envv_struct;
+	t_dlist	*node_exists;
+
+	args = cmd_struct->arguments;
+	while (args)
+	{
+		str_array = split_variables((char *)args->data);
+		node_exists = find_envvar_node(msh->envvar, str_array[0]);
+		if (node_exists)
+		{
+			update_node_value(node_exists, str_array[1]);
+			free(str_array[0]);
+		}
+		else
+		{
+			envv_struct = put_str_in_envv_struct(str_array);
+			add_envv_to_dlist(msh, envv_struct);
+		}
+		free(str_array);
+		args = args->next;
+	}
+}
+
 void	ft_export(t_msh *msh)
 {
 	t_cmd	*cmd_struct;
@@ -84,7 +111,5 @@ void	ft_export(t_msh *msh)
 	if (!cmd_struct->arguments)
 		export_no_args(msh);
 	else 
-		error("export with args not coded yet");
-//	else if (command == "export" && curr_token->next)
-//		export_args(msh); // write function to handle export with arguments
+		export_args(msh, cmd_struct);
 }

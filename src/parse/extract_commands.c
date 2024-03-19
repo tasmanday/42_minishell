@@ -223,6 +223,7 @@ void	extract_commands(t_msh *msh)
 	int		queue = 0;
 
 	curr_token = msh->tokens;
+	debug("this text is from extract_commands function");
 	while (curr_token)
 	{
 		cmd_struct = fill_cmd_struct(msh, &curr_token);
@@ -246,6 +247,6 @@ void	extract_commands(t_msh *msh)
 		debug(debug_struct->input_file);
 	if (debug_struct->output_file)
 		debug(debug_struct->output_file);
-	debug("about to free_tokens");
+//	debug("about to free_tokens");
 	free_tokens(msh);
 }

@@ -28,6 +28,6 @@ t_msh	*init_minishell(char **envv)
 	t_msh	*msh;
 
 	msh = safe_calloc(1, sizeof(t_msh), "msh malloc error");
-	clone_envv_to_dlist(msh, envv, &msh->envvar);
+	clone_envv_to_dlist(msh, envv);
 	return (msh);
 }

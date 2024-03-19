@@ -29,14 +29,14 @@
 		is the substring before the '=' character and the second element is the
 		substring after the '=' character.
 */
-static char	**split_variables(char *envv)
+char	**split_variables(char *envv)
 {
 	char	**cloned_substrs;
 
 	cloned_substrs = ft_split_first(envv, '=');
 	if (!cloned_substrs)
 	{
-		error("clone_envv ft_split failed");
+		error("split_variables ft_split failed");
 		return (NULL);
 	}
 	return (cloned_substrs);
@@ -56,7 +56,7 @@ static char	**split_variables(char *envv)
 	[t_envv *] envv_struct: a pointer to a t_envv struct containing the
 		env_key and env_value strings.
 */
-static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
+t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 {
 	t_envv	*envv_struct;
 
@@ -85,7 +85,7 @@ static t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 	Outputs
 	none.
 */
-static void	add_envv_to_dlist(t_msh *msh, t_dlist **env_list, t_envv *s_envv)
+void	add_envv_to_dlist(t_msh *msh, t_envv *s_envv)
 {
 	t_dlist	*new_node;
 
@@ -94,7 +94,7 @@ static void	add_envv_to_dlist(t_msh *msh, t_dlist **env_list, t_envv *s_envv)
 	new_node = dlst_new_node(s_envv);
 	if (!new_node)
 		msh_error_exit(msh, "clone_envv new_node malloc error");
-	dlst_add_tail(env_list, new_node);
+	dlst_add_tail(&msh->envvar, new_node);
 }
 
 /*
@@ -121,7 +121,7 @@ static void	add_envv_to_dlist(t_msh *msh, t_dlist **env_list, t_envv *s_envv)
 	duplicated environmental variable strings wrapped in t_envv structs.
 
 */
-void	clone_envv_to_dlist(t_msh *msh, char **envv, t_dlist **envvar)
+void	clone_envv_to_dlist(t_msh *msh, char **envv)
 {
 	char	**cloned_substrs;
 	t_envv	*envv_struct;
@@ -130,7 +130,7 @@ void	clone_envv_to_dlist(t_msh *msh, char **envv, t_dlist **envvar)
 	{
 		cloned_substrs = split_variables(*envv);
 		envv_struct = put_str_in_envv_struct(cloned_substrs);
-		add_envv_to_dlist(msh, envvar, envv_struct);
+		add_envv_to_dlist(msh, envv_struct);
 		free(cloned_substrs);
 		envv++;
 	}
