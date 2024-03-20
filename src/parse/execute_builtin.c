@@ -40,8 +40,5 @@ void	execute_builtin(t_msh *msh)
 		return ;
 	}
 	else if (ft_strcmp(cmd_struct->command, "unset") == 0)
-	{
-		error("unset not coded yet");
-		return ;
-	}
+		ft_unset(msh);
 }
