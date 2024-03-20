@@ -93,6 +93,7 @@ void		ft_pwd(t_msh *msh);
 void		ft_echo(t_msh *msh);
 void		ft_env(t_msh *msh);
 void		ft_export(t_msh *msh);
+void		ft_unset(t_msh *msh);
 
 /* clean_up */
 
