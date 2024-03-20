@@ -17,7 +17,8 @@ SRC_DIRS		:=		src/builtins src/main #src/(add folder names)
 INC_DIR			:=		inc
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
-SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c)	\
+SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
+									unset.c)									\
 						$(addprefix src/main/, main.c)							\
 						$(addprefix src/initialisation/, init_minishell.c		\
 									clone_envv_to_dlist.c)						\
