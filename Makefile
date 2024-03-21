@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/03/14 22:22:35 by tday             ###   ########.fr        #
+#    Updated: 2024/03/21 21:08:54 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,10 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 						$(addprefix src/parse/, extract_commands.c 				\
 									execute_builtin.c)							\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
-									free_string.c free_everything.c				\
+									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\
-									free_cmd_struct.c msh_error_exit.c)			\
+									free_cmd_struct.c msh_error_exit.c 			\
+									free_tokens.c)								\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc

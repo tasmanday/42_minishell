@@ -6,12 +6,27 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:02:08 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 21:02:08 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:03:00 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	frees the memory allocated for a t_cmd structure and its associated data.
+	this function can be passed to dlist_del_all() to free allocated memory at
+	each node of a doubly linked list before deleting them.
+
+	Inputs
+	[void *] data: a pointer to a t_cmd structure that needs to be freed,
+		cast as a void pointer so that it can be used by the dlst_del_all()
+		function.
+	
+	Outputs
+	none. the function frees the memory allocated for the t_cmd structure and
+	its associated data.
+*/
 void	free_cmd_struct(void *data)
 {
 	t_cmd	*cmd;

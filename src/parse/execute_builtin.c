@@ -6,11 +6,24 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:48:40 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 20:42:10 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:58:31 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+/*
+	Summary
+	checks the current command against supported builtins and executes the
+	corresponding function.
+
+	Inputs
+	[t_msh *] msh: the main minishell structure containing command and
+		environment data.
+
+	Outputs
+	none.
+*/
 
 void	execute_builtin(t_msh *msh)
 {

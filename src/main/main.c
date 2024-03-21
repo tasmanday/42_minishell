@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/14 22:22:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:08:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envv)
 		if (msh->tokens)
 		{
 			debug("still tokens");
-			lst_del_all(&(msh->tokens), free_string);
+			lst_del_all(&(msh->tokens), free_data);
 			msh->tokens = NULL;
 		}
 		free(input);

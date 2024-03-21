@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:04:18 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:25:30 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:08:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_list	*safe_new_token_node(t_msh *msh, char *str)
 	new_node = lst_new_node(str);
 	if (!new_node)
 	{
-		lst_del_all(&msh->tokens, free_string);
+		lst_del_all(&msh->tokens, free_data);
 		error_exit("safe_new_token_node_error");
 	}
 	return (new_node);

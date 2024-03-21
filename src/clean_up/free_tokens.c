@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_exit.c                                       :+:      :+:    :+:   */
+/*   free_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:11:15 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 20:49:40 by tday             ###   ########.fr       */
+/*   Created: 2024/03/21 21:00:45 by tday              #+#    #+#             */
+/*   Updated: 2024/03/21 21:16:39 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 /*
 	Summary
-	frees all allocated memory and exits the program with a specified exit
-	status.
+	frees the memory allocated and deletes all nodes for a linked list of
+	strings (msh->tokens).
 
 	Inputs
-	[t_msh *] msh: the main structure.
-	[int] exit_status: the exit status of the program.
+	[t_msh *] msh: a pointer to the minishell main structure.
 
 	Outputs
-	none.
+	none. the tokens linked list is freed and deleted.
 */
-void	clean_exit(t_msh *msh, int exit_status)
+void	free_tokens(t_msh *msh)
 {
-	free_everything(msh);
-	exit(exit_status);
+	lst_del_all(&(msh->tokens), free_data);
+	msh->tokens = NULL;
 }

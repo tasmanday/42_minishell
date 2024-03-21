@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/14 22:22:34 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:08:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void		msh_error_exit(t_msh *msh, char *error_message);
 void		free_cloned_list(t_dlist *head);
 void		free_everything(t_msh *msh);
 void		free_envv_struct(void *data);
-void		free_string(void *data);
+void		free_data(void *data);
 void		free_tokens(t_msh *msh);
 void		free_cmd_struct(void *data);
 

@@ -79,8 +79,8 @@ t_envv	*put_str_in_envv_struct(char **cloned_substrs)
 	adds a t_envv struct to the end of a doubly linked list.
 
 	Inputs
-	[t_dlist **] env_list: a pointer to a doubly linked list.
-	[t_envv *] envv_struct: a pointer to a t_envv struct.
+	[t_msh *] msh: the main structure that contains the envvar dlist.
+	[t_envv *] s_envv: a pointer to a t_envv struct.
 
 	Outputs
 	none.
@@ -112,9 +112,9 @@ void	add_envv_to_dlist(t_msh *msh, t_envv *s_envv)
 	and then inserts them into a doubly linked list.
 
 	Inputs
+	[t_msh *] msh: the main structure that contains the envvar dlist.
 	[char **] envv: A pointer to an array of strings representing the
 		environmental variables.
-	[t_dlist **] env_list: A pointer to a doubly linked list.
 
 	Outputs
 	none. the function modifies the env_list doubly linked list by adding the

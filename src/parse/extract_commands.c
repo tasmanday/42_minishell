@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/03/17 18:17:53 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:53:18 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 	none. modifies the cmd struct input and output elements based on the
 	redirection token.
 */
-static void	handle_redirection(t_cmd *cmd, t_list **token_ptr) // prompt: echo test < jdsfg > sdgh mest - prints test mest, need to fix so it will finish adding arguments when it encounters a redirect.
+static void	handle_redirection(t_cmd *cmd, t_list **token_ptr) // can be improved
 {
 	if ((*token_ptr)->next)
 	{

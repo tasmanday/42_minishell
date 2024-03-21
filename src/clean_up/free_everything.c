@@ -6,18 +6,23 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:06:28 by tday              #+#    #+#             */
-/*   Updated: 2024/03/01 14:34:13 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 21:20:01 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	free_tokens(t_msh *msh)
-{
-	lst_del_all(&(msh->tokens), free_string);
-	msh->tokens = NULL;
-}
+/*
+	Summary
+	frees all remaining allocated memory in the msh struct. this function is
+	called when exiting the minishell program to avoid memory leaks.
 
+	Inputs
+	[t_msh *] msh: a pointer to the minishell main structure.
+
+	Outputs
+	none. all allocated memory and structs are freed and deleted.
+*/
 void	free_everything(t_msh *msh)
 {
 	if (msh)
@@ -29,7 +34,7 @@ void	free_everything(t_msh *msh)
 		}
 		if (msh->tokens)
 		{
-			lst_del_all(&(msh->tokens), free_string);
+			lst_del_all(&(msh->tokens), free_data);
 			msh->tokens = NULL;
 		}
 		if (msh->cmd_queue)
