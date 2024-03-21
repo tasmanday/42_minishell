@@ -20,7 +20,7 @@ void	ft_unset(t_msh *msh)
 				args = args->next;
 				continue ;
 			}
-			dlst_del_node(msh->envvar, env_node, free_envv_struct);
+			dlst_del_node(&msh->envvar, env_node, free_envv_struct);
 			args = args->next;
 		}
 	}
