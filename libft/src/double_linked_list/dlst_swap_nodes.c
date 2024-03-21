@@ -6,12 +6,27 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:20:56 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 14:20:13 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 20:18:56 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
+/*
+	Summary
+	swaps the positions of two adjacent nodes in a doubly linked list.
+
+	Inputs
+	[t_dlist **] head: a pointer to the address of the head of the doubly
+		linked list. it needs the double pointer so that modifications will
+		continue outside of this function.
+	[t_dlist *] node1: the first node to be swapped.
+	[t_dlist *] node2: the second node to be swapped.
+
+	Outputs
+	none. the function modifies the doubly linked list by swapping the
+	positions of two adjacent nodes.
+*/
 static void	swap_adjacent(t_dlist **head, t_dlist *node1, t_dlist *node2)
 {
 	node1->next = node2->next;
@@ -26,6 +41,21 @@ static void	swap_adjacent(t_dlist **head, t_dlist *node1, t_dlist *node2)
 		*head = node2;
 }
 
+/*
+	Summary
+	swaps the positions of two non-adjacent nodes in a doubly linked list.
+
+	Inputs
+	[t_dlist **] head: a pointer to the address of the head of the doubly
+		linked list. it needs the double pointer so that modifications will
+		continue outside of this function.
+	[t_dlist *] node1: the first node to be swapped.
+	[t_dlist *] node2: the second node to be swapped.
+
+	Outputs
+	none. the function modifies the doubly linked list by swapping the
+	positions of two non-adjacent nodes.
+*/
 static void	swap_non_adjacent(t_dlist **head, t_dlist *node1, t_dlist *node2)
 {
 	t_dlist	*temp_next;
@@ -52,6 +82,21 @@ static void	swap_non_adjacent(t_dlist **head, t_dlist *node1, t_dlist *node2)
 		*head = node2;
 }
 
+/*
+	Summary
+	swaps the positions of two nodes in a doubly linked list.
+
+	Inputs
+	[t_dlist **] head: a pointer to the address of the head of the doubly
+		linked list. it needs the double pointer so that modifications will
+		continue outside of this function.
+	[t_dlist *] node1: the first node to be swapped.
+	[t_dlist *] node2: the second node to be swapped.
+
+	Outputs
+	none. the function modifies the doubly linked list by swapping the
+	positions of the two nodes.
+*/
 void	dlst_swap_nodes(t_dlist **head, t_dlist *node1, t_dlist *node2)
 {
 	t_dlist	*temp;

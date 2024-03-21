@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/03/11 17:12:04 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 19:20:23 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ static void	print_tokens(t_list *curr_arg)
 
 /*
 	Summary
-	replicates the echo command by printing given strings to the standard output.
-	also checks for a new line flag (-n) and handles it as echo would.
+	replicates the echo command by printing given argument strings to the
+	standard output. also checks for a new line flag (-n) and handles it
+	as echo would.
 
 	Inputs
 	[t_msh *] msh: the main struct of minishell contianing a linked	list of

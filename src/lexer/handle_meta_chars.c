@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:07:01 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 15:46:55 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/21 20:41:56 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,46 +29,26 @@
 	none. the function modifies the minishell structure by adding tokens to the
 	msh->tokens linked list.
 */
-static void	add_redirection_tokens(t_msh *msh, char *str, int *i) 
+static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
 {
 	t_list	*new_node;
 	char	*temp_str;
+	int		length;
 
+	if (!msh || !str || !i)
+		return ;
 	new_node = NULL;
-	if (str[*i] == '<')
+	length = 1;
+	if (str[*i] == '<' || str[*i] == '>')
 	{
-		if (str[(*i) + 1] == '<')
-		{
-			temp_str = ft_substr(str, (*i), 2);
-			new_node = safe_new_token_node(msh, temp_str);
-			*i += 2;
-		}
-		else
-		{
-			temp_str = ft_substr(str, (*i), 1);
-			new_node = safe_new_token_node(msh, temp_str);
-			*i += 1;
-		}
-	}
-	else if (str[*i] == '>')
-	{
-		if (str[(*i) + 1] == '>')
-		{
-			temp_str = ft_substr(str, (*i), 2);
-			new_node = safe_new_token_node(msh, temp_str);
-			*i += 2;
-		}
-		else
-		{
-			temp_str = ft_substr(str, (*i), 1);
-			new_node = safe_new_token_node(msh, temp_str);
-			*i += 1;
-		}
+		if (str[*i] == str[*i + 1])
+			length = 2;
+		temp_str = ft_substr(str, *i, length);
+		new_node = safe_new_token_node(msh, temp_str);
+		*i += length;
 	}
 	if (new_node)
-	{
 		lst_add_tail(&(msh->tokens), new_node);
-	}
 }
 
 /*
@@ -91,7 +71,7 @@ static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
 static void	add_pipe_token(t_msh *msh, char *str, int *i)
 {
 	t_list	*new_node;
-	char 	*temp_str;
+	char	*temp_str;
 
 	if (str[*i] == '|')
 	{
