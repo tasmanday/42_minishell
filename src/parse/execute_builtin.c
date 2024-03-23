@@ -6,11 +6,30 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:48:40 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 22:15:48 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/23 17:28:14 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+/* delete when no longer needed */
+static void	test(t_msh *msh)
+{
+	char	**array;
+	int		i;
+	t_cmd	*cmd_struct;
+
+	i = 0;
+	cmd_struct = (t_cmd *)msh->cmd_queue->data;
+	array = put_args_in_array(cmd_struct);
+	while (array[i])
+	{
+		ft_printf("%s\n", array[i]);
+		i++;
+	}
+	debug("array size:");
+	debug_int(i);
+}
 
 /*
 	Summary
@@ -54,4 +73,6 @@ void	execute_builtin(t_msh *msh)
 	}
 	else if (ft_strcmp(cmd_struct->command, "unset") == 0)
 		ft_unset(msh);
+	else if (ft_strcmp(cmd_struct->command, "test") == 0) //remove later
+		test(msh);
 }

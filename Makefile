@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/03/21 21:08:54 by tday             ###   ########.fr        #
+#    Updated: 2024/03/23 17:28:21 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,14 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 									clone_envv_to_dlist.c)						\
 						$(addprefix src/envvar/, find_envvar_node.c 			\
 									expand_envvar.c get_env_key.c				\
-									get_env_value.c update_node_value.c)		\
+									get_env_value.c update_node_value.c			\
+									convert_envvar_to_array.c)					\
 						$(addprefix src/get_input/, get_input.c)				\
 						$(addprefix src/lexer/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/parse/, extract_commands.c 				\
 									execute_builtin.c)							\
+						$(addprefix src/execute/, put_args_in_array.c)			\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\

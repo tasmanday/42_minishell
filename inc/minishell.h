@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 21:08:11 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/23 17:28:19 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char		*get_env_key(char *str);
 char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 void		update_node_value(t_dlist *envvar_node, char *new_value);
+char		**convert_envvar_to_array(t_msh *msh);
 
 /* get_input */
 
@@ -94,6 +95,10 @@ void		ft_echo(t_msh *msh);
 void		ft_env(t_msh *msh);
 void		ft_export(t_msh *msh);
 void		ft_unset(t_msh *msh);
+
+/* execute */
+
+char		**put_args_in_array(t_cmd *cmd_struct);
 
 /* clean_up */
 
