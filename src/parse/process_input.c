@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minishell.c                                   :+:      :+:    :+:   */
+/*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 14:42:47 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 10:14:14 by tday             ###   ########.fr       */
+/*   Created: 2024/03/24 09:29:36 by tday              #+#    #+#             */
+/*   Updated: 2024/03/24 10:33:21 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 /*
 	Summary
-	initializes the t_msh structure with environment variables
-
+	processes the user's input in the minishell environment.
+	
 	Inputs
-	[t_msh *] msh: the t_msh structure that will be initialized.
-	[char **] envv: an array of strings representing environment variables.
-
-	Outputs
-	none.
+	[t_msh *] msh: the main minishell struct.
+	[char *] input: the input string to be processed.
+	
+	Outputs:
+	none. the function modifies the shell environment by adding tokens and
+	extracting commands based on the input.
 */
-t_msh	*init_minishell(char **envv)
+void	process_input(t_msh *msh, char *input)
 {
-	t_msh	*msh;
-
-	msh = safe_calloc(1, sizeof(t_msh), "msh malloc error");
-	clone_envv_to_dlist(msh, envv);
-	return (msh);
+	if (!input || input[0] == '\0')
+	{
+		free(input);
+		return ;
+	}
+	add_tokens_to_list(msh, input);
+	extract_commands(msh);
 }

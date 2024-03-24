@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:09:54 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:15:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 10:23:13 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 		in the format "key=value".
 
 	Outputs
-	{char *] a dynamically allocated string that represents the key of the
+	[char *] a dynamically allocated string that represents the key of the
 		environment variable.
 */
 char	*get_env_key(char *str)

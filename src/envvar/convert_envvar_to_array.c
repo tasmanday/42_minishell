@@ -6,12 +6,28 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:03:18 by tday              #+#    #+#             */
-/*   Updated: 2024/03/23 16:26:01 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 10:32:13 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	**** ALLOCATES MEMORY ****
+	the returned string is dynamically allocated and should be freed by the
+	caller.
+
+	Summary
+	rejoins environment variable key and value into a single string.
+	
+	Inputs
+	[t_dlist *] node: a node in the doubly linked list containing the
+		environment variable's key and value.
+	
+	Outputs
+	[char *] string: the combined key and value of the environment variable as
+		a single string, formatted as 'key=value'.
+*/
 static char	*rejoin_env_strings(t_dlist *node)
 {
 	t_envv	*envv_struct;
@@ -30,6 +46,23 @@ static char	*rejoin_env_strings(t_dlist *node)
 	return (string);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	the returned array and the stringa it contains are dynamically allocated and
+	should be freed by the caller after use.
+
+	Summary
+	converts the list of environment variables from the minishell's linked list
+	format into an array format.
+
+	Inputs
+	[t_msh *] msh: the main minishell struct containing the environment 
+		variables in a doubly linked list.
+	
+	Outputs
+	[char **] array: the environment variables as an array of strings where 
+		each string is formatted as 'key=value'.
+*/
 char	**convert_envvar_to_array(t_msh *msh)
 {
 	char	**array;

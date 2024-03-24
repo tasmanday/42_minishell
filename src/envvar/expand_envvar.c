@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:50:08 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:23:53 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 09:40:56 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 	Summary
-	expands environment variables in the given string string by replacing them
-	with their corresponding values.
+	expands environment variables in the given string by replacing them with
+	their corresponding values.
 
 	Inputs
 	[t_dlist *] envvar: a doubly linked list containing environment variables.

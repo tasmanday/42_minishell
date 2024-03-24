@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/23 17:28:18 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 09:36:10 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,15 @@ int	main(int argc, char **argv, char **envv)
 	while (1)
 	{
 		input = get_input(msh, "prompt: ");
-		if (!input || input[0] == '\0')
-		{
-			free(input);
-			continue ;
-		}
-		if (input[0] == '1') // enter 1 to exit input loop
+		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
 		{
 			free(input);
 			break ;
 		}
-		add_tokens_to_list(msh, input);
-		extract_commands(msh);
-//		debug("extract_commands complete");
+		process_input(msh, input);
 		execute_builtin(msh);
-		if (msh->cmd_queue)
-		{
-			dlst_del_all(&(msh->cmd_queue), free_cmd_struct);
-			msh->cmd_queue = NULL;
-		}
-		if (msh->tokens)
-		{
-			debug("still tokens");
-			lst_del_all(&(msh->tokens), free_data);
-			msh->tokens = NULL;
-		}
-		free(input);
+		free_input(msh, input);
 	}
 	free_everything(msh);
-//	debug("free_everything successful");
 	return (0);
 }
