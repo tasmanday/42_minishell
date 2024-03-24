@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:06:28 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 21:20:01 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 14:51:25 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,10 @@ void	free_everything(t_msh *msh)
 			msh->cmd_queue = NULL;
 		}
 		free(msh);
+		if (msh->pids)
+		{
+			lst_del_all(&(msh->pids), no_op);
+			msh->pids = NULL;
+		}
 	}
 }
