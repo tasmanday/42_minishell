@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:03:18 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 10:32:13 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 11:51:28 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*rejoin_env_strings(t_dlist *node)
 
 /*
 	**** ALLOCATES MEMORY ****
-	the returned array and the stringa it contains are dynamically allocated and
+	the returned array and the strings it contains are dynamically allocated and
 	should be freed by the caller after use.
 
 	Summary

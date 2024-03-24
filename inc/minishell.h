@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 11:21:06 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 13:34:06 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_msh
 	t_dlist	*envvar;
 	t_list	*tokens;
 	t_dlist	*cmd_queue;
+	int		num_of_cmds;
+	t_list	*pids;
 	int		last_exit_status;
 }				t_msh;
 
@@ -48,7 +50,7 @@ typedef struct s_cmd
 	t_list	*arguments;
 	char	*input_file;
 	char	*output_file;
-	bool	is_pipe;
+//	bool	is_pipe;
 	bool	is_append;
 }				t_cmd;
 
@@ -71,7 +73,6 @@ char		*get_env_key(char *str);
 char		*get_env_value(t_dlist *envvar, char *key);
 t_dlist		*find_envvar_node(t_dlist *envvar, char *key);
 void		update_node_value(t_dlist *envvar_node, char *new_value);
-char		**convert_envvar_to_array(t_msh *msh);
 
 /* get_input */
 
@@ -86,7 +87,6 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 /* parse */
 
 void		extract_commands(t_msh *msh);
-
 void		process_input(t_msh *msh, char *input);
 
 /* builtins */
@@ -96,10 +96,13 @@ void		ft_echo(t_msh *msh);
 void		ft_env(t_msh *msh);
 void		ft_export(t_msh *msh);
 void		ft_unset(t_msh *msh);
+void		ft_cd(t_msh *msh);
+void		ft_exit(t_msh *msh);
 
 /* execute */
 
 char		**put_args_in_array(t_cmd *cmd_struct);
+char		**convert_envvar_to_array(t_msh *msh);
 bool		cmd_is_builtin(char *command);
 void		execute_builtin(t_msh *msh);
 

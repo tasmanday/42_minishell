@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:48:40 by tday              #+#    #+#             */
-/*   Updated: 2024/03/23 17:28:14 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 13:40:44 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,9 @@ void	execute_builtin(t_msh *msh)
 	else if (ft_strcmp(cmd_struct->command, "echo") == 0)
 		ft_echo(msh);
 	else if (ft_strcmp(cmd_struct->command, "exit") == 0)
-	{
-		error("exit not coded yet");
-		return ;
-	}
+		ft_exit(msh);
 	else if (ft_strcmp(cmd_struct->command, "cd") == 0)
-	{
-		error("cd not coded yet");
-		return ;
-	}
+		ft_cd(msh);
 	else if (ft_strcmp(cmd_struct->command, "unset") == 0)
 		ft_unset(msh);
 	else if (ft_strcmp(cmd_struct->command, "test") == 0) //remove later

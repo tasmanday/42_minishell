@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 11:21:05 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 13:40:27 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv, char **envv)
 		}
 		process_input(msh, input);
 		execute_builtin(msh);
+		msh->num_of_cmds = 0;
 		free_input(msh, input);
 	}
 	free_everything(msh);

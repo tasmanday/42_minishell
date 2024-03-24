@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/03/23 16:39:23 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 12:50:38 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 	cmd->command = ft_strdup((char *)(*curr_token_ptr)->data);
 	if (!cmd->command)
 		error_exit("extract_commands strdup error");
-	if (ft_strcmp(cmd->command, "|") == 0)
-	{
-		cmd->is_pipe = true;
-		*curr_token_ptr = (*curr_token_ptr)->next;
-	}
 }
 
 /*
@@ -155,10 +150,10 @@ static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 
 	if (!curr_token_ptr || !*curr_token_ptr)
 		return (error("fill_cmd_struct no token_ptr"), NULL);
+	if (ft_strcmp((char *)(*curr_token_ptr)->data, "|") == 0)
+		*curr_token_ptr = (*curr_token_ptr)->next;
 	cmd = safe_calloc(1, sizeof(t_cmd), "extract_commands cmd malloc error");
 	fill_command_element(cmd, curr_token_ptr);
-	if (cmd->is_pipe)
-		return (cmd);
 	token = (*curr_token_ptr)->next;
 	while (token && ft_strcmp((char *)token->data, "|") != 0)
 	{
@@ -220,7 +215,7 @@ void	extract_commands(t_msh *msh)
 {
 	t_list	*curr_token;
 	t_cmd	*cmd_struct;
-	int		queue = 0;
+//	int		queue = 0;
 
 	curr_token = msh->tokens;
 	debug("this text is from extract_commands function");
@@ -230,10 +225,10 @@ void	extract_commands(t_msh *msh)
 		if (cmd_struct->is_append == true)
 			debug("is_append");
 		add_cmd_to_dlist(msh, cmd_struct);
-		queue++;
-		debug("commands in queue");
-		debug_int(queue);
+		msh->num_of_cmds++;
 	}
+	debug("commands in queue");
+	debug_int(msh->num_of_cmds);
 	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
 /*	char	*arg;
 	t_list	*curr = debug_struct->arguments;

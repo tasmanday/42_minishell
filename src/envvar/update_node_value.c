@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:38:45 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 21:26:14 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 13:40:32 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,17 @@ void	update_node_value(t_dlist *envvar_node, char *new_value)
 	if (envv_struct->env_value != NULL)
 		free(envv_struct->env_value);
 	envv_struct->env_value = new_value;
+	if (new_value != NULL)
+	{
+		envv_struct->env_value = ft_strdup(new_value);
+		if (envv_struct->env_value == NULL)
+		{
+			perror("strdup");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		envv_struct->env_value = NULL;
+	}
 }
