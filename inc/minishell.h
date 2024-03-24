@@ -105,6 +105,9 @@ char		**put_args_in_array(t_cmd *cmd_struct);
 char		**convert_envvar_to_array(t_msh *msh);
 bool		cmd_is_builtin(char *command);
 void		execute_builtin(t_msh *msh);
+void		execute_parent(t_msh *msh, t_cmd *cmd_data);
+void		execute_child(t_msh *msh, char **env, char **arg);
+bool		has_path(char *string);
 
 /* clean_up */
 

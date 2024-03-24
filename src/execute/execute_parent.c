@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-void	free_exec_arrays(char **env, char **arg)
+static void	free_exec_arrays(char **env, char **arg)
 {
 	if (!env || !*env || !arg || !*arg)
 		return ;
