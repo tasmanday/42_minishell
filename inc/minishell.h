@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 09:36:41 by tday             ###   ########.fr       */
+/*   Updated: 2024/03/24 11:21:06 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 /* parse */
 
 void		extract_commands(t_msh *msh);
-void		execute_builtin(t_msh *msh);
+
 void		process_input(t_msh *msh, char *input);
 
 /* builtins */
@@ -100,6 +100,8 @@ void		ft_unset(t_msh *msh);
 /* execute */
 
 char		**put_args_in_array(t_cmd *cmd_struct);
+bool		cmd_is_builtin(char *command);
+void		execute_builtin(t_msh *msh);
 
 /* clean_up */
 

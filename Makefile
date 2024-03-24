@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/03/24 09:33:08 by tday             ###   ########.fr        #
+#    Updated: 2024/03/24 11:21:07 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,14 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 						$(addprefix src/lexer/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/parse/, extract_commands.c 				\
-									execute_builtin.c process_input.c)			\
-						$(addprefix src/execute/, put_args_in_array.c)			\
+									process_input.c)							\
+						$(addprefix src/execute/, put_args_in_array.c 			\
+									execute_builtin.c cmd_is_builtin.c)			\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\
 									free_cmd_struct.c msh_error_exit.c 			\
-									free_tokens.c)								\
+									free_tokens.c free_input.c)					\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
