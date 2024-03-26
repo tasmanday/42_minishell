@@ -63,12 +63,12 @@ char	*get_path(t_msh *msh, char *command)
 			msh_error_exit(msh, "get_path strjoin error");
 		if (access(absolute_path, X_OK) == 0)
 		{
-			free_array(path_array);
+			free_array((void **)path_array);
 			return (absolute_path);
 		}
 		free (absolute_path);
 		i++;
 	}
-	free_array(path_array);
+	free_array((void **)path_array);
 	return (NULL);
 }

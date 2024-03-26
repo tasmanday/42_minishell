@@ -27,4 +27,5 @@ void	execute_child(t_msh *msh, char **env, char **arg)
 	if (!path)
 		error("invalid command");
 	execve(path, arg, env);
+	
 }
