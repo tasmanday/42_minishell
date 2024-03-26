@@ -32,7 +32,8 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 									process_input.c)							\
 						$(addprefix src/execute/, put_args_in_array.c 			\
 									convert_envvar_to_array.c execute_builtin.c \
-									cmd_is_builtin.c)							\
+									cmd_is_builtin.c execute_commands.c 		\
+									execute_parent.c execute_child.c cmd_path.c)\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\

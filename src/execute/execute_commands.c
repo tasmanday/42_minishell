@@ -23,6 +23,8 @@ void	execute_commands(t_msh *msh)
 		cmd_data = (t_cmd *)curr_cmd->data;
 		if (cmd_is_builtin(cmd_data->command))
 			execute_builtin(msh);
+		else
 		execute_parent(msh, cmd_data);
+		//put pid exit status's in msh
 	}
 }

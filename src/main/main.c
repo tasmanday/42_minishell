@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envv)
 			break ;
 		}
 		process_input(msh, input);
-		execute_builtin(msh);
+		execute_commands(msh);
 		msh->num_of_cmds = 0;
 		free_input(msh, input);
 	}

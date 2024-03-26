@@ -23,5 +23,8 @@ void	execute_child(t_msh *msh, char **env, char **arg)
 			msh_error_exit(msh, "execute_child path error");
 	}
 	else
-		path = get_path(arg[0]);
+		path = get_path(msh, arg[0]);
+	if (!path)
+		error("invalid command");
+	execve(path, arg, env);
 }
