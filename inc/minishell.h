@@ -52,7 +52,8 @@ typedef struct s_cmd
 	t_list	*arguments;
 	char	*input_file;
 	char	*output_file;
-//	bool	is_pipe;
+	int	in_fd;
+	int	out_fd;
 	bool	is_append;
 }				t_cmd;
 
