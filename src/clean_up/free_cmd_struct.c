@@ -51,5 +51,9 @@ void	free_cmd_struct(void *data)
 		free(cmd->input_file);
 	if (cmd->output_file)
 		free(cmd->output_file);
+	if (cmd->in_fd != STDIN_FILENO)
+		close(cmd->in_fd);
+	if (cmd->out_fd != STDOUT_FILENO)
+		close(cmd->out_fd);
 	free(cmd);
 }

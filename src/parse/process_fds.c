@@ -35,6 +35,7 @@ static void	process_pipe_fds(t_msh *msh)
 		print_fds(cmd_data); // remove later
 		curr_cmd = curr_cmd->next;
 	}
+	cmd_data = curr_cmd->data;
 	print_fds(cmd_data); // remopve later
 }
 

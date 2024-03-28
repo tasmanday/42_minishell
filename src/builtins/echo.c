@@ -104,12 +104,12 @@ static void	print_tokens(t_list *curr_arg)
 	Outputs
 	prints the given strings to the standard output.
 */
-void	ft_echo(t_msh *msh)
+void	ft_echo(t_dlist *curr_cmd)
 {
 	bool	print_newline;
 	t_cmd	*cmd_struct;
 
-	cmd_struct = (t_cmd *)msh->cmd_queue->data;
+	cmd_struct = (t_cmd *)curr_cmd->data;
 	print_newline = true;
 	if (!cmd_struct->arguments)
 	{

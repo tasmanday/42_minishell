@@ -97,7 +97,7 @@ void		process_fds(t_msh *msh);
 /* builtins */
 
 void		ft_pwd(t_msh *msh);
-void		ft_echo(t_msh *msh);
+void		ft_echo(t_dlist *curr_cmd);
 void		ft_env(t_msh *msh);
 void		ft_export(t_msh *msh);
 void		ft_unset(t_msh *msh);
@@ -109,7 +109,7 @@ void		ft_exit(t_msh *msh);
 char		**put_args_in_array(t_cmd *cmd_struct);
 char		**convert_envvar_to_array(t_msh *msh);
 bool		cmd_is_builtin(char *command);
-void		execute_builtin(t_msh *msh);
+void		execute_builtin(t_msh *msh, t_dlist *curr_cmd);
 void		execute_commands(t_msh *msh);
 void		execute_parent(t_msh *msh, t_cmd *cmd_data);
 void		execute_child(t_msh *msh, char **env, char **arg);

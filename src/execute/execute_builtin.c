@@ -43,16 +43,16 @@ static void	test(t_msh *msh)
 	Outputs
 	none.
 */
-void	execute_builtin(t_msh *msh)
+void	execute_builtin(t_msh *msh, t_dlist *curr_cmd)
 {
 	t_cmd	*cmd_struct;
 
-	cmd_struct = (t_cmd *)msh->cmd_queue->data;
-	if (!msh->cmd_queue)
+	if (!curr_cmd || !curr_cmd->data)
 	{
-		error("execute_builtin no cmd_queue");
+		error("execute_builtin no curr_cmd");
 		return ;
 	}
+	cmd_struct = (t_cmd *)curr_cmd->data;
 	if (ft_strcmp(cmd_struct->command, "env") == 0)
 		ft_env(msh);
 	else if (ft_strcmp(cmd_struct->command, "pwd") == 0)
@@ -60,7 +60,7 @@ void	execute_builtin(t_msh *msh)
 	else if (ft_strcmp(cmd_struct->command, "export") == 0)
 		ft_export(msh);
 	else if (ft_strcmp(cmd_struct->command, "echo") == 0)
-		ft_echo(msh);
+		ft_echo(curr_cmd);
 	else if (ft_strcmp(cmd_struct->command, "exit") == 0)
 		ft_exit(msh);
 	else if (ft_strcmp(cmd_struct->command, "cd") == 0)
