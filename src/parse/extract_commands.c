@@ -153,6 +153,8 @@ static t_cmd	*fill_cmd_struct(t_msh *msh, t_list **curr_token_ptr)
 	if (ft_strcmp((char *)(*curr_token_ptr)->data, "|") == 0)
 		*curr_token_ptr = (*curr_token_ptr)->next;
 	cmd = safe_calloc(1, sizeof(t_cmd), "extract_commands cmd malloc error");
+	cmd->in_fd = STDIN_FILENO;
+	cmd->out_fd = STDOUT_FILENO;
 	fill_command_element(cmd, curr_token_ptr);
 	token = (*curr_token_ptr)->next;
 	while (token && ft_strcmp((char *)token->data, "|") != 0)

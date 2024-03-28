@@ -33,4 +33,5 @@ void	process_input(t_msh *msh, char *input)
 	}
 	add_tokens_to_list(msh, input);
 	extract_commands(msh);
+	process_fds(msh);
 }

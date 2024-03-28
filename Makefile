@@ -29,7 +29,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 						$(addprefix src/lexer/, add_tokens_to_list.c			\
 									handle_meta_chars.c safe_new_token_node.c)	\
 						$(addprefix src/parse/, extract_commands.c 				\
-									process_input.c)							\
+									process_input.c process_fds.c)				\
 						$(addprefix src/execute/, put_args_in_array.c 			\
 									convert_envvar_to_array.c execute_builtin.c \
 									cmd_is_builtin.c execute_commands.c 		\

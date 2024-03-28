@@ -21,7 +21,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
-# include <sys/wait.h> 
+# include <sys/wait.h>
+# include <fcntl.h> 
 
 /*
 ** structs
@@ -91,6 +92,7 @@ t_list		*safe_new_token_node(t_msh *msh, char *str);
 
 void		extract_commands(t_msh *msh);
 void		process_input(t_msh *msh, char *input);
+void		process_fds(t_msh *msh);
 
 /* builtins */
 
