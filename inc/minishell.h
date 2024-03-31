@@ -94,6 +94,13 @@ void		extract_commands(t_msh *msh);
 void		process_input(t_msh *msh, char *input);
 void		process_fds(t_msh *msh);
 
+/* signals.c */
+
+void		handle_interrupt(int sig);
+void		handle_quit(int	sig);
+void		setup_signal_handlers(void);
+void		reset_signal_handlers(void);
+
 /* builtins */
 
 void		ft_pwd(t_msh *msh);

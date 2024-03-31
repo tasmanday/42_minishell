@@ -21,9 +21,12 @@ int	main(int argc, char **argv, char **envv)
 	if (argc != 1)
 		error_exit("Incorrect number of arguments");
 	msh = init_minishell(envv);
+	setup_signal_handlers();
 	while (1)
 	{
 		input = get_input(msh, "prompt: ");
+		if (!input)
+			continue;
 		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
 		{
 			free(input);
@@ -34,6 +37,7 @@ int	main(int argc, char **argv, char **envv)
 		msh->num_of_cmds = 0;
 		free_input(msh, input);
 	}
+	reset_signal_handlers();
 	free_everything(msh);
 	return (0);
 }

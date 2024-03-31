@@ -27,10 +27,7 @@
 void	process_input(t_msh *msh, char *input)
 {
 	if (!input || input[0] == '\0')
-	{
-		free(input);
 		return ;
-	}
 	add_tokens_to_list(msh, input);
 	extract_commands(msh);
 	process_fds(msh);
