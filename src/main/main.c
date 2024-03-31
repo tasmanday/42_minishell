@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **envv)
 	setup_signal_handlers();
 	while (1)
 	{
-		input = get_input(msh, "prompt: ");
+		input = get_input(msh, "💲 ");
 		if (!input)
 			continue;
 		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
