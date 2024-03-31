@@ -12,7 +12,21 @@
 
 #include "../../inc/minishell.h"
 
-void	execute_child(t_msh *msh, char **env, char **arg)
+static void	update_fds(t_cmd **cmd_data)
+{
+	if ((*cmd_data)->in_fd != STDIN_FILENO)
+	{
+		dup2((*cmd_data)->in_fd, STDIN_FILENO);
+		close((*cmd_data)->in_fd);
+	}
+	if ((*cmd_data)->out_fd != STDOUT_FILENO)
+	{
+		dup2((*cmd_data)->out_fd, STDOUT_FILENO);
+		close((*cmd_data)->out_fd);
+	}
+}
+
+void	execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data)
 {
 	char	*path;
 
@@ -26,6 +40,6 @@ void	execute_child(t_msh *msh, char **env, char **arg)
 		path = get_path(msh, arg[0]);
 	if (!path)
 		error("invalid command");
+	update_fds(&cmd_data);
 	execve(path, arg, env);
-	
 }

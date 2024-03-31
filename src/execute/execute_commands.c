@@ -21,7 +21,6 @@ void	execute_commands(t_msh *msh)
 	while (curr_cmd)
 	{
 		cmd_data = (t_cmd *)curr_cmd->data;
-		//debug(cmd_data->command);
 		if (cmd_is_builtin(cmd_data->command))
 			execute_builtin(msh, curr_cmd);
 		else

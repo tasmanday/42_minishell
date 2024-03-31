@@ -25,8 +25,11 @@ SRCS 			:= 		$(addprefix src/array/, free_array.c reverse_char_arr.c	\
 						$(addprefix src/conversion/, ft_atoi.c ft_itoa.c)		\
 						$(addprefix src/ft_printf/, ft_character.c ft_pointer.c	\
 									ft_decimal_integer.c ft_hexadecimal.c		\
-									ft_printf.c ft_string.c 					\
-									ft_unsigned_integer.c)						\
+									ft_string.c ft_unsigned_integer.c			\
+									ft_printf.c ft_character_fd.c				\
+									ft_decimal_integer_fd.c ft_hexadecimal_fd.c	\
+									ft_pointer_fd.c ft_string_fd.c				\
+									ft_unsigned_int_fd.c ft_printf_fd.c)		\
 						$(addprefix src/linked_list/, lst_add_head.c			\
 									lst_add_tail.c lst_del_all.c lst_del_head.c	\
 									lst_del_node.c lst_del_tail.c				\

@@ -95,10 +95,20 @@ void		ft_character(char c, int *length);
 void		ft_string(char *s, int *length);
 void		ft_decimal_integer(int d, int *length);
 void		ft_unsigned_integer(unsigned int u, int *length);
-void		ft_hexidecimal(unsigned int x, int *length, char char_case,
+void		ft_hexidecimal(unsigned int x, int *length, char char_case, \
 				int first);
 void		ft_pointer(size_t p, int *length, int first);
 int			ft_printf(const char *string, ...);
+void		ft_character_fd(int fd, char c, int *length);
+void		ft_decimal_integer_fd(int fd, int d, int *length);
+void		ft_hexadecimal_fd(int fd, unsigned int x, int *length, \
+				char char_case);
+void		ft_hex_fd_recursive(int fd, unsigned int x, int *length, \
+				char char_case);
+void		ft_pointer_fd(int fd, size_t p, int *length, int first);
+void		ft_string_fd(int fd, char *s, int *length);
+void		ft_unsigned_integer_fd(int fd, unsigned int u, int *length);
+int			ft_printf_fd(int fd, const char *string, ...);
 
 /* memory */
 

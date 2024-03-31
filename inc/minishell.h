@@ -119,7 +119,7 @@ bool		cmd_is_builtin(char *command);
 void		execute_builtin(t_msh *msh, t_dlist *curr_cmd);
 void		execute_commands(t_msh *msh);
 void		execute_parent(t_msh *msh, t_cmd *cmd_data);
-void		execute_child(t_msh *msh, char **env, char **arg);
+void		execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data);
 char		*get_path(t_msh *msh, char *command);
 bool		has_path(char *string);
 
