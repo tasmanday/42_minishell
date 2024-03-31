@@ -21,7 +21,6 @@ int	main(int argc, char **argv, char **envv)
 	if (argc != 1)
 		error_exit("Incorrect number of arguments");
 	msh = init_minishell(envv);
-	setup_signal_handlers();
 	while (1)
 	{
 		input = get_input(msh, "💲 ");

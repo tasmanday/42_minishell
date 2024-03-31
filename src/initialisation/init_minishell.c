@@ -12,6 +12,18 @@
 
 #include "../../inc/minishell.h"
 
+static void	increment_shlvl(t_msh *msh)
+{
+	t_dlist	*node;
+	t_envv	*envv_struct;
+
+	node = find_envvar_node(msh->envvar, "SHLVL");
+	envv_struct = node->data;
+	envv_struct->env_value[0]++;
+	if (envv_struct->env_value[0] > '9')
+		debug("please stop opening shells, I can't count this high 😥");
+}
+
 /*
 	Summary
 	initializes the t_msh structure with environment variables
@@ -29,5 +41,7 @@ t_msh	*init_minishell(char **envv)
 
 	msh = safe_calloc(1, sizeof(t_msh), "msh malloc error");
 	clone_envv_to_dlist(msh, envv);
+	increment_shlvl(msh);
+	setup_signal_handlers();
 	return (msh);
 }

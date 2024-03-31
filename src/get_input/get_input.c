@@ -40,7 +40,7 @@ char	*get_input(t_msh *msh, char *prompt)
 		if (isatty(STDIN_FILENO))
 			error("readline error");
 		free_everything(msh);
-		exit(EXIT_FAILURE); // update to last exit status
+		exit(EXIT_SUCCESS); // update to last exit status
 	}
 	if (line[0] != '\0')
 	{
