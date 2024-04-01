@@ -22,9 +22,9 @@ void	ft_exit(t_msh *msh, t_cmd *cmd)
 	{
 		exit_status = ft_atoi((char *)cmd->arguments->data);
 		if (!exit_status)
-			error_exit("exit\nvalid numeric argument required");
+			msh_error_exit(msh, "exit\nvalid numeric argument required");
 		else if (cmd->arguments->next != NULL)
-			error_exit("exit\ntoo many arguments");
+			msh_error_exit(msh, "exit\ntoo many arguments");
 	}
 	ft_printf("exit\n");
 	exit(exit_status);

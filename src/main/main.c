@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envv)
 	msh = init_minishell(envv);
 	while (1)
 	{
-		input = get_input(msh, "💲 ");
+		input = get_input(msh);
 		if (!input)
 			continue;
 		if (input && input[0] == '1') // enter 1 to exit input loop, remove later

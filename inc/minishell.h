@@ -80,7 +80,7 @@ void		update_node_value(t_dlist *envvar_node, char *new_value);
 
 /* get_input */
 
-char		*get_input(t_msh *msh, char *prompt);
+char		*get_input(t_msh *msh);
 
 /* lexer */
 

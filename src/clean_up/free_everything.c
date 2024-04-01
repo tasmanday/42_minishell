@@ -42,11 +42,11 @@ void	free_everything(t_msh *msh)
 			dlst_del_all(&(msh->cmd_queue), free_cmd_struct);
 			msh->cmd_queue = NULL;
 		}
-		free(msh);
 		if (msh->pids)
 		{
 			lst_del_all(&(msh->pids), free_data);
 			msh->pids = NULL;
 		}
+		free(msh);
 	}
 }

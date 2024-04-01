@@ -12,6 +12,7 @@
 
 #include "../../inc/minishell.h"
 
+/* remove later */
 void	print_fds(t_cmd *cmd_data)
 {
 	ft_printf("in_fd: %i, out_fd: %i\n", cmd_data->in_fd, cmd_data->out_fd);
