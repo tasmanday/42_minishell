@@ -105,7 +105,7 @@ void		reset_signal_handlers(void);
 
 void		ft_pwd(t_msh *msh);
 void		ft_echo(t_dlist *curr_cmd);
-void		ft_env(t_msh *msh);
+void		ft_env(t_msh *msh, t_cmd *cmd);
 void		ft_export(t_msh *msh);
 void		ft_unset(t_msh *msh);
 void		ft_cd(t_msh *msh);

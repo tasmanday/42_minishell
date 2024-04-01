@@ -217,10 +217,8 @@ void	extract_commands(t_msh *msh)
 {
 	t_list	*curr_token;
 	t_cmd	*cmd_struct;
-//	int		queue = 0;
 
 	curr_token = msh->tokens;
-	debug("this text is from extract_commands function");
 	while (curr_token)
 	{
 		cmd_struct = fill_cmd_struct(msh, &curr_token);
@@ -229,21 +227,5 @@ void	extract_commands(t_msh *msh)
 		add_cmd_to_dlist(msh, cmd_struct);
 		msh->num_of_cmds++;
 	}
-	debug("commands in queue");
-	debug_int(msh->num_of_cmds);
-	t_cmd	*debug_struct = (t_cmd *)msh->cmd_queue->data;
-/*	char	*arg;
-	t_list	*curr = debug_struct->arguments;
-	while (curr)
-	{
-		arg = curr->data;
-		debug(arg);
-		curr = curr->next;
-	} */
-	if (debug_struct->input_file)
-		debug(debug_struct->input_file);
-	if (debug_struct->output_file)
-		debug(debug_struct->output_file);
-//	debug("about to free_tokens");
 	free_tokens(msh);
 }
