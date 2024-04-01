@@ -17,17 +17,18 @@
 	prints the value of the env_value field of a given t_envv structure.
 
 	Inputs
+	[int] fd: the file descriptor to output to.
 	[t_envv *] envv_element: a pointer to a t_envv structure that contains the
 	value to be printed.
 
 	Outputs
 	none.
 */
-static void	print_env_value(t_envv *envv_element)
+static void	print_env_value(int fd, t_envv *envv_element)
 {
 	if (envv_element != NULL)
 	{
-		ft_printf("%s\n", envv_element->env_value);
+		ft_printf_fd(fd, "%s\n", envv_element->env_value);
 	}
 }
 
@@ -38,14 +39,16 @@ static void	print_env_value(t_envv *envv_element)
 	Inputs
 	[t_msh *] msh: the main struct of minishell contianing a doubly linked
 		list of cloned environment variables.
+	[t_cmd *] cmd: the command struct containing the data from the current
+		command.
 
 	Outputs
 	none.
 */
-void	ft_pwd(t_msh *msh)
+void	ft_pwd(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*pwd_node;
 
 	pwd_node = find_envvar_node(msh->envvar, "PWD");
-	print_env_value((t_envv *)pwd_node->data);
+	print_env_value(cmd->out_fd, (t_envv *)pwd_node->data);
 }

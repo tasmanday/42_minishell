@@ -37,9 +37,9 @@ void	execute_builtin(t_msh *msh, t_dlist *curr_cmd)
 	if (ft_strcmp(cmd->command, "env") == 0)
 		ft_env(msh, cmd);
 	else if (ft_strcmp(cmd->command, "pwd") == 0)
-		ft_pwd(msh);
+		ft_pwd(msh, cmd);
 	else if (ft_strcmp(cmd->command, "export") == 0)
-		ft_export(msh);
+		ft_export(msh, cmd);
 	else if (ft_strcmp(cmd->command, "echo") == 0)
 		ft_echo(curr_cmd);
 	else if (ft_strcmp(cmd->command, "exit") == 0)

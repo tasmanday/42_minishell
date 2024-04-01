@@ -93,11 +93,13 @@ static void	sort_dlist(t_dlist **head)
 	Inputs
 	[t_msh *] msh: the main struct of the minishell, contains the command queue
 		and environment variable list.
+	[t_cmd *] cmd: the command struct containing the data from the current
+		command.
 
 	Outputs
 	none. the function prints the environment variables to the console.
 */
-static void	export_no_args(t_msh *msh)
+static void	export_no_args(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*cloned_list;
 	t_dlist	*curr_variable;
@@ -110,9 +112,10 @@ static void	export_no_args(t_msh *msh)
 	{
 		data = (t_envv *)curr_variable->data;
 		if (data->env_value == NULL)
-			ft_printf("declare -x %s\n", data->env_key);
+			ft_printf_fd(cmd->out_fd, "declare -x %s\n", data->env_key);
 		else
-			ft_printf("declare -x %s=\"%s\"\n", data->env_key, data->env_value);
+			ft_printf_fd(cmd->out_fd, "declare -x %s=\"%s\"\n", data->env_key, \
+				data->env_value);
 		curr_variable = curr_variable->next;
 	}
 	free_cloned_list(cloned_list);
@@ -181,18 +184,17 @@ static void	export_args(t_msh *msh, t_cmd *cmd_struct)
 	Inputs
 	[t_msh *] msh: the main struct of the minishell, contains the command queue
 		and environment variable list.
+	[t_cmd *] cmd: the command struct containing the data from the current
+		command.
 
 	Outputs
 	none. the function exports the environmental variables based on the provided
 	arguments.
 */
-void	ft_export(t_msh *msh)
+void	ft_export(t_msh *msh, t_cmd *cmd)
 {
-	t_cmd	*cmd_struct;
-
-	cmd_struct = (t_cmd *)msh->cmd_queue->data;
-	if (!cmd_struct->arguments)
-		export_no_args(msh);
+	if (!cmd->arguments)
+		export_no_args(msh, cmd);
 	else
-		export_args(msh, cmd_struct);
+		export_args(msh, cmd);
 }
