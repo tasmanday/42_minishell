@@ -12,22 +12,20 @@
 
 #include "../../inc/minishell.h"
 
-void	ft_exit(t_msh	*msh)
+void	ft_exit(t_msh *msh, t_cmd *cmd)
 {
-	t_cmd	*cmd_struct;
 	int		exit_status;
 
-	cmd_struct = (t_cmd *)msh->cmd_queue->data;
-	if (!cmd_struct->arguments)
+	if (!cmd->arguments)
 		exit_status = EXIT_SUCCESS;
 	else
 	{
-		exit_status = ft_atoi((char *)cmd_struct->arguments->data);
+		exit_status = ft_atoi((char *)cmd->arguments->data);
 		if (!exit_status)
 			error_exit("exit\nvalid numeric argument required");
-		else if (cmd_struct->arguments->next != NULL)
+		else if (cmd->arguments->next != NULL)
 			error_exit("exit\ntoo many arguments");
 	}
-	printf("exit\n");
+	ft_printf("exit\n");
 	exit(exit_status);
 }

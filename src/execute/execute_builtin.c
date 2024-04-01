@@ -20,6 +20,7 @@
 	Inputs
 	[t_msh *] msh: the main minishell structure containing command and
 		environment data.
+	[t_dlist *] curr_cmd: a pointer to the current command in the command queue.
 
 	Outputs
 	none.
@@ -43,9 +44,9 @@ void	execute_builtin(t_msh *msh, t_dlist *curr_cmd)
 	else if (ft_strcmp(cmd->command, "echo") == 0)
 		ft_echo(curr_cmd);
 	else if (ft_strcmp(cmd->command, "exit") == 0)
-		ft_exit(msh);
+		ft_exit(msh, cmd);
 	else if (ft_strcmp(cmd->command, "cd") == 0)
-		ft_cd(msh);
+		ft_cd(msh, cmd);
 	else if (ft_strcmp(cmd->command, "unset") == 0)
-		ft_unset(msh);
+		ft_unset(msh, cmd);
 }

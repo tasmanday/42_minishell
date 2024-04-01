@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 11:53:35 by sentry            #+#    #+#             */
-/*   Updated: 2024/03/24 20:25:45 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/01 18:01:37 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ static void	free_and_return(char	*path, char	*old_pwd)
 	return ;
 }
 
-void	ft_cd(t_msh	*msh)
+void	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
 {
 	char	cwd[PATH_MAX];
 	char	*old_pwd;
 	char	*new_pwd;
 	char	*path;
 
-	path = get_new_path((t_cmd *)msh->cmd_queue->data);
+	path = get_new_path(cmd_struct);
 	if (path && access(path, F_OK) != 0)
 	{
 		perror("");

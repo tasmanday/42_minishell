@@ -17,25 +17,25 @@
 	removes environmental variables with keys matching the provided arguments.
 
 	Inputs
-	[t_msh *] msh: the main struct of the minishell, contains the command queue
-		and environment variable list.
+	[t_msh *] msh: the main struct of the minishell, contains the environment
+		variable list.
+	[t_cmd *] cmd: the command struct containing the data from the current
+		command.
 
 	Outputs
 	none. the function modifies the msh->envvar doubly linked list by removing
 	the environment variables specified in cmd_struct->arguments.
 */
-void	ft_unset(t_msh *msh)
+void	ft_unset(t_msh *msh, t_cmd *cmd)
 {
-	t_cmd	*cmd_struct;
 	t_list	*args;
 	t_dlist	*env_node;
 
-	cmd_struct = (t_cmd *)msh->cmd_queue->data;
-	if (!cmd_struct->arguments)
+	if (!cmd->arguments)
 		return ;
 	else
 	{
-		args = cmd_struct->arguments;
+		args = cmd->arguments;
 		while (args)
 		{
 			env_node = find_envvar_node(msh->envvar, (char *)args->data);
