@@ -22,7 +22,8 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <fcntl.h> 
+# include <fcntl.h>
+# include <string.h>
 
 /*
 ** structs

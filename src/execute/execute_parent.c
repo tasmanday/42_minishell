@@ -34,7 +34,6 @@ void	execute_parent(t_msh *msh, t_cmd *cmd_data)
 	char	**arg;
 	t_list	*new_node;
 	int		*pid;
-	int		exit_status; // move later
 
 	env = convert_envvar_to_array(msh);
 	arg = put_args_in_array(cmd_data);
@@ -44,7 +43,6 @@ void	execute_parent(t_msh *msh, t_cmd *cmd_data)
 		msh_error_exit(msh, "exec_parent fork error");
 	else if (*pid == 0)
 		execute_child(msh, env, arg, cmd_data);
-	waitpid(*pid, &exit_status, 0); // move later
 	new_node = lst_new_node(pid);
 	if (!new_node)
 		msh_error_exit(msh, "exec_parent new_node error");

@@ -35,6 +35,8 @@ int	main(int argc, char **argv, char **envv)
 		execute_commands(msh);
 		msh->num_of_cmds = 0;
 		free_input(msh, input);
+		debug("exit_status"); // remove
+		debug_int(msh->last_exit_status); //remove
 	}
 	reset_signal_handlers();
 	free_everything(msh);

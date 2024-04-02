@@ -12,6 +12,24 @@
 
 #include "../../inc/minishell.h"
 
+void	get_pid_exit_status(t_msh *msh, t_list **pids)
+{
+	int		*pid;
+	int		exit_status;
+
+	exit_status = 0;
+	while(*pids)
+	{
+		pid = (int *)(*pids)->data;
+		waitpid(*pid, &exit_status, 0);
+		if (WIFEXITED(exit_status))
+			msh->last_exit_status = WEXITSTATUS(exit_status);
+		else if (WIFSIGNALED(exit_status))
+			msh->last_exit_status = WTERMSIG(exit_status);
+		lst_del_head(pids, free_data);
+	}
+}
+
 void	execute_commands(t_msh *msh)
 {
 	t_dlist	*curr_cmd;
@@ -25,7 +43,7 @@ void	execute_commands(t_msh *msh)
 			execute_builtin(msh, curr_cmd);
 		else
 		execute_parent(msh, cmd_data);
-		//put pid exit status's in msh
 		curr_cmd = curr_cmd->next;
 	}
+	get_pid_exit_status(msh, &msh->pids);
 }
