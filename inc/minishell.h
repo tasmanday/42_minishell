@@ -54,9 +54,10 @@ typedef struct s_cmd
 	t_list	*arguments;
 	char	*input_file;
 	char	*output_file;
-	int	in_fd;
-	int	out_fd;
+	int		in_fd;
+	int		out_fd;
 	bool	is_append;
+	char	*heredoc_delimiter;
 }				t_cmd;
 
 /*

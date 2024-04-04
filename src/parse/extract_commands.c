@@ -28,26 +28,34 @@
 	none. modifies the cmd struct input and output elements based on the
 	redirection token.
 */
-static void	handle_redirection(t_cmd *cmd, t_list **token_ptr) // can be improved
+static void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
 {
 	if ((*token_ptr)->next)
 	{
 		if (ft_strcmp((char *)(*token_ptr)->data, "<") == 0)
 		{
+			if (cmd->heredoc_delimiter)
+				free_null((void **)&(cmd->heredoc_delimiter));
 			*token_ptr = (*token_ptr)->next;
 			cmd->input_file = ft_strdup((char *)(*token_ptr)->data);
+		}
+		else if (ft_strcmp((char *)(*token_ptr)->data, "<<") == 0)
+		{
+			if (cmd->input_file)
+				free_null((void **)&(cmd->input_file));
+			*token_ptr = (*token_ptr)->next;
+			cmd->heredoc_delimiter = ft_strdup((char *)(*token_ptr)->data);
 		}
 		else if (ft_strcmp((char *)(*token_ptr)->data, ">") == 0 || \
 			ft_strcmp((char *)(*token_ptr)->data, ">>") == 0)
 		{
-			if (ft_strlen((char *)(*token_ptr)->data) == 2) // I was using ft_strcmp((char *)(*token_ptr)->data, ">>") == 0 but it would set > as is_append due to error with ft_strcmp
+			if (cmd->output_file)
+				free_null((void **)&(cmd->output_file));
+			if (ft_strcmp((char *)(*token_ptr)->data, ">>") == 0)
 				cmd->is_append = true;
 			*token_ptr = (*token_ptr)->next;
 			cmd->output_file = ft_strdup((char *)(*token_ptr)->data);
 		}
-		// update to handle "<<"
-		else
-			error("<< not coded yet");
 	}
 }
 

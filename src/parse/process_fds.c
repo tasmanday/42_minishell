@@ -57,12 +57,26 @@ static void	handle_input_file(t_cmd *cmd_data)
 	}
 }
 
+static int	get_open_flags(bool is_append)
+{
+	int	open_flags;
+
+	open_flags = O_CREAT | O_WRONLY;
+	if (is_append)
+		open_flags |= O_APPEND;
+	else
+		open_flags |= O_TRUNC;
+	return (open_flags);
+}
+
 static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
 {
 	int		out_fd;
 	t_cmd	*next_cmd_data;
+	int		open_flags;
 
-	out_fd = open(cmd_data->output_file, O_CREAT | O_WRONLY, 0644);
+	open_flags = get_open_flags(cmd_data->is_append);
+	out_fd = open(cmd_data->output_file, open_flags, 0644);
 	if (out_fd == -1)
 		perror("process_redir_fds error opening output file");
 	else
@@ -93,7 +107,8 @@ static void	process_redir_fds(t_msh *msh)
 	while (curr_cmd)
 	{
 		cmd_data = curr_cmd->data;
-
+		if (cmd_data->heredoc_delimiter)
+			debug(cmd_data->heredoc_delimiter); // write heredoc function
 		if (cmd_data->input_file)
 			handle_input_file(cmd_data);
 

@@ -33,10 +33,10 @@ int	main(int argc, char **argv, char **envv)
 		}
 		process_input(msh, input);
 		execute_commands(msh);
-		msh->num_of_cmds = 0;
-		free_input(msh, input);
 		debug("exit_status"); // remove
 		debug_int(msh->last_exit_status); //remove
+		msh->num_of_cmds = 0;
+		free_input(msh, input);
 	}
 	reset_signal_handlers();
 	free_everything(msh);
