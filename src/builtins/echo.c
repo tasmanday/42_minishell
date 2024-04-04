@@ -80,7 +80,7 @@ static void	check_for_nl_flags(t_list **curr_arg, bool *print_newline)
 	standard output. Each token is printed as a string, with a space between
 	tokens except for the last one.
 */
-static void	print_tokens(t_cmd	*cmd_struct)
+static void	print_tokens(t_cmd *cmd_struct)
 {
 	t_list *curr_arg;
 
@@ -107,20 +107,20 @@ static void	print_tokens(t_cmd	*cmd_struct)
 	Outputs
 	prints the given strings to the standard output.
 */
-void	ft_echo(t_dlist *curr_cmd)
+void	ft_echo(t_msh *msh, t_cmd *cmd)
 {
 	bool	print_newline;
-	t_cmd	*cmd_struct;
 
-	cmd_struct = (t_cmd *)curr_cmd->data;
+	if (!cmd)
+		msh_error_exit(msh, "ft_echo !cmd");
 	print_newline = true;
-	if (!cmd_struct->arguments)
+	if (!cmd->arguments)
 	{
-		ft_printf_fd(cmd_struct->out_fd, "\n");
+		ft_printf_fd(cmd->out_fd, "\n");
 		return ;
 	}
-	check_for_nl_flags(&(cmd_struct->arguments), &print_newline);
-	print_tokens(cmd_struct);
+	check_for_nl_flags(&(cmd->arguments), &print_newline);
+	print_tokens(cmd);
 	if (print_newline)
-		ft_printf_fd(cmd_struct->out_fd, "\n");
+		ft_printf_fd(cmd->out_fd, "\n");
 }
