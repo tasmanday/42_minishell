@@ -98,6 +98,22 @@ static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
 	}
 }
 
+static void	handle_heredoc(t_cmd *cmd_data)
+{
+	int	fds[2];
+
+	if (pipe(fds) == -1)\
+	{
+		error("handle_heredoc pipe error");
+		return ;
+	}
+	write(fds[1], cmd_data->heredoc_data, ft_strlen(cmd_data->heredoc_data));
+	close(fds[1]);
+	if (cmd_data->in_fd != STDIN_FILENO)
+		close(cmd_data->in_fd);
+	cmd_data->in_fd = fds[0];
+}
+
 static void	process_redir_fds(t_msh *msh)
 {
 	t_cmd	*cmd_data;
@@ -109,9 +125,9 @@ static void	process_redir_fds(t_msh *msh)
 		cmd_data = curr_cmd->data;
 		if (cmd_data->heredoc_delimiter)
 		{
-			debug(cmd_data->heredoc_delimiter); // write heredoc function
-			printf("heredoc:%s\n", cmd_data->heredoc_data);
-		//	handle_heredoc(cmd_data);
+		//	debug(cmd_data->heredoc_delimiter); // remove
+		//	printf("heredoc:%s\n", cmd_data->heredoc_data); // remove
+			handle_heredoc(cmd_data);
 		}
 		if (cmd_data->input_file)
 			handle_input_file(cmd_data);

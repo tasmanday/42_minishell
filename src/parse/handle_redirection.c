@@ -41,6 +41,7 @@ char	*read_heredoc(char *delimiter)
 		}
 		free(line);
 	}
+	result = ft_strjoin(result, "\n");
 	return (result);
 }
 
