@@ -14,53 +14,6 @@
 
 /*
 	**** ALLOCATES MEMORY ****
-	memory is allocated for the input and output files
-
-	Summary
-	handles the redirection of input and output files in a command structure.
-	
-	Inputs
-	[t_cmd *] cmd: a pointer to the command structure (t_cmd) that will
-		contain input and output file information.
-	[t_tlist **] token_ptr: a pointer to the current token in the token list.
-
-	Outputs
-	none. modifies the cmd struct input and output elements based on the
-	redirection token.
-*/
-static void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
-{
-	if ((*token_ptr)->next)
-	{
-		if (ft_strcmp((char *)(*token_ptr)->data, "<") == 0)
-		{
-			if (cmd->heredoc_delimiter)
-				free_null((void **)&(cmd->heredoc_delimiter));
-			*token_ptr = (*token_ptr)->next;
-			cmd->input_file = ft_strdup((char *)(*token_ptr)->data);
-		}
-		else if (ft_strcmp((char *)(*token_ptr)->data, "<<") == 0)
-		{
-			if (cmd->input_file)
-				free_null((void **)&(cmd->input_file));
-			*token_ptr = (*token_ptr)->next;
-			cmd->heredoc_delimiter = ft_strdup((char *)(*token_ptr)->data);
-		}
-		else if (ft_strcmp((char *)(*token_ptr)->data, ">") == 0 || \
-			ft_strcmp((char *)(*token_ptr)->data, ">>") == 0)
-		{
-			if (cmd->output_file)
-				free_null((void **)&(cmd->output_file));
-			if (ft_strcmp((char *)(*token_ptr)->data, ">>") == 0)
-				cmd->is_append = true;
-			*token_ptr = (*token_ptr)->next;
-			cmd->output_file = ft_strdup((char *)(*token_ptr)->data);
-		}
-	}
-}
-
-/*
-	**** ALLOCATES MEMORY ****
 	memory is allocated for the string in the command element
 
 	Summary

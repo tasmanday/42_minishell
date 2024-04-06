@@ -108,10 +108,13 @@ static void	process_redir_fds(t_msh *msh)
 	{
 		cmd_data = curr_cmd->data;
 		if (cmd_data->heredoc_delimiter)
+		{
 			debug(cmd_data->heredoc_delimiter); // write heredoc function
+			printf("heredoc:%s\n", cmd_data->heredoc_data);
+		//	handle_heredoc(cmd_data);
+		}
 		if (cmd_data->input_file)
 			handle_input_file(cmd_data);
-
 		if (cmd_data->output_file)
 			handle_output_file(cmd_data, curr_cmd);
 		curr_cmd = curr_cmd->next;

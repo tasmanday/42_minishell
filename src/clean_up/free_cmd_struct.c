@@ -57,5 +57,7 @@ void	free_cmd_struct(void *data)
 		close(cmd->out_fd);
 	if (cmd->heredoc_delimiter)
 		free(cmd->heredoc_delimiter);
+	if (cmd->heredoc_data)
+		free(cmd->heredoc_data);
 	free(cmd);
 }
