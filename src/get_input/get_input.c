@@ -6,13 +6,13 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:50:49 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 21:58:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 17:11:27 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char	*get_prompt(t_msh *msh)
+/* static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;
 	char	*str1;
@@ -21,7 +21,7 @@ static char	*get_prompt(t_msh *msh)
 	char	*str4;
 
 	str1 = ft_strjoin(get_env_value(msh->envvar, "USER"), "@");
-	str2 = ft_strjoin(str1, get_env_value(msh->envvar, "NAME"));
+	str2 = ft_strjoin(str1, get_env_value(msh->envvar, "LOGNAME"));
 	str3 = ft_strjoin(GREEN, str2);
 	str4 = ft_strjoin(str3, DEF);
 	free(str1);
@@ -37,6 +37,30 @@ static char	*get_prompt(t_msh *msh)
 	free(str2);
 	free(str3);
 	free(str4);
+	return (prompt);
+} */
+
+static char	*get_prompt(t_msh *msh)
+{
+	char	*prompt;
+	char	*str1;
+	char	*str2;
+
+	str1 = ft_strjoin(GREEN, get_env_value(msh->envvar, "USER"));
+	str2 = ft_strjoin(str1, DEF);
+	free(str1);
+	str1 = ft_strjoin(str2, ":");
+	free(str2);
+	str2 = ft_strjoin(str1, BLUE);
+	free(str1);
+	str1 = ft_strjoin(str2, get_env_value(msh->envvar, "PWD"));
+	free(str2);
+	str2 = ft_strjoin(str1, CYAN);
+	free(str1);
+	str1 = ft_strjoin(str2, "$ ");
+	prompt = ft_strjoin(str1, DEF);
+	free(str1);
+	free(str2);
 	return (prompt);
 }
 
@@ -63,6 +87,7 @@ char	*get_input(t_msh *msh)
 	char	*line;
 	char	*prompt;
 
+//	prompt = get_env_value(msh->envvar, "PWD");
 	prompt = get_prompt(msh);
 	line = readline(prompt);
 	if (!line)
@@ -75,6 +100,6 @@ char	*get_input(t_msh *msh)
 	{
 		add_history(line);
 	}
-	free(prompt);
+//	free(prompt);
 	return (line);
 }

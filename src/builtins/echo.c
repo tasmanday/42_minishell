@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 19:20:23 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 17:13:52 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	print_tokens(t_cmd *cmd_struct)
 	curr_arg = cmd_struct->arguments;
 	while (curr_arg && (char *)curr_arg->data)
 	{
+		if $?
 		ft_printf_fd(cmd_struct->out_fd, "%s", (char *)curr_arg->data);
 		curr_arg = curr_arg->next;
 		if (curr_arg && (char *)curr_arg->data)
