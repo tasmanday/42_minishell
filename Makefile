@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/04/07 17:13:52 by tday             ###   ########.fr        #
+#    Updated: 2024/04/07 18:20:51 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC_DIRS		:=		src/builtins src/main #src/(add folder names)
 INC_DIR			:=		inc
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
+INCL_RL 		:=		/usr/local/opt/readline/include/
+LINK_RL			:=		/usr/local/opt/readline/lib
 SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 									unset.c cd.c exit.c)						\
 						$(addprefix src/main/, main.c)							\
@@ -44,7 +46,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 						#$(addprefix src/(add folder names)/, (add file names))
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
-CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR) -g
+CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR) -I$(INCL_RL) -g
 RM				:=		rm -f
 
 # Function definition
@@ -72,7 +74,7 @@ WHITE			:=		\033[1;37m
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(OBJS)
-				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -lreadline -o $(NAME)
+				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(LINK_RL) -lreadline -o $(NAME)
 				@echo "$(CYAN)Everything compiled and linked into executable: $(BLUE)$(NAME)$(DEFAULT_COLOUR)"
 				@echo "\n"
 
