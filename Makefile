@@ -6,14 +6,16 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/04/07 18:20:51 by tday             ###   ########.fr        #
+#    Updated: 2024/04/07 18:34:00 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
 NAME			:=		minishell
-SRC_DIRS		:=		src/builtins src/main #src/(add folder names)
+SRC_DIRS		:=		src/builtins src/main src/initialisation src/envvar		\
+						src/get_input src/signals src/lexer src/parse 			\
+						src/execute src/clean_up
 INC_DIR			:=		inc
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
@@ -42,8 +44,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\
 									free_cmd_struct.c msh_error_exit.c 			\
-									free_tokens.c free_input.c)					\
-						#$(addprefix src/(add folder names)/, (add file names))
+									free_tokens.c free_input.c)					
 OBJS 			:=		$(SRCS:.c=.o)
 CC				:=		gcc
 CFLAGS			:=		-Wall -Wextra -Werror -I$(INC_DIR) -I$(INCL_RL) -g
