@@ -165,6 +165,7 @@ static void	handle_d_quote_token(t_msh *msh, char *str, int *i)
 		if (str[*i] == '\"')
 			(*i)++;
 	}
+	free(str);
 }
 
 /*

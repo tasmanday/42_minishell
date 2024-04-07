@@ -29,14 +29,14 @@
 	none. The function modifies the str string by copying characters from the
 	temp string before the specified start index.
 */
-static void	copy_pre_substr(char **str, char *temp, int *i, int start)
+/* static void	copy_pre_substr(char **str, char *temp, int *i, int start)
 {
 	while (*i < start)
 	{
 		str[0][*i] = temp[*i];
 		(*i)++;
 	}
-}
+} */
 
 /*
 	Summary
@@ -52,7 +52,7 @@ static void	copy_pre_substr(char **str, char *temp, int *i, int start)
 	Outputs
 	none. The function modifies the string str in place.
 */
-static void	copy_substr(char **str, char *substr, int *i)
+/* static void	copy_substr(char **str, char *substr, int *i)
 {
 	int	j;
 
@@ -63,7 +63,7 @@ static void	copy_substr(char **str, char *substr, int *i)
 		(*i)++;
 		j++;
 	}
-}
+} */
 
 /*
 	Summary
@@ -82,7 +82,7 @@ static void	copy_substr(char **str, char *substr, int *i)
 	Outputs
 	none. The function modifies the string str in place.
 */
-static void	copy_post_substr(char **str, char *temp, int *i, int end)
+/* static void	copy_post_substr(char **str, char *temp, int *i, int end)
 {
 	int	j;
 
@@ -94,7 +94,7 @@ static void	copy_post_substr(char **str, char *temp, int *i, int end)
 		j++;
 	}
 	str[0][*i] = '\0';
-}
+} */
 
 /*
 	Summary
@@ -109,7 +109,7 @@ static void	copy_post_substr(char **str, char *temp, int *i, int end)
 	Outputs
 	none. The modified string is passed back through the str parameter.
 */
-void	ft_replace_substr(char **str, int start, int end, char *substr)
+/* void	ft_replace_substr(char **str, int start, int end, char *substr)
 {
 	int		total_length;
 	int		str_length;
@@ -125,6 +125,7 @@ void	ft_replace_substr(char **str, int start, int end, char *substr)
 	total_length = str_length + substr_length - (end - start) + 1;
 	free(*str);
 	*str = ft_realloc(*str, str_length, total_length);
+	ft_bzero(*str, total_length);
 	printf("got past realloc\n"); // rem
 	if (!*str)
 	{
@@ -143,4 +144,27 @@ void	ft_replace_substr(char **str, int start, int end, char *substr)
 	debug("copy_post_substr successful"); // rem
 	printf("%s\n", *str); // rem
 	free(temp);
+} */
+
+
+
+
+
+
+void	ft_replace_substr(char **str, int start, int end, char *substr)
+{
+	char	*temp;
+	char	*pre_substr;
+	char	*post_substr;
+	char	*new_str;
+
+	pre_substr = ft_substr(*str, 0, start);
+	post_substr = ft_substr(*str, end, (ft_strlen(*str) - end));
+	temp = ft_strjoin(pre_substr, substr);
+	new_str = ft_strjoin(temp, post_substr);
+	free(pre_substr);
+	free(post_substr);
+	free(temp);
+	ft_bzero(*str, ft_strlen(*str));
+	*str = new_str;
 }

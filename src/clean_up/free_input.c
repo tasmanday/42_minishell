@@ -24,7 +24,7 @@
  	Outputs
  	none. function just frees allocated memory.
 */
-void	free_input(t_msh *msh, char *input)
+void	free_input(t_msh *msh)
 {
 	if (msh->cmd_queue)
 	{
@@ -36,6 +36,4 @@ void	free_input(t_msh *msh, char *input)
 		lst_del_all(&(msh->tokens), free_data);
 		msh->tokens = NULL;
 	}
-	if (input)
-		free(input);
 }

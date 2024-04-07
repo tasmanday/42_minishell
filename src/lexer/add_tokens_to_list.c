@@ -46,17 +46,14 @@ static bool	is_meta_char(char c)
 	[int] i: the index value after processing the token and expanding any
 		environmental variables.
 */
-static int	process_token_and_envvar(t_msh *msh, char *str, int i)
+static int	process_token_and_envvar(t_msh *msh, char **str, int i)
 {
-	while (str[i] && ft_isprint(str[i]) && !ft_isspace(str[i]) \
-	&& !is_meta_char(str[i]))
+	while ((*str)[i] && ft_isprint((*str)[i]) && !ft_isspace((*str)[i]) \
+	&& !is_meta_char((*str)[i]))
 	{
-	//	debug_int(i);
-		if (str[i] == '$')
-		{
-			expand_envvar(msh->envvar, &str, &i);
-	//		debug_int(i);
-		}
+	
+		if ((*str)[i] == '$')
+			expand_envvar(msh->envvar, str, &i);
 		else
 			i++;
 	}
@@ -90,7 +87,6 @@ static void	create_and_add_token(t_msh *msh, char *str, int start, int end)
 	token_str = ft_substr(str, start, end - start);
 	if (!token_str)
 		error("token_str malloc error");
-	debug(token_str);
 	new_node = safe_new_token_node(msh, token_str);
 	lst_add_tail(&(msh->tokens), new_node);
 }
@@ -128,10 +124,9 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 		else
 		{
 			start = i;
-			i = process_token_and_envvar(msh, str, i);
+			i = process_token_and_envvar(msh, &str, i);
 			create_and_add_token(msh, str, start, i);
 		}
 	}
+//	free(str);
 }
-
-// /usr/local|/bin:/usr/|bin:/bin:/|usr/sbin:/|sbin:/usr/|local/munk|i:/Library|/Framework|s/Mono.fra|mework/Ver|sions/Curr|ent/Comman|ds

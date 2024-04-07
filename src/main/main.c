@@ -28,15 +28,17 @@ int	main(int argc, char **argv, char **envv)
 			continue;
 		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
 		{
-		//	free(input);
+			free(input);
 			break ;
 		}
 		process_input(msh, input);
 		execute_commands(msh);
-		debug("exit_status"); // remove
-		debug_int(msh->last_exit_status); //remove
+	//	debug("exit_status"); // remove
+	//	debug_int(msh->last_exit_status); //remove
 		msh->num_of_cmds = 0;
-		free_input(msh, input);
+		if (input)
+			free(input);
+		free_input(msh);
 	}
 	reset_signal_handlers();
 	free_everything(msh);

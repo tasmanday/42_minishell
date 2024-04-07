@@ -33,23 +33,19 @@ void	expand_envvar(t_dlist *envvar, char **str, int *i)
 	char	*key;
 	char	*value;
 
-	key = get_env_key(&str[0][*i + 1]);
+	key = get_env_key(*str + *i + 1);
 	value = get_env_value(envvar, key);
-	printf("value: %s\n", value); // remove
 	if (!value)
 	{
-		printf("no value called\n");
 		length = ft_strlen(key);
-		ft_replace_substr(str, *i, (*i + length), "");
+		ft_replace_substr(str, *i, (*i + length + 1), "");
 		free(key);
 	}
 	else
 	{
-		printf("value called\n");
 		length = ft_strlen(key);
-		printf("key length: %i\n", length);
-		ft_replace_substr(str, *i, (*i + length), value);
+		ft_replace_substr(str, *i, (*i + length + 1), value);
 		free(key);
-		*i = *i + ft_strlen(value) - 1;
+		*i = *i + ft_strlen(value);
 	}
 }

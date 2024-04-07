@@ -138,6 +138,6 @@ void		free_envv_struct(void *data);
 void		free_data(void *data);
 void		free_tokens(t_msh *msh);
 void		free_cmd_struct(void *data);
-void		free_input(t_msh *msh, char *input);
+void		free_input(t_msh *msh);
 
 #endif

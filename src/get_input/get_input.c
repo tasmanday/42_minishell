@@ -58,7 +58,7 @@ char	*get_input(t_msh *msh)
 {
 	char	*line;
 	char	*prompt;
-	char	*input;
+//	char	*input;
 
 	prompt = get_prompt(msh);
 	line = readline(prompt);
@@ -73,6 +73,8 @@ char	*get_input(t_msh *msh)
 		add_history(line);
 	}
 	free(prompt);
-	input = ft_strdup(line);
-	return (input);
+//	input = ft_strdup(line);
+//	free(line);
+//	return (input);
+	return (line);
 }
