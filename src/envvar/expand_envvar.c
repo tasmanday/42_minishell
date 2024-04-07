@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:50:08 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 09:40:56 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 19:48:12 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,21 @@ void	expand_envvar(t_dlist *envvar, char **str, int *i)
 
 	key = get_env_key(&str[0][*i + 1]);
 	value = get_env_value(envvar, key);
-	length = ft_strlen(key);
-	ft_replace_substr(str, *i, (*i + length + 1), value);
-	free(key);
-	*i += ft_strlen(value);
+	printf("value: %s\n", value); // remove
+	if (!value)
+	{
+		printf("no value called\n");
+		length = ft_strlen(key);
+		ft_replace_substr(str, *i, (*i + length), "");
+		free(key);
+	}
+	else
+	{
+		printf("value called\n");
+		length = ft_strlen(key);
+		printf("key length: %i\n", length);
+		ft_replace_substr(str, *i, (*i + length), value);
+		free(key);
+		*i = *i + ft_strlen(value) - 1;
+	}
 }

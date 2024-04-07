@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:09:54 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 10:23:13 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 18:49:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	memory allocated for returned string needs to be freed after use.
 	
 	Summary
-	returna a substring that represents the key of an environment variable.
+	returns a substring that represents the key of an environment variable.
 
 	Inputs
 	[char *] str: a pointer to a string that contains an environment variable

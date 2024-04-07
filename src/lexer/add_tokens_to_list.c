@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:00:49 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 22:08:29 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 19:54:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ static int	process_token_and_envvar(t_msh *msh, char *str, int i)
 	while (str[i] && ft_isprint(str[i]) && !ft_isspace(str[i]) \
 	&& !is_meta_char(str[i]))
 	{
+	//	debug_int(i);
 		if (str[i] == '$')
+		{
 			expand_envvar(msh->envvar, &str, &i);
+	//		debug_int(i);
+		}
 		else
 			i++;
 	}
@@ -86,6 +90,7 @@ static void	create_and_add_token(t_msh *msh, char *str, int start, int end)
 	token_str = ft_substr(str, start, end - start);
 	if (!token_str)
 		error("token_str malloc error");
+	debug(token_str);
 	new_node = safe_new_token_node(msh, token_str);
 	lst_add_tail(&(msh->tokens), new_node);
 }
@@ -128,3 +133,5 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 		}
 	}
 }
+
+// /usr/local|/bin:/usr/|bin:/bin:/|usr/sbin:/|sbin:/usr/|local/munk|i:/Library|/Framework|s/Mono.fra|mework/Ver|sions/Curr|ent/Comman|ds

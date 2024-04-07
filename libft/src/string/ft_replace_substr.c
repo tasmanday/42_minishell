@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:06:16 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 21:39:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 19:57:35 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,24 @@ void	ft_replace_substr(char **str, int start, int end, char *substr)
 	str_length = ft_strlen(*str);
 	substr_length = ft_strlen(substr);
 	total_length = str_length + substr_length - (end - start) + 1;
+	free(*str);
 	*str = ft_realloc(*str, str_length, total_length);
+	printf("got past realloc\n"); // rem
 	if (!*str)
 	{
+		error("!*str");
 		free(temp);
 		return ;
 	}
 	i = 0;
 	copy_pre_substr(str, temp, &i, start);
+	debug("copy_pre_substr successful"); // rem
+	printf("%s\n", *str); // rem
 	copy_substr(str, substr, &i);
+	debug("copy_substr successful"); // rem
+	printf("%s\n", *str); // rem
 	copy_post_substr(str, temp, &i, end);
+	debug("copy_post_substr successful"); // rem
+	printf("%s\n", *str); // rem
 	free(temp);
 }

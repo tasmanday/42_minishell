@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/04/07 18:20:53 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/07 20:05:30 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envv)
 			continue;
 		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
 		{
-			free(input);
+		//	free(input);
 			break ;
 		}
 		process_input(msh, input);
