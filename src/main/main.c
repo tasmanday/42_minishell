@@ -15,7 +15,7 @@
 int	main(int argc, char **argv, char **envv)
 {
 	t_msh	*msh;
-	char	*input = NULL;
+//	char	*input = NULL;
 
 	(void)argv;
 	if (argc != 1)
@@ -23,12 +23,12 @@ int	main(int argc, char **argv, char **envv)
 	msh = init_minishell(envv);
 	while (1)
 	{
-		input = get_input(msh);
-		if (!input)
+		msh->input = get_input(msh);
+		if (!msh->input)
 			continue;
-		if (input && input[0] == '1') // enter 1 to exit input loop, remove later
+		if (msh->input && msh->input[0] == '1') // enter 1 to exit input loop, remove later
 		{
-			free(input);
+			free(msh->input);
 			break ;
 		}
 		process_input(msh, input);
@@ -36,8 +36,8 @@ int	main(int argc, char **argv, char **envv)
 	//	debug("exit_status"); // remove
 	//	debug_int(msh->last_exit_status); //remove
 		msh->num_of_cmds = 0;
-		if (input)
-			free(input);
+		//if (input)
+		//	free(input);
 		free_input(msh);
 	}
 	reset_signal_handlers();

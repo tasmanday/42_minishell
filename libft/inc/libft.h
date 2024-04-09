@@ -157,6 +157,7 @@ int			ft_strcmp(char *s1, char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strdup(char *src);
 char		*ft_substr(char const *str, size_t start, size_t length);
+char		*ft_strjoin_any(int num_of_str, ...);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strtrim(const char *s1, const char *set);
 char		**ft_split(const char *input_str, char delimiter);

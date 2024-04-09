@@ -162,11 +162,15 @@ static void	handle_d_quote_token(t_msh *msh, char *str, int *i)
 			error("s_quote substr error");
 		new_node = safe_new_token_node(msh, temp_substr);
 		lst_add_tail(&(msh->tokens), new_node);
+		debug_int(*i);
+		putchar(str[*i]);
 		if (str[*i] == '\"')
 			(*i)++;
+		debug_int(*i);
 	}
-	free(str);
+	return ;
 }
+
 
 /*
 	**** ALLOCATES MEMORY ****
@@ -195,6 +199,5 @@ void	handle_meta_chars(t_msh *msh, char *str, int *i)
 		handle_s_quote_token(msh, str, i);
 	else if (str[*i] == '\"')
 		handle_d_quote_token(msh, str, i);
-	else
-		return ;
+	return ;
 }

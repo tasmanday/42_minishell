@@ -34,6 +34,7 @@
 typedef struct s_msh
 {
 	t_dlist	*envvar;
+	char	*input;
 	t_list	*tokens;
 	t_dlist	*cmd_queue;
 	int		num_of_cmds;

@@ -24,11 +24,18 @@
 	none. the function modifies the shell environment by adding tokens and
 	extracting commands based on the input.
 */
-void	process_input(t_msh *msh, char *input)
+/* void	process_input(t_msh *msh, char *input)
 {
 	if (!input || input[0] == '\0')
 		return ;
 	add_tokens_to_list(msh, input);
+	extract_commands(msh);
+	process_fds(msh);
+} */
+
+void	process_input(t_msh *msh)
+{
+	add_tokens_to_list(msh);
 	extract_commands(msh);
 	process_fds(msh);
 }

@@ -151,7 +151,7 @@
 
 
 
-void	ft_replace_substr(char **str, int start, int end, char *substr)
+/* void	ft_replace_substr(char **str, int start, int end, char *substr)
 {
 	char	*temp;
 	char	*pre_substr;
@@ -162,9 +162,33 @@ void	ft_replace_substr(char **str, int start, int end, char *substr)
 	post_substr = ft_substr(*str, end, (ft_strlen(*str) - end));
 	temp = ft_strjoin(pre_substr, substr);
 	new_str = ft_strjoin(temp, post_substr);
+	debug("ft_replace_substr"); //
+	printf("pre: %s, sub: %s, post: %s\n", pre_substr, substr, post_substr); //
+	debug(new_str); //
 	free(pre_substr);
 	free(post_substr);
 	free(temp);
+	ft_bzero(*str, ft_strlen(*str));
+	*str = new_str;
+} */
+
+
+
+
+void	ft_replace_substr(char **str, int start, int end, char *substr)
+{
+	char	*pre_substr;
+	char	*post_substr;
+	char	*new_str;
+
+	pre_substr = ft_substr(*str, 0, start);
+	post_substr = ft_substr(*str, end, (ft_strlen(*str) - end));
+	new_str = ft_strjoin_any(3, pre_substr, substr, post_substr);
+	debug("ft_replace_substr"); //
+	printf("pre: %s, sub: %s, post: %s\n", pre_substr, substr, post_substr); //
+	debug(new_str); //
+	free(pre_substr);
+	free(post_substr);
 	ft_bzero(*str, ft_strlen(*str));
 	*str = new_str;
 }

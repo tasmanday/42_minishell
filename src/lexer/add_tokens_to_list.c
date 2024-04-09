@@ -71,7 +71,6 @@ static int	process_token_and_envvar(t_msh *msh, char **str, int i)
 
 	Inputs
 	[t_msh *] msh: a pointer to the minishell structure.
-	[char *] str: the input string from which the token is extracted.
 	[int] start: the starting index of the substring.
 	[int] end: the ending index of the substring.
 
@@ -79,12 +78,12 @@ static int	process_token_and_envvar(t_msh *msh, char **str, int i)
 	none. The function adds a new token node to the linked list in the msh
 	structure.
 */
-static void	create_and_add_token(t_msh *msh, char *str, int start, int end)
+static void	create_and_add_token(t_msh *msh, int start, int end)
 {
 	char	*token_str;
 	t_list	*new_node;
 
-	token_str = ft_substr(str, start, end - start);
+	token_str = ft_substr(msh->input, start, end - start);
 	if (!token_str)
 		error("token_str malloc error");
 	new_node = safe_new_token_node(msh, token_str);
@@ -108,7 +107,7 @@ static void	create_and_add_token(t_msh *msh, char *str, int start, int end)
 	Outputs
 	none. tokens are added to linked list.
 */
-void	add_tokens_to_list(t_msh *msh, char *str)
+/* void	add_tokens_to_list(t_msh *msh, char *str)
 {
 	int		i;
 	int		start;
@@ -118,7 +117,10 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 	while (str[i])
 	{
 		if (is_meta_char(str[i]))
+		{
 			handle_meta_chars(msh, str, &i);
+			continue ;
+		}
 		else if (!ft_isprint(str[i]) || ft_isspace(str[i]))
 			i++;
 		else
@@ -128,5 +130,101 @@ void	add_tokens_to_list(t_msh *msh, char *str)
 			create_and_add_token(msh, str, start, i);
 		}
 	}
+	t_list	*curr = msh->tokens;
+	while (curr)
+	{
+		printf("token: %s\n", (char *)curr->data);
+		curr = curr->next;
+	}
 //	free(str);
+} */
+
+void	process_envvars(msh)
+{
+	char	*temp;
+	char	*str;
+	int		state;
+	int		i;
+
+	i = 0;
+	state = 0;
+	str = msh->input;
+	while (str[i])
+	{
+		if (state = 0)
+		{
+			if (str[i] == '\'')
+				state = 1;
+			else if (str[i] == '\"')
+				state = 2;
+			else if (str[i] == '$')
+				expand_envvar(msh, i);
+		}
+		else if (state = 1)
+		{
+			if (str[i] == '\'')
+				state = 0;
+		}
+		else if (state = 2)
+		{
+			if (str[i] == '\"')
+				state = 0;
+			else if (str[i] == '$')
+				expand_envvar(msh, i);
+		}
+		i++;
+		// check if in quotes and expand envvars as neccessary use an enum maybe first state: not in quotes, second state: in single, third: in double
+	}
+}
+
+void	add_opp_token(t_msh *msh, int *i)
+{
+	if (msh->input[*i] != '|' && (msh->input[*i] == msh->input[*i + 1]))
+		{
+			create_and_add_token(msh, *i, *i + 2);
+			*i += 2;
+		}
+	else
+		{
+			create_and_add_token(msh, *i, *i + 1);
+			*i += 1;
+		}
+}
+
+void	handle_no_quotes(t_msh *msh)
+{
+	int		i;
+	int		start;
+	char	*str;
+
+	i = 0;
+	start = 0;
+	str = msh->input;
+	process_envvars(msh);
+	while (str[i])
+	{
+		if (!ft_isprint(str[i]) || ft_isspace(str[i]))
+			i++;
+		else if (str[i] == '<' || str[i] == '>' || str[i] == '|')
+		{
+			add_opp_token(msh, &i);
+		}
+		else //add tokens 
+		{
+			start = i;
+			while (is_valid)
+				i++;
+				create_and_add_token(msh, start, i);
+		}
+	}
+}
+
+void	add_tokens_to_list(t_msh *msh)
+{
+	char	**quote_array;
+
+	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39))
+		handle_quotes(msh);
+	else
+		handle_no_quotes(msh);
 }
