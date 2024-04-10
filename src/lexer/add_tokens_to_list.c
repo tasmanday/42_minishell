@@ -211,15 +211,76 @@ void	process_envvars(t_msh *msh)
 		}
 	}
 } */
-
-void	add_tokens_to_list(t_msh *msh)
-{
-	int		i;
-	char	**token_array;
-	
-	process_envvars(msh);
+/*
 	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39)) //might be able to just process the string in one go and check for quotes as we go
 		handle_quotes(msh);
 	else
 		handle_no_quotes(msh);
+*/
+
+void	check_quotes(t_msh *msh, const char *input, int *i)
+{
+	int		start;
+	int		end;
+	char		quote;
+	
+	if (input[*i] == '\'' || input[*i] == '\"')
+	{
+		start = *i; // might need to be +1
+		quote = input[*i];
+		(*i)++;
+		while (input[*i] != quote)
+			(*i)++;
+		end = *i; // might need to be +1
+		create_and_add_token(msh, start, end)
+		(*i)++; // possibly remove
+	}
+	return ;
+}
+
+void	check_redir(t_msh *msh, const char *input, int *i)
+{
+	if (input[*i] == '|')
+	{
+		create_and_add_token(msh, *i, *i);
+		(*i)++;
+	}
+	else if (input[*i] == '<' || input[*i] == '>')
+	{
+		if (input[*i] == input[*i + 1])
+		{
+			create_and_add_token(msh, *i, *i + 1);
+			*i += 2;
+		}
+		else
+		{
+			create_and_add_token(msh, *i, *i);
+			(*i)++;
+		}
+	}
+	return ;
+}
+
+void	separate_tokens(t_msh *msh, const char *input)
+{
+	int		i;
+
+	i = 0;
+	while (input[i])
+	{
+		check_quotes(msh, input, &i);
+		check_redir(msh, input, &i);
+		if (!ft_isprint(input[i]) || ft_isspace(input[i]))
+			i++;
+		else
+			tokenise_arg(msh, input, &i); // needs a while (is_print, not space, not redir, not pipe, not quote) 
+	}
+}
+
+void	add_tokens_to_list(t_msh *msh)
+{
+	char	**token_array;
+	
+	process_envvars(msh);
+	separate_tokens(msh, (const char *)msh->input);
 }
