@@ -154,7 +154,7 @@ void	check_state(char current_char, int *state)
 		*state = 0;
 }
 
-void	process_envvars(msh)
+void	process_envvars(t_msh *msh)
 {
 	int		state;
 	int		i;
@@ -171,7 +171,7 @@ void	process_envvars(msh)
 	}
 }
 
-void	add_opp_token(t_msh *msh, int *i)
+/* void	add_opp_token(t_msh *msh, int *i)
 {
 	if (msh->input[*i] != '|' && (msh->input[*i] == msh->input[*i + 1]))
 		{
@@ -183,9 +183,9 @@ void	add_opp_token(t_msh *msh, int *i)
 			create_and_add_token(msh, *i, *i + 1);
 			*i += 1;
 		}
-}
+} */
 
-void	handle_no_quotes(t_msh *msh)
+/* void	handle_no_quotes(t_msh *msh)
 {
 	int		i;
 	int		start;
@@ -210,12 +210,13 @@ void	handle_no_quotes(t_msh *msh)
 				create_and_add_token(msh, start, i);
 		}
 	}
-}
+} */
 
 void	add_tokens_to_list(t_msh *msh)
 {
-	char	**quote_array;
-
+	int		i;
+	char	**token_array;
+	
 	process_envvars(msh);
 	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39)) //might be able to just process the string in one go and check for quotes as we go
 		handle_quotes(msh);
