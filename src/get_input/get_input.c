@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-static char	*get_prompt(t_msh *msh)
+/* static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;
 	char	*str1;
@@ -33,6 +33,16 @@ static char	*get_prompt(t_msh *msh)
 	prompt = ft_strjoin(str1, DEF);
 	free(str1);
 	free(str2);
+	return (prompt);
+} */
+
+static char	*get_prompt(t_msh *msh)
+{
+	char	*prompt;
+
+	prompt = ft_strjoin_any(13, GREEN, get_env_value(msh->envvar, "USER"), DEF,\
+		":", CYAN, get_env_value(msh->envvar, "SHLVL"), DEF, ":", BLUE, \
+		get_env_value(msh->envvar, "PWD"), CYAN, "$ ", DEF);
 	return (prompt);
 }
 

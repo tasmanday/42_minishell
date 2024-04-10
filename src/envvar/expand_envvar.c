@@ -61,6 +61,12 @@ void	expand_envvar(t_msh *msh, int *i)
 	value = get_env_value(msh->envvar, key);
 	if (!value)
 	{
+		if (ft_strcmp(key, "?") == 0)
+		{
+			*i += 2;
+			free(key);
+			return ;
+		}
 		length = ft_strlen(key);
 		temp_str = ft_replace_substr(msh->input, *i, (*i + length + 1), "");
 		free(msh->input);

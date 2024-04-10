@@ -308,16 +308,14 @@ void	separate_tokens(t_msh *msh, const char *input)
 
 void	add_tokens_to_list(t_msh *msh)
 {
-	printf("1: %s\n", msh->input);
 	process_envvars(msh);
-	printf("2: %s\n", msh->input);
 	separate_tokens(msh, (const char *)msh->input);
-	t_list	*curr = msh->tokens;
-	int	i = 0;
-	while (curr)
-	{
-		printf("token %i: %s\n", i, (char *)curr->data);
-		i++;
-		curr = curr->next;
-	}
+	t_list	*curr = msh->tokens; //
+	int	i = 0; //
+	while (curr) //
+	{ //
+		printf("token %i: %s\n", i, (char *)curr->data); //
+		i++; //
+		curr = curr->next; //
+	} //
 }

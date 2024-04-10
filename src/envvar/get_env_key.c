@@ -32,7 +32,7 @@ char	*get_env_key(char *str)
 	int		length;
 
 	length = 0;
-	while (ft_isalnum(str[length]) || str[length] == '_')
+	while (ft_isprint(str[length]) && !ft_isspace(str[length]))
 		length++;
 	return (ft_substr(str, 0, length));
 }

@@ -150,30 +150,22 @@
 
 
 
+/*
+	**** ALLLOCATES MEMORY ****
+	memory is allocated for the returned string.
 
-/* void	ft_replace_substr(char **str, int start, int end, char *substr)
-{
-	char	*temp;
-	char	*pre_substr;
-	char	*post_substr;
-	char	*new_str;
+	Summary
+	replaces a portion within a given string with another given substring.
 
-	pre_substr = ft_substr(*str, 0, start);
-	post_substr = ft_substr(*str, end, (ft_strlen(*str) - end));
-	temp = ft_strjoin(pre_substr, substr);
-	new_str = ft_strjoin(temp, post_substr);
-	debug("ft_replace_substr"); //
-	printf("pre: %s, sub: %s, post: %s\n", pre_substr, substr, post_substr); //
-	debug(new_str); //
-	free(pre_substr);
-	free(post_substr);
-	free(temp);
-	ft_bzero(*str, ft_strlen(*str));
-	*str = new_str;
-} */
+	Inputs
+	[char *] str: a pointer to a string that will be modified.
+	[int] start: the starting index of the substring to be replaced.
+	[int] end: the ending index of the substring to be replaced.
+	[char *] substr: the substring that will replace the original substring.
 
-
-
+	Outputs
+	[char *] new_str: the modified string.
+*/
 
 char	*ft_replace_substr(char *str, int start, int end, char *substr)
 {
@@ -189,7 +181,5 @@ char	*ft_replace_substr(char *str, int start, int end, char *substr)
 	debug(new_str); //
 	free(pre_substr);
 	free(post_substr);
-//	ft_bzero(*str, ft_strlen(*str));
-//	*str = new_str;
 	return (new_str);
 }
