@@ -31,13 +31,13 @@ int	main(int argc, char **argv, char **envv)
 			free(msh->input);
 			break ;
 		}
-		process_input(msh, input);
+		process_input(msh);
 		execute_commands(msh);
 	//	debug("exit_status"); // remove
 	//	debug_int(msh->last_exit_status); //remove
 		msh->num_of_cmds = 0;
-		//if (input)
-		//	free(input);
+		if (msh->input)
+			free(msh->input);
 		free_input(msh);
 	}
 	reset_signal_handlers();

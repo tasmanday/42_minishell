@@ -1,48 +1,0 @@
-[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0melse
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m(*i)++;
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m}
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mtemp_substr = ft_substr(str, start, (*i) - start);
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mif (!temp_substr)
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0merror("s_quote substr error");
-[?2004l[1;36m27
-[0m[1;31minvalid command
-[0m"[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mnew_node = safe_new_token_node(msh, temp_substr);
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            03_minishell_eval_questions.txt  Makefile                         README.md                        envvar,                          evals/                           inc/                             libft/                           lorem.txt                        minishell                        src/                             subject_pdf/
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mlst_add_tail(&(msh->tokens), new_node);
-[?2004l[1;36mredir
-[0min_fd: 0, out_fd: 3
-[1;31minvalid command
-[0m"[?2004h[?2004h[?2004h[?2004h[?2004h[?2004h[?2004h[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[?2004l
-[?2004l
-[?2004l[?2004l[?2004l[?2004l[?2004l[?2004l[?2004l
-[?2004l
-[?2004l

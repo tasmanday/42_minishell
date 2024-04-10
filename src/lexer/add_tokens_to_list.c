@@ -22,7 +22,7 @@
 	Outputs
 	[bool] true if the character is a meta character, false if it is not.
 */
-static bool	is_meta_char(char c)
+/* static bool	is_meta_char(char c)
 {
 	char	*meta_chars;
 
@@ -30,7 +30,7 @@ static bool	is_meta_char(char c)
 	if (ft_strchr(meta_chars, c))
 		return (true);
 	return (false);
-}
+} */
 
 /*
 	Summary
@@ -46,7 +46,7 @@ static bool	is_meta_char(char c)
 	[int] i: the index value after processing the token and expanding any
 		environmental variables.
 */
-static int	process_token_and_envvar(t_msh *msh, char **str, int i)
+/* static int	process_token_and_envvar(t_msh *msh, char **str, int i)
 {
 	while ((*str)[i] && ft_isprint((*str)[i]) && !ft_isspace((*str)[i]) \
 	&& !is_meta_char((*str)[i]))
@@ -58,7 +58,7 @@ static int	process_token_and_envvar(t_msh *msh, char **str, int i)
 			i++;
 	}
 	return (i);
-}
+} */
 
 /*
 	**** ALLOCATES MEMORY ****
@@ -226,13 +226,13 @@ void	check_quotes(t_msh *msh, const char *input, int *i)
 	
 	if (input[*i] == '\'' || input[*i] == '\"')
 	{
-		start = *i; // might need to be +1
+		start = *i + 1; // might need to be +1
 		quote = input[*i];
 		(*i)++;
 		while (input[*i] != quote)
 			(*i)++;
 		end = *i; // might need to be +1
-		create_and_add_token(msh, start, end)
+		create_and_add_token(msh, start, end);
 		(*i)++; // possibly remove
 	}
 	return ;
@@ -242,23 +242,52 @@ void	check_redir(t_msh *msh, const char *input, int *i)
 {
 	if (input[*i] == '|')
 	{
-		create_and_add_token(msh, *i, *i);
+		create_and_add_token(msh, *i, *i + 1);
 		(*i)++;
 	}
 	else if (input[*i] == '<' || input[*i] == '>')
 	{
 		if (input[*i] == input[*i + 1])
 		{
-			create_and_add_token(msh, *i, *i + 1);
+			create_and_add_token(msh, *i, *i + 2);
 			*i += 2;
 		}
 		else
 		{
-			create_and_add_token(msh, *i, *i);
+			create_and_add_token(msh, *i, *i + 1);
 			(*i)++;
 		}
 	}
 	return ;
+}
+
+static bool	is_valid_arg_char(char c)
+{
+	char	*invalid_chars;
+
+	invalid_chars = "<>|\'\"";
+	if (ft_strchr(invalid_chars, c))
+		return (false);
+	else if (!ft_isprint(c) || ft_isspace(c))
+		return (false);
+	else
+		return (true);
+}
+
+void	tokenise_arg(t_msh *msh, const char *input, int *i)
+{
+	int		start;
+	int		end;
+
+	if (is_valid_arg_char(input[*i]))
+	{
+		start = *i;
+		(*i)++;
+		while (is_valid_arg_char(input[*i]))
+			(*i)++;
+		end = *i;
+		create_and_add_token(msh, start, end);
+	}
 }
 
 void	separate_tokens(t_msh *msh, const char *input)
@@ -273,14 +302,22 @@ void	separate_tokens(t_msh *msh, const char *input)
 		if (!ft_isprint(input[i]) || ft_isspace(input[i]))
 			i++;
 		else
-			tokenise_arg(msh, input, &i); // needs a while (is_print, not space, not redir, not pipe, not quote) 
+			tokenise_arg(msh, input, &i);
 	}
 }
 
 void	add_tokens_to_list(t_msh *msh)
 {
-	char	**token_array;
-	
+	printf("1: %s\n", msh->input);
 	process_envvars(msh);
+	printf("2: %s\n", msh->input);
 	separate_tokens(msh, (const char *)msh->input);
+	t_list	*curr = msh->tokens;
+	int	i = 0;
+	while (curr)
+	{
+		printf("token %i: %s\n", i, (char *)curr->data);
+		i++;
+		curr = curr->next;
+	}
 }

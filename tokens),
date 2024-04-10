@@ -1,33 +1,0 @@
-[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            Makefile                         envvar,                          inc/                             lorem.txt                        src/                             tokens),                         
-03_minishell_eval_questions.txt  README.md                        evals/                           libft/                           minishell                        subject_pdf/                     
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mdebug_int(*i);
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            Makefile                         envvar,                          inc/                             lorem.txt                        src/                             tokens),                         
-03_minishell_eval_questions.txt  README.md                        evals/                           libft/                           minishell                        subject_pdf/                     
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mwrite()
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            Makefile                         envvar,                          inc/                             lorem.txt                        src/                             tokens),                         
-03_minishell_eval_questions.txt  README.md                        evals/                           libft/                           minishell                        subject_pdf/                     
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mif (str[*i] == '\"')
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            Makefile                         envvar,                          inc/                             lorem.txt                        src/                             tokens),                         
-03_minishell_eval_questions.txt  README.md                        evals/                           libft/                           minishell                        subject_pdf/                     
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m
-.git/                            Makefile                         envvar,                          inc/                             lorem.txt                        src/                             tokens),                         
-03_minishell_eval_questions.txt  README.md                        evals/                           libft/                           minishell                        subject_pdf/                     
-[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m(*i)++;
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m}
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m}e
-[?2004l[1;31minvalid command
-[0m[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m1
-[?2004l[?2004h[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0mexitclea[?2004h[?2004h[?2004h[?2004h[?2004h^Z[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[?2004l[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[1;32mtas[0m:[1;34m/mnt/c/Users/tasma/repos/42_minishell[1;36m$ [0m[?2004h[?2004l
-[?2004l
-[?2004l[?2004l
-[?2004l[?2004l[?2004l[?2004l
-[?2004l
