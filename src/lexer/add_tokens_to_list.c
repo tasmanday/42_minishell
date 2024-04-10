@@ -156,19 +156,18 @@ void	check_state(char current_char, int *state)
 
 void	process_envvars(msh)
 {
-	char	*str;
 	int		state;
 	int		i;
 
 	i = 0;
 	state = 0;
-	str = msh->input;
-	while (str[i])
+	while (msh->input[i])
 	{
-		check_state(str[i], &state);
-		if ((state == 0 || state == 2) && str[i] == '$')
-			expand_envvar(msh->envvar, str, )
-		i++;
+		check_state(msh->input[i], &state);
+		if ((state == 0 || state == 2) && msh->input[i] == '$')
+			expand_envvar(msh, &i);
+		else
+			i++;
 	}
 }
 
