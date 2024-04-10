@@ -141,7 +141,6 @@ static void	create_and_add_token(t_msh *msh, int start, int end)
 
 void	process_envvars(msh)
 {
-	char	*temp;
 	char	*str;
 	int		state;
 	int		i;
@@ -151,29 +150,20 @@ void	process_envvars(msh)
 	str = msh->input;
 	while (str[i])
 	{
-		if (state = 0)
+		if (state == 0)
 		{
 			if (str[i] == '\'')
 				state = 1;
 			else if (str[i] == '\"')
 				state = 2;
-			else if (str[i] == '$')
-				expand_envvar(msh, i);
 		}
-		else if (state = 1)
-		{
-			if (str[i] == '\'')
-				state = 0;
-		}
-		else if (state = 2)
-		{
-			if (str[i] == '\"')
-				state = 0;
-			else if (str[i] == '$')
-				expand_envvar(msh, i);
-		}
+		else if (state == 1 && str[i] == '\'')
+			state = 0;
+		else if (state == 2 && str[i] == '\"')
+			state = 0;
+		if ((state == 0 || state == 2) && str[i] == '$')
+			expand_envvar(msh->envvar, )
 		i++;
-		// check if in quotes and expand envvars as neccessary use an enum maybe first state: not in quotes, second state: in single, third: in double
 	}
 }
 
