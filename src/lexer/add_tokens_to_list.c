@@ -139,6 +139,21 @@ static void	create_and_add_token(t_msh *msh, int start, int end)
 //	free(str);
 } */
 
+void	check_state(char current_char, int *state)
+{
+	if (*state == 0)
+	{
+		if (current_char == '\'')
+			*state = 1;
+		else if (current_char == '\"')
+			*state = 2;
+	}
+	else if (*state == 1 && current_char == '\'')
+		*state = 0;
+	else if (*state == 2 && current_char == '\"')
+		*state = 0;
+}
+
 void	process_envvars(msh)
 {
 	char	*str;
@@ -150,19 +165,9 @@ void	process_envvars(msh)
 	str = msh->input;
 	while (str[i])
 	{
-		if (state == 0)
-		{
-			if (str[i] == '\'')
-				state = 1;
-			else if (str[i] == '\"')
-				state = 2;
-		}
-		else if (state == 1 && str[i] == '\'')
-			state = 0;
-		else if (state == 2 && str[i] == '\"')
-			state = 0;
+		check_state(str[i], &state);
 		if ((state == 0 || state == 2) && str[i] == '$')
-			expand_envvar(msh->envvar, )
+			expand_envvar(msh->envvar, str, )
 		i++;
 	}
 }
@@ -190,7 +195,6 @@ void	handle_no_quotes(t_msh *msh)
 	i = 0;
 	start = 0;
 	str = msh->input;
-	process_envvars(msh);
 	while (str[i])
 	{
 		if (!ft_isprint(str[i]) || ft_isspace(str[i]))
@@ -213,6 +217,7 @@ void	add_tokens_to_list(t_msh *msh)
 {
 	char	**quote_array;
 
+	process_envvars(msh);
 	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39))
 		handle_quotes(msh);
 	else
