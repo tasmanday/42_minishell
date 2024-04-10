@@ -217,7 +217,7 @@ void	add_tokens_to_list(t_msh *msh)
 	char	**quote_array;
 
 	process_envvars(msh);
-	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39))
+	if (ft_strchr(msh->input, 34) || ft_strchr(msh->input, 39)) //might be able to just process the string in one go and check for quotes as we go
 		handle_quotes(msh);
 	else
 		handle_no_quotes(msh);
