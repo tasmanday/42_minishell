@@ -12,6 +12,17 @@
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Increments the shell level (SHLVL) in the minishell environment.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	None. Modifies the SHLVL environment variable stored in the minishell
+ 	structure.
+*/
 static void	increment_shlvl(t_msh *msh)
 {
 	t_dlist	*node;
@@ -26,7 +37,8 @@ static void	increment_shlvl(t_msh *msh)
 
 /*
 	Summary
-	initializes the t_msh structure with environment variables
+	initializes the t_msh structure with environment variables, increments
+ 	the shell level, and sets up the signal handlers.
 
 	Inputs
 	[t_msh *] msh: the t_msh structure that will be initialized.
