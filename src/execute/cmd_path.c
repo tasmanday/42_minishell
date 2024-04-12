@@ -12,6 +12,16 @@
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Checks if a string contains a '/' character, indicating it is a path.
+
+	Inputs
+	[char *] string: The string to be checked.
+
+	Outputs
+	[bool] true if the string contains a '/', otherwise false.
+*/
 bool	has_path(char *string)
 {
 	if (ft_strchr(string, '/') != NULL)
@@ -19,6 +29,20 @@ bool	has_path(char *string)
 	return (false);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the path array.
+ 
+	Summary
+	splits the PATH environment variable into an array of directory paths.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	[char **] path_array: an array of directory paths extracted from the
+ 		PATH environment variable.
+*/
 static char	**split_path(t_msh *msh)
 {
 	char	*path_value;
@@ -48,6 +72,22 @@ static char	**split_path(t_msh *msh)
 	return (path_array);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+ 	memory is allocated for the returned path string.
+  
+	Summary
+	Searches for the absolute path of a command in the directories listed in
+ 	the PATH environment variable.
+
+	Inputs
+	[t_msh *] msh: the main minishell structure.
+	[char *] command: the command for which the absolute path needs to be found.
+
+	Outputs
+	[char *] absolute_path: the absolute path of the command if found and
+ 		executable, otherwise NULL.
+*/
 char	*get_path(t_msh *msh, char *command)
 {
 	char	**path_array;
