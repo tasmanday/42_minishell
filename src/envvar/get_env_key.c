@@ -12,6 +12,13 @@
 
 #include "../../inc/minishell.h"
 
+static bool	is_quotes(char c)
+{
+	if (c == '\'' || c == '\"')
+		return (true);
+	return (false);
+}
+
 /* 
 	**** ALLOCATES MEMORY ****
 	memory allocated for returned string needs to be freed after use.
@@ -32,7 +39,7 @@ char	*get_env_key(char *str)
 	int		length;
 
 	length = 0;
-	while (ft_isprint(str[length]) && !ft_isspace(str[length]))
+	while (ft_isprint(str[length]) && !ft_isspace(str[length]) && !is_quotes(str[length]))
 		length++;
 	return (ft_substr(str, 0, length));
 }

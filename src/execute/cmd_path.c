@@ -17,14 +17,14 @@
 	Checks if a string contains a '/' character, indicating it is a path.
 
 	Inputs
-	[char *] string: The string to be checked.
+	[char *] str: The string to be checked.
 
 	Outputs
 	[bool] true if the string contains a '/', otherwise false.
 */
-bool	has_path(char *string) // needs to start with '/' or './'
+bool	has_path(char *str) // needs to start with '/' or './'
 {
-	if (ft_strchr(string, '/') != NULL)
+	if (ft_strchr(str, '/') != NULL && (str[0] == '/' || str[0] == '.'))
 		return (true);
 	return (false);
 }

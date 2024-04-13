@@ -47,6 +47,8 @@ void	free_everything(t_msh *msh)
 			lst_del_all(&(msh->pids), free_data);
 			msh->pids = NULL;
 		}
+		if (msh->input)
+			free(msh->input);
 		free(msh);
 	}
 }

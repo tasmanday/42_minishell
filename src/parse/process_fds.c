@@ -44,9 +44,14 @@ static void	handle_input_file(t_cmd *cmd_data)
 {
 	int		in_fd;
 
+	if (!file_exists(cmd_data->input_file))
+		return ;
 	in_fd = open(cmd_data->input_file, O_RDONLY);
 	if (cmd_data->in_fd == -1)
-		perror("process_redir_fds error opening input file");
+	{
+		error("process_redir_fds error opening input file");
+		return ;
+	}
 	else
 	{
 	if (cmd_data->in_fd != STDIN_FILENO)

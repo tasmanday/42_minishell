@@ -12,27 +12,14 @@
 
 #include "../../inc/minishell.h"
 
+
 /* static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;
-	char	*str1;
-	char	*str2;
 
-	str1 = ft_strjoin(GREEN, get_env_value(msh->envvar, "USER"));
-	str2 = ft_strjoin(str1, DEF);
-	free(str1);
-	str1 = ft_strjoin(str2, ":");
-	free(str2);
-	str2 = ft_strjoin(str1, BLUE);
-	free(str1);
-	str1 = ft_strjoin(str2, get_env_value(msh->envvar, "PWD"));
-	free(str2);
-	str2 = ft_strjoin(str1, CYAN);
-	free(str1);
-	str1 = ft_strjoin(str2, "$ ");
-	prompt = ft_strjoin(str1, DEF);
-	free(str1);
-	free(str2);
+	prompt = ft_strjoin_any(13, GREEN, get_env_value(msh->envvar, "USER"), DEF,\
+		":", CYAN, get_env_value(msh->envvar, "SHLVL"), DEF, ":", BLUE, \
+		get_env_value(msh->envvar, "PWD"), CYAN, "$ ", DEF);
 	return (prompt);
 } */
 
@@ -40,9 +27,8 @@ static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;
 
-	prompt = ft_strjoin_any(13, GREEN, get_env_value(msh->envvar, "USER"), DEF,\
-		":", CYAN, get_env_value(msh->envvar, "SHLVL"), DEF, ":", BLUE, \
-		get_env_value(msh->envvar, "PWD"), CYAN, "$ ", DEF);
+	prompt = ft_strjoin_any(9, GREEN, get_env_value(msh->envvar, "SHLVL"), DEF, \
+		":", BLUE, get_env_value(msh->envvar, "PWD"), CYAN, "$ ", DEF);
 	return (prompt);
 }
 
@@ -68,10 +54,9 @@ char	*get_input(t_msh *msh)
 {
 	char	*line;
 	char	*prompt;
-//	char	*input;
 
 	prompt = get_prompt(msh);
-	line = readline("prompt");
+	line = readline(prompt);
 	if (!line)
 	{
 		ft_printf("exit\n");
@@ -83,8 +68,5 @@ char	*get_input(t_msh *msh)
 		add_history(line);
 	}
 	free(prompt);
-//	input = ft_strdup(line);
-//	free(line);
-//	return (input);
 	return (line);
 }

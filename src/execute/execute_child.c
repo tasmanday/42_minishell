@@ -30,9 +30,12 @@ void	execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data)
 {
 	char	*path;
 
+	if ((cmd_data->input_file && !file_exists(cmd_data->input_file)) || \
+		cmd_data->in_fd == -1)
+		msh_error_exit(msh, "");
 	if (has_path(arg[0]))
 	{
-	//	debug("HAS PATH");
+		debug("HAS PATH");
 		path = ft_strdup(arg[0]);
 		if (!path)
 			msh_error_exit(msh, "execute_child path error");

@@ -293,9 +293,11 @@ void	tokenise_arg(t_msh *msh, const char *input, int *i)
 void	separate_tokens(t_msh *msh, const char *input)
 {
 	int		i;
+	int		length;
 
 	i = 0;
-	while (input[i])
+	length = ft_strlen(input);
+	while (i < length && input[i])
 	{
 		check_quotes(msh, input, &i);
 		check_redir(msh, input, &i);

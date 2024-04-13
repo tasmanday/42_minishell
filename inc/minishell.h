@@ -22,6 +22,7 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <fcntl.h>
 # include <string.h>
 # include <signal.h>
@@ -99,6 +100,7 @@ void		extract_commands(t_msh *msh);
 void		process_input(t_msh *msh);
 void		process_fds(t_msh *msh);
 void		handle_redirection(t_cmd *cmd, t_list **token_ptr);
+bool 		file_exists(const char *file_name);
 
 /* signals.c */
 

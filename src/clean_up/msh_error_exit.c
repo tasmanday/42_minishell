@@ -32,9 +32,12 @@
 
 void	msh_error_exit(t_msh *msh, char *error_message)
 {
-	free_everything(msh);
-	if (msh->last_exit_status == 0)
-		msh->last_exit_status = EXIT_FAILURE;
+	int		exit_status;
+	
+	exit_status = msh->last_exit_status;
+	if (exit_status == 0)
+		exit_status = EXIT_FAILURE;
 	ft_printf_fd(2, RED "%s\n" DEF, error_message);
-	exit(msh->last_exit_status);
+	free_everything(msh);
+	exit(exit_status);
 }

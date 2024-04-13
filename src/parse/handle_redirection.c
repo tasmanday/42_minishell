@@ -45,6 +45,12 @@ char	*read_heredoc(char *delimiter)
 	return (result);
 }
 
+bool file_exists(const char *file_name)
+{
+	struct stat	buffer;
+	return (stat(file_name, &buffer) == 0);
+}
+
 /*
 	**** ALLOCATES MEMORY ****
 	memory is allocated for the input and output files
@@ -71,6 +77,9 @@ void	handle_redirection(t_cmd *cmd, t_list **token_ptr)
 				free_null((void **)&(cmd->heredoc_delimiter));
 			*token_ptr = (*token_ptr)->next;
 			cmd->input_file = ft_strdup((char *)(*token_ptr)->data);
+			if (!file_exists(cmd->input_file))
+				ft_printf_fd(cmd->out_fd, "%s%s: No such file or directory%s\n"\
+					, RED, cmd->input_file, DEF);
 		}
 		else if (ft_strcmp((char *)(*token_ptr)->data, "<<") == 0)
 		{
