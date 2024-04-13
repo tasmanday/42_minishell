@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 20:52:17 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 20:52:17 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 19:46:07 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 	Outputs
 	[bool] true if the string contains a '/', otherwise false.
 */
-bool	has_path(char *string)
+bool	has_path(char *string) // needs to start with '/' or './'
 {
 	if (ft_strchr(string, '/') != NULL)
 		return (true);
@@ -53,7 +53,7 @@ static char	**split_path(t_msh *msh)
 
 	path_value = get_env_value(msh->envvar, "PATH");
 	if (!path_value)
-		msh_error_exit(msh, "split_path value error");
+		msh_error_exit(msh, "No such file or directory");
 	path_array = ft_split(path_value, ':');
 	if (!path_array)
 		msh_error_exit(msh, "split_path array error");
@@ -94,10 +94,12 @@ char	*get_path(t_msh *msh, char *command)
 	char	*absolute_path;
 	int		i;
 
+//	debug("NO PATH/ get_path");
 	path_array = split_path(msh);
 	i = 0;
 	while (path_array[i])
 	{
+//		ft_printf("checking path: %s\n", path_array[i]);
 		absolute_path = ft_strjoin(path_array[i], command);
 		if (!absolute_path)
 			msh_error_exit(msh, "get_path strjoin error");

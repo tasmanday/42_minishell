@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 22:48:40 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 16:50:28 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 18:10:10 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,10 @@ void	execute_builtin(t_msh *msh, t_dlist *curr_cmd)
 	else if (ft_strcmp(cmd->command, "echo") == 0)
 		status = ft_echo(msh, cmd);
 	else if (ft_strcmp(cmd->command, "exit") == 0)
-		ft_exit(msh, cmd);
+		status = ft_exit(msh, cmd);
 	else if (ft_strcmp(cmd->command, "cd") == 0)
 		status = ft_cd(msh, cmd);
 	else if (ft_strcmp(cmd->command, "unset") == 0)
 		status = ft_unset(msh, cmd);
-	if (status == 0)
-		msh->last_exit_status = 0;
-	else
-		msh->last_exit_status = 1;
+	msh->last_exit_status = status;
 }

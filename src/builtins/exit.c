@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 21:03:45 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/13 16:43:04 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 18:11:10 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ int	ft_exit(t_msh *msh, t_cmd *cmd)
 		arg = (char *)cmd->arguments->data;
 		if (!is_valid_numeric(arg))
 		{
-			msh->last_exit_status = 2;
+			msh->last_exit_status = 255;
 			msh_error_exit(msh, "exit\nvalid numeric argument required");
 		}
 		exit_status = ft_atoi(arg);
 		if (cmd->arguments->next != NULL)
 		{
 			msh->last_exit_status = EXIT_FAILURE;
-			msh_error_exit(msh, "exit\ntoo many arguments");
+			error("exit\ntoo many arguments");
+			return (EXIT_FAILURE);
 		}
 	}
 	ft_printf("exit\n");

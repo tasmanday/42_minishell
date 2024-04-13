@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 10:36:45 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 14:51:23 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 19:46:34 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_pid_exit_status(t_msh *msh, t_list **pids)
 	int		exit_status;
 
 	exit_status = 0;
-	while(*pids)
+	while (*pids)
 	{
 		pid = (int *)(*pids)->data;
 		waitpid(*pid, &exit_status, 0);
@@ -42,7 +42,7 @@ void	execute_commands(t_msh *msh)
 		if (cmd_is_builtin(cmd_data->command))
 			execute_builtin(msh, curr_cmd);
 		else
-		execute_parent(msh, cmd_data);
+			execute_parent(msh, cmd_data);
 		curr_cmd = curr_cmd->next;
 	}
 	get_pid_exit_status(msh, &msh->pids);
