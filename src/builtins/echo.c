@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/04/07 18:20:47 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:34:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void	print_tokens(t_msh *msh, t_cmd *cmd_struct)
 	Outputs
 	prints the given strings to the standard output.
 */
-void	ft_echo(t_msh *msh, t_cmd *cmd)
+/* void	ft_echo(t_msh *msh, t_cmd *cmd)
 {
 	bool	print_newline;
 
@@ -128,4 +128,29 @@ void	ft_echo(t_msh *msh, t_cmd *cmd)
 	print_tokens(msh, cmd);
 	if (print_newline)
 		ft_printf_fd(cmd->out_fd, "\n");
+} */
+
+int	ft_echo(t_msh *msh, t_cmd *cmd)
+{
+	bool	print_newline;
+
+	if (!cmd)
+	{
+		msh_error_exit(msh, "ft_echo !cmd");
+		msh->last_exit_status = 1;
+		return (1);
+	}
+	print_newline = true;
+	if (!cmd->arguments)
+	{
+		ft_printf_fd(cmd->out_fd, "\n");
+		msh->last_exit_status = 0;
+		return (0);
+	}
+	check_for_nl_flags(&(cmd->arguments), &print_newline);
+	print_tokens(msh, cmd);
+	if (print_newline)
+		ft_printf_fd(cmd->out_fd, "\n");
+	msh->last_exit_status = 0;
+	return (0);
 }

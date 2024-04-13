@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:52:11 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 21:21:51 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 17:19:15 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,17 @@
 	Outputs
 	none.
 */
-void	msh_error_exit(t_msh *msh, char *error_message)
+/* void	msh_error_exit(t_msh *msh, char *error_message)
 {
 	free_everything(msh);
 	error_exit(error_message);
+} */
+
+void	msh_error_exit(t_msh *msh, char *error_message)
+{
+	free_everything(msh);
+	if (msh->last_exit_status == 0)
+		msh->last_exit_status = EXIT_FAILURE;
+	ft_printf_fd(2, RED "%s\n" DEF, error_message);
+	exit(msh->last_exit_status);
 }

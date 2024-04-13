@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 21:52:38 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 15:28:24 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:46:51 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,20 @@ static void	print_env_value(int fd, t_envv *envv_element)
 	Outputs
 	none.
 */
-void	ft_pwd(t_msh *msh, t_cmd *cmd)
+/* void	ft_pwd(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*pwd_node;
 
 	pwd_node = find_envvar_node(msh->envvar, "PWD");
 	print_env_value(cmd->out_fd, (t_envv *)pwd_node->data);
+} */
+
+int	ft_pwd(t_msh *msh, t_cmd *cmd)
+{
+	t_dlist	*pwd_node;
+
+	pwd_node = find_envvar_node(msh->envvar, "PWD");
+	print_env_value(cmd->out_fd, (t_envv *)pwd_node->data);
+	msh->last_exit_status = 0;
+	return (0);
 }

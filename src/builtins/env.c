@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:21 by tday              #+#    #+#             */
-/*   Updated: 2024/02/25 15:28:20 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:38:02 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	print_envvar(int fd, t_envv *envv_element)
 	none. the function only prints the key-value pairs of the environment
 	variables.
 */
-void	ft_env(t_msh *msh, t_cmd *cmd)
+/* void	ft_env(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*current;
 
@@ -57,4 +57,18 @@ void	ft_env(t_msh *msh, t_cmd *cmd)
 		print_envvar(cmd->out_fd, (t_envv *)current->data);
 		current = current->next;
 	}
+} */
+
+int	ft_env(t_msh *msh, t_cmd *cmd)
+{
+	t_dlist	*current;
+
+	current = msh->envvar;
+	while (current)
+	{
+		print_envvar(cmd->out_fd, (t_envv *)current->data);
+		current = current->next;
+	}
+	msh->last_exit_status = 0;
+	return (0);
 }

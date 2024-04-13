@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 20:48:33 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 20:48:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 17:14:51 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data)
 	else
 		path = get_path(msh, arg[0]);
 	if (!path)
-		msh_error_exit(msh, "invalid command");
+	{
+		msh->last_exit_status = 127;
+		msh_error_exit(msh, "command not found");
+	}
 	update_fds(&cmd_data);
 	execve(path, arg, env);
 }

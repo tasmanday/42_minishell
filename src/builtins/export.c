@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 21:23:16 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 20:08:09 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:45:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	sort_dlist(t_dlist **head)
 	Outputs
 	none. the function prints the environment variables to the console.
 */
-static void	export_no_args(t_msh *msh, t_cmd *cmd)
+/* static void	export_no_args(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*cloned_list;
 	t_dlist	*curr_variable;
@@ -119,6 +119,30 @@ static void	export_no_args(t_msh *msh, t_cmd *cmd)
 		curr_variable = curr_variable->next;
 	}
 	free_cloned_list(cloned_list);
+} */
+
+static int	export_no_args(t_msh *msh, t_cmd *cmd)
+{
+	t_dlist	*cloned_list;
+	t_dlist	*curr_variable;
+	t_envv	*data;
+
+	cloned_list = clone_list(msh->envvar);
+	sort_dlist(&cloned_list);
+	curr_variable = cloned_list;
+	while (curr_variable)
+	{
+		data = (t_envv *)curr_variable->data;
+		if (data->env_value == NULL)
+			ft_printf_fd(cmd->out_fd, "declare -x %s\n", data->env_key);
+		else
+			ft_printf_fd(cmd->out_fd, "declare -x %s=\"%s\"\n", data->env_key, \
+				data->env_value);
+		curr_variable = curr_variable->next;
+	}
+	free_cloned_list(cloned_list);
+	msh->last_exit_status = 0;
+	return (0);
 }
 
 /*
@@ -142,7 +166,7 @@ static void	export_no_args(t_msh *msh, t_cmd *cmd)
 	none. the function exports the environment variables based on the provided
 	arguments.
 */
-static void	export_args(t_msh *msh, t_cmd *cmd_struct)
+/* static void	export_args(t_msh *msh, t_cmd *cmd_struct)
 {
 	char	**str_array;
 	t_list	*args;
@@ -167,6 +191,35 @@ static void	export_args(t_msh *msh, t_cmd *cmd_struct)
 		free(str_array);
 		args = args->next;
 	}
+} */
+
+static int	export_args(t_msh *msh, t_cmd *cmd_struct)
+{
+	char	**str_array;
+	t_list	*args;
+	t_envv	*envv_struct;
+	t_dlist	*node_exists;
+
+	args = cmd_struct->arguments;
+	while (args)
+	{
+		str_array = split_variables((char *)args->data);
+		node_exists = find_envvar_node(msh->envvar, str_array[0]);
+		if (node_exists)
+		{
+			update_node_value(node_exists, str_array[1]);
+			free(str_array[0]);
+		}
+		else
+		{
+			envv_struct = put_str_in_envv_struct(str_array);
+			add_envv_to_dlist(msh, envv_struct);
+		}
+		free(str_array);
+		args = args->next;
+	}
+	msh->last_exit_status = 0;
+	return (0);
 }
 
 /*
@@ -191,10 +244,23 @@ static void	export_args(t_msh *msh, t_cmd *cmd_struct)
 	none. the function exports the environmental variables based on the provided
 	arguments.
 */
-void	ft_export(t_msh *msh, t_cmd *cmd)
+/* void	ft_export(t_msh *msh, t_cmd *cmd)
 {
 	if (!cmd->arguments)
 		export_no_args(msh, cmd);
 	else
 		export_args(msh, cmd);
+} */
+
+int	ft_export(t_msh *msh, t_cmd *cmd)
+{
+	int	status;
+
+	status = 0;
+	if (!cmd->arguments)
+		status = export_no_args(msh, cmd);
+	else
+		status = export_args(msh, cmd);
+	msh->last_exit_status = 0;
+	return (status);
 }

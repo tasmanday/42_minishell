@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 11:53:35 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/01 18:01:37 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:53:39 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	free_and_return(char	*path, char	*old_pwd)
 	return ;
 }
 
-void	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
+/* void	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
 {
 	char	cwd[PATH_MAX];
 	char	*old_pwd;
@@ -97,4 +97,41 @@ void	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
 	update_env_vars(msh, old_pwd, new_pwd);
 	//printf("%s\n", cwd);
 	free_resources(path, old_pwd);
+} */
+
+int	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
+{
+	char	cwd[PATH_MAX];
+	char	*old_pwd;
+	char	*new_pwd;
+	char	*path;
+
+	if (cmd_struct->arguments && cmd_struct->arguments->next != NULL)
+	{
+		ft_printf("cd: too many arguments\n");
+		return (1);
+	}
+	path = get_new_path(cmd_struct);
+	if (path && access(path, F_OK) != 0)
+	{
+		perror("");
+		free_resources(path, NULL);
+		return (1);
+	}
+	if (!path && chdir("..") != 0)
+		return (1);
+	old_pwd = getcwd(NULL, 0);
+	if (!old_pwd)
+		free_and_return(path, old_pwd);
+	if (path)
+	{
+		if (chdir(path) != 0)
+			free_and_return(path, old_pwd);
+	}
+	new_pwd = getcwd(cwd, sizeof(cwd));
+	if (!new_pwd)
+		free_and_return(path, old_pwd);
+	update_env_vars(msh, old_pwd, new_pwd);
+	free_resources(path, old_pwd);
+	return (0);
 }

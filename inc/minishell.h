@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/04/07 18:20:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:51:45 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ void		reset_signal_handlers(void);
 
 /* builtins */
 
-void		ft_pwd(t_msh *msh, t_cmd *cmd);
-void		ft_echo(t_msh *msh, t_cmd *cmd);
-void		ft_env(t_msh *msh, t_cmd *cmd);
-void		ft_export(t_msh *msh, t_cmd *cmd);
-void		ft_unset(t_msh *msh, t_cmd *cmd);
-void		ft_cd(t_msh *msh, t_cmd *cmd);
-void		ft_exit(t_msh *msh, t_cmd *cmd);
+int			ft_pwd(t_msh *msh, t_cmd *cmd);
+int			ft_echo(t_msh *msh, t_cmd *cmd);
+int			ft_env(t_msh *msh, t_cmd *cmd);
+int			ft_export(t_msh *msh, t_cmd *cmd);
+int			ft_unset(t_msh *msh, t_cmd *cmd);
+int			ft_cd(t_msh *msh, t_cmd *cmd);
+int			ft_exit(t_msh *msh, t_cmd *cmd);
 
 /* execute */
 

@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 09:34:36 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 10:31:50 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 16:56:36 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ void	free_input(t_msh *msh)
 		lst_del_all(&(msh->tokens), free_data);
 		msh->tokens = NULL;
 	}
+	if (msh->input)
+		free(msh->input);
 }
