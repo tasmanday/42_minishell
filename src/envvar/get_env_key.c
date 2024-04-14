@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:09:54 by tday              #+#    #+#             */
-/*   Updated: 2024/04/07 18:49:49 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:04:45 by atang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*get_env_key(char *str)
 	int		length;
 
 	length = 0;
-	while (ft_isprint(str[length]) && !ft_isspace(str[length]) && !is_quotes(str[length]))
+	while (ft_isprint(str[length]) && !ft_isspace(str[length])
+		&& !is_quotes(str[length]))
 		length++;
 	return (ft_substr(str, 0, length));
 }

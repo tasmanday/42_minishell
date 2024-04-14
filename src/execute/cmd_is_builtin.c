@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_is_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 10:48:43 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 11:27:28 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:08:43 by atang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 */
 bool	cmd_is_builtin(char *command)
 {
-	char	*builtins[9]; // update to 8 when test is removed
+	char	*builtins[8];
 	int		i;
 
 	builtins[0] = "env";
@@ -33,8 +33,7 @@ bool	cmd_is_builtin(char *command)
 	builtins[4] = "exit";
 	builtins[5] = "cd";
 	builtins[6] = "unset";
-	builtins[7] = "test"; //remove later
-	builtins[8] = NULL;
+	builtins[7] = NULL;
 	i = 0;
 	while (builtins[i])
 	{

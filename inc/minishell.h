@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:00:21 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:42:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ void		process_envvars(t_msh *msh);
 void		extract_commands(t_msh *msh);
 void		process_input(t_msh *msh);
 void		process_fds(t_msh *msh);
+void		process_pipe_fds(t_msh *msh);
 void		handle_redirection(t_cmd *cmd, t_list **token_ptr);
 bool		file_exists(const char *file_name);
+bool		is_redirect(char *str);
+int			get_open_flags(bool is_append);
 
 /* signals.c */
 

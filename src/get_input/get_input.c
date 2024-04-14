@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:50:49 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 19:46:37 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:13:05 by atang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 
 /* static char	*get_prompt(t_msh *msh)
 {

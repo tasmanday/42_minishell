@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/04/14 17:01:05 by tday             ###   ########.fr        #
+#    Updated: 2024/04/14 17:11:14 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 									safe_new_token_node.c handle_meta_chars.c)	\
 						$(addprefix src/parse/, extract_commands.c 				\
 									process_input.c process_fds.c 				\
-									handle_redirection.c)						\
+									handle_redirection.c parse_utils.c)			\
 						$(addprefix src/execute/, put_args_in_array.c 			\
 									convert_envvar_to_array.c execute_builtin.c \
 									cmd_is_builtin.c execute_commands.c 		\

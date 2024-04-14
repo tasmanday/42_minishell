@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:07:01 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:40:26 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:09:54 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	check_state(char current_char, int *state)
 
 /*
 	Summary
-	processes environment variables in the input string and expands them depending
-	on if they are in single or double quotes or no quotes at all.
+	processes environment variables in the input string and expands them
+	depending on if they are in single or double quotes or no quotes at all.
 
 	Inputs
 	[t_msh *] msh: pointer to the main minishell structure.

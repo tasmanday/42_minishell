@@ -6,39 +6,11 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 21:08:26 by tday              #+#    #+#             */
-/*   Updated: 2024/03/28 21:08:26 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:42:29 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/* remove later */
-void	print_fds(t_cmd *cmd_data)
-{
-	ft_printf("in_fd: %i, out_fd: %i\n", cmd_data->in_fd, cmd_data->out_fd);
-}
-
-static void	process_pipe_fds(t_msh *msh)
-{
-	int		pipefd[2];
-	t_cmd	*cmd_data;
-	t_cmd	*next_cmd_data;
-	t_dlist	*curr_cmd;
-
-	curr_cmd = msh->cmd_queue;
-	while (curr_cmd->next)
-	{
-		pipe(pipefd);
-		cmd_data = curr_cmd->data;
-		next_cmd_data = curr_cmd->next->data;
-		cmd_data->out_fd = pipefd[1];
-		next_cmd_data->in_fd = pipefd[0];
-		print_fds(cmd_data); // remove later
-		curr_cmd = curr_cmd->next;
-	}
-	cmd_data = curr_cmd->data;
-	print_fds(cmd_data); // remopve later
-}
 
 static void	handle_input_file(t_cmd *cmd_data)
 {
@@ -54,24 +26,10 @@ static void	handle_input_file(t_cmd *cmd_data)
 	}
 	else
 	{
-	if (cmd_data->in_fd != STDIN_FILENO)
-		close(cmd_data->in_fd);
-	cmd_data->in_fd = in_fd;
-	debug("redir"); // remove
-	print_fds(cmd_data); // remove
+		if (cmd_data->in_fd != STDIN_FILENO)
+			close(cmd_data->in_fd);
+		cmd_data->in_fd = in_fd;
 	}
-}
-
-static int	get_open_flags(bool is_append)
-{
-	int	open_flags;
-
-	open_flags = O_CREAT | O_WRONLY;
-	if (is_append)
-		open_flags |= O_APPEND;
-	else
-		open_flags |= O_TRUNC;
-	return (open_flags);
 }
 
 static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
@@ -92,14 +50,12 @@ static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
 		if (curr_cmd->next)
 		{
 			next_cmd_data = curr_cmd->next->data;
-			if (next_cmd_data->in_fd != STDIN_FILENO) 
+			if (next_cmd_data->in_fd != STDIN_FILENO)
 			{
 				close(next_cmd_data->in_fd);
 				next_cmd_data->in_fd = STDIN_FILENO;
 			}
 		}
-		debug("redir"); // remove
-		print_fds(cmd_data); // remove
 	}
 }
 
@@ -107,7 +63,7 @@ static void	handle_heredoc(t_cmd *cmd_data)
 {
 	int	fds[2];
 
-	if (pipe(fds) == -1)\
+	if (pipe(fds) == -1)
 	{
 		error("handle_heredoc pipe error");
 		return ;
@@ -130,8 +86,6 @@ static void	process_redir_fds(t_msh *msh)
 		cmd_data = curr_cmd->data;
 		if (cmd_data->heredoc_delimiter)
 		{
-		//	debug(cmd_data->heredoc_delimiter); // remove
-		//	printf("heredoc:%s\n", cmd_data->heredoc_data); // remove
 			handle_heredoc(cmd_data);
 		}
 		if (cmd_data->input_file)

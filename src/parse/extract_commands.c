@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_commands.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:13:44 by tday              #+#    #+#             */
-/*   Updated: 2024/04/07 17:13:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:25:32 by atang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,6 @@ static void	fill_command_element(t_cmd *cmd, t_list **curr_token_ptr)
 	cmd->command = ft_strdup((char *)(*curr_token_ptr)->data);
 	if (!cmd->command)
 		error_exit("extract_commands strdup error");
-}
-
-/*
-	Summary
-	checks if a given string is a redirection symbol.
-
-	Inputs
-	[char *] str: The string to be checked for redirection symbol.
-
-	Outputs
-	returns true if the given string is a redirection symbol, and false
-	if it's not.
-*/
-bool	is_redirect(char *str)
-{
-	if (!ft_strcmp(str, "<") || !ft_strcmp(str, "<<") || \
-		!ft_strcmp(str, ">") || !ft_strcmp(str, ">>"))
-		return (true);
-	else
-		return (false);
 }
 
 /*
