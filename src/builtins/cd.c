@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 11:53:35 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/14 15:07:18 by atang            ###   ########.fr       */
+/*   Updated: 2024/04/14 17:49:04 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 	Outputs
 	A new string with the new path.
 */
-
 static char	*get_new_path(t_cmd	*cmd_struct)
 {
 	char	*path;
@@ -99,7 +98,6 @@ static void	update_env_vars(t_msh	*msh, char	*old_pwd, char	*new_pwd)
 	Outputs
 	None.
  */
-
 static void	free_resources(char *path, char *old_pwd)
 {
 	if (path && path != NULL)
@@ -126,7 +124,6 @@ static void	free_resources(char *path, char *old_pwd)
 	Outputs
  	return_value.
  */
-
 static int	free_and_return(char	*path, char	*old_pwd, int return_value)
 {
 	if (path && path != NULL)
@@ -160,7 +157,6 @@ static int	free_and_return(char	*path, char	*old_pwd, int return_value)
 	Outputs
 	Exit status of the builtin.
 */
-
 int	ft_cd(t_msh *msh, t_cmd *cmd_struct)
 {
 	char	cwd[PATH_MAX];
@@ -188,61 +184,3 @@ int	ft_cd(t_msh *msh, t_cmd *cmd_struct)
 	free_resources(path, old_pwd);
 	return (0);
 }
-
-/*
-static void	free_resources(char *path, char *old_pwd)
-{
-	if (path && path != NULL)
-	{
-		free(path);
-	}
-	if (old_pwd && old_pwd != NULL)
-	{
-		free(old_pwd);
-	}
-}
-
-static int	free_and_return(char	*path, char	*old_pwd)
-{
-	free_resources(path, old_pwd);
-	return (1);
-}
-
-//OG
-int	ft_cd(t_msh	*msh, t_cmd *cmd_struct)
-{
-	char	cwd[PATH_MAX];
-	char	*old_pwd;
-	char	*new_pwd;
-	char	*path;
-
-	if (cmd_struct->arguments && cmd_struct->arguments->next != NULL)
-	{
-		ft_printf("cd: too many arguments\n");
-		return (1);
-	}
-	path = get_new_path(cmd_struct);
-	if (path && access(path, F_OK) != 0)
-	{
-		perror("");
-		free_resources(path, NULL);
-		return (1);
-	}
-	if (!path && chdir("..") != 0)
-		return (1);
-	old_pwd = getcwd(NULL, 0);
-	if (!old_pwd)
-		free_and_return(path, old_pwd);
-	if (path)
-	{
-		if (chdir(path) != 0)
-			free_and_return(path, old_pwd);
-	}
-	new_pwd = getcwd(cwd, sizeof(cwd));
-	if (!new_pwd)
-		free_and_return(path, old_pwd);
-	update_env_vars(msh, old_pwd, new_pwd);
-	free_resources(path, old_pwd);
-	return (0);
-}
-*/

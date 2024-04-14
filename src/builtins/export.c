@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 21:23:16 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 16:45:49 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:54:18 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,45 +82,19 @@ static void	sort_dlist(t_dlist **head)
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated in a subfunction but freed in this function.
-
 	Summary
 	handles export without arguments.
 	sorts the environmental variables to ASCII order and prints them to the
 	terminal with a "declare -x" prefix.
 
 	Inputs
-	[t_msh *] msh: the main struct of the minishell, contains the command queue
-		and environment variable list.
-	[t_cmd *] cmd: the command struct containing the data from the current
-		command.
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[t_cmd *] cmd: Pointer to the command structure containing output file
+		descriptor.
 
 	Outputs
-	none. the function prints the environment variables to the console.
+	[int] 0 if successful.
 */
-/* static void	export_no_args(t_msh *msh, t_cmd *cmd)
-{
-	t_dlist	*cloned_list;
-	t_dlist	*curr_variable;
-	t_envv	*data;
-
-	cloned_list = clone_list(msh->envvar);
-	sort_dlist(&cloned_list);
-	curr_variable = cloned_list;
-	while (curr_variable)
-	{
-		data = (t_envv *)curr_variable->data;
-		if (data->env_value == NULL)
-			ft_printf_fd(cmd->out_fd, "declare -x %s\n", data->env_key);
-		else
-			ft_printf_fd(cmd->out_fd, "declare -x %s=\"%s\"\n", data->env_key, \
-				data->env_value);
-		curr_variable = curr_variable->next;
-	}
-	free_cloned_list(cloned_list);
-} */
-
 static int	export_no_args(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*cloned_list;
@@ -146,10 +120,6 @@ static int	export_no_args(t_msh *msh, t_cmd *cmd)
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated when creating or updating nodes of envvar dlist.
-	it needs to be freed at the end of the program.
-
 	Summary
 	handles export with arguments.
 	iterates through the arguments checking if they are existing environmental
@@ -157,41 +127,12 @@ static int	export_no_args(t_msh *msh, t_cmd *cmd)
 	environment variable and adds it to the list.
 
 	Inputs
-	[t_msh *] msh: the main struct of the minishell, contains the command queue
-		and environment variable list.
-	[t_cmd *] cmd_struct: the command struct, which contains the arguments for
-		exporting the environment variables.
-	
-	Outputs
-	none. the function exports the environment variables based on the provided
-	arguments.
-*/
-/* static void	export_args(t_msh *msh, t_cmd *cmd_struct)
-{
-	char	**str_array;
-	t_list	*args;
-	t_envv	*envv_struct;
-	t_dlist	*node_exists;
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[t_cmd *] cmd_struct: Pointer to the command structure containing arguments.
 
-	args = cmd_struct->arguments;
-	while (args)
-	{
-		str_array = split_variables((char *)args->data);
-		node_exists = find_envvar_node(msh->envvar, str_array[0]);
-		if (node_exists)
-		{
-			update_node_value(node_exists, str_array[1]);
-			free(str_array[0]);
-		}
-		else
-		{
-			envv_struct = put_str_in_envv_struct(str_array);
-			add_envv_to_dlist(msh, envv_struct);
-		}
-		free(str_array);
-		args = args->next;
-	}
-} */
+	Outputs
+	[int] 0 if successful.
+*/
 
 static int	export_args(t_msh *msh, t_cmd *cmd_struct)
 {
@@ -244,13 +185,20 @@ static int	export_args(t_msh *msh, t_cmd *cmd_struct)
 	none. the function exports the environmental variables based on the provided
 	arguments.
 */
-/* void	ft_export(t_msh *msh, t_cmd *cmd)
-{
-	if (!cmd->arguments)
-		export_no_args(msh, cmd);
-	else
-		export_args(msh, cmd);
-} */
+
+/*
+	Summary
+	Implements the export command in the minishell, either exporting all
+	environment variables or specified ones. if there are arguments, it updates
+	the values of existing variables or adds new variables to the environment.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[t_cmd *] cmd: Pointer to the command structure containing arguments.
+
+	Outputs
+	[int] 0 if successful.
+*/
 
 int	ft_export(t_msh *msh, t_cmd *cmd)
 {

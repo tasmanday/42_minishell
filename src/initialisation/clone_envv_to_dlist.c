@@ -119,7 +119,6 @@ void	add_envv_to_dlist(t_msh *msh, t_envv *s_envv)
 	Outputs
 	none. the function modifies the env_list doubly linked list by adding the
 	duplicated environmental variable strings wrapped in t_envv structs.
-
 */
 void	clone_envv_to_dlist(t_msh *msh, char **envv)
 {

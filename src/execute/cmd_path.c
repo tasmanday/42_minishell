@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 20:52:17 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:59:31 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:01:55 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ static char	**split_path(t_msh *msh)
   
 	Summary
 	Searches for the absolute path of a command in the directories listed in
- 	the PATH environment variable.
+ 	the PATH environment variable. if the msh->print_paths bool has been
+	toggled, it will print each path that is searches.
 
 	Inputs
 	[t_msh *] msh: the main minishell structure.

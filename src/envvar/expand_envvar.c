@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:50:08 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:26:58 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:38:00 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,18 @@
 
 /*
 	Summary
-	expands environment variables in the given string by replacing them with
-	their corresponding values.
+	Handles cases where an environment variable doesn't exist in the list of 
+	environmental variables.
 
 	Inputs
-	[t_dlist *] envvar: a doubly linked list containing environment variables.
-	[char **] str: a string pointer representing the string to be expanded.
-	[int *] i: an integer pointer representing the index to track the position
-		in the string.
-	
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[int *] i: Pointer to the index in the input string.
+	[char *] key: The key of the environment variable.
+
 	Outputs
-	none. the function expands the environment variable in place within the
-	string.
+	None. Modifies the input string by removing the environment variable.
 */
-/* void	expand_envvar(t_dlist *envvar, char **str, int *i)
-{
-	int		length;
-	char	*key;
-	char	*value;
-
-	key = get_env_key(*str + *i + 1);
-	value = get_env_value(envvar, key);
-	if (!value)
-	{
-		length = ft_strlen(key);
-		ft_replace_substr(str, *i, (*i + length + 1), "");
-		free(key);
-	}
-	else
-	{
-		length = ft_strlen(key);
-		ft_replace_substr(str, *i, (*i + length + 1), value);
-		free(key);
-		*i = *i + ft_strlen(value);
-	}
-} */
-
-void	handle_missing_env_value(t_msh *msh, int *i, char *key)
+void	handle_no_value(t_msh *msh, int *i, char *key)
 {
 	int		length;
 	char	*temp_str;
@@ -68,6 +43,18 @@ void	handle_missing_env_value(t_msh *msh, int *i, char *key)
 	free(key);
 }
 
+/*
+	Summary
+	expands environment variables in the given string by replacing them with
+	their corresponding values.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[int *] i: Pointer to the index in the input string.
+
+	Outputs
+	None. Modifies the input string by expanding environment variables.
+*/
 void	expand_envvar(t_msh *msh, int *i)
 {
 	int		length;

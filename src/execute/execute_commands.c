@@ -6,12 +6,25 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 10:36:45 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:59:32 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:06:36 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Retrieves the exit status of child processes and updates the last exit
+	status of the minishell.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+	[t_list **] pids: Pointer to the list of process IDs.
+
+	Outputs
+	None. Updates the last exit status of the minishell based on the exit
+	status of child processes.
+*/
 void	get_pid_exit_status(t_msh *msh, t_list **pids)
 {
 	int		*pid;
@@ -29,6 +42,18 @@ void	get_pid_exit_status(t_msh *msh, t_list **pids)
 		lst_del_head(pids, free_data);
 	}
 }
+
+/*
+	Summary
+	Executes commands in the minishell, including built-in commands and external
+	commands.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	None. Executes commands and updates the minishell state accordingly.
+*/
 
 void	execute_commands(t_msh *msh)
 {

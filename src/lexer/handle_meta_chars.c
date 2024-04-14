@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:07:01 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:09:54 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:20:47 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	process_envvars(t_msh *msh)
 	none. modifies the token list in the minishell structure based on the quoted
 	strings found in the input string.
 */
-
 void	check_quotes(t_msh *msh, const char *input, int *i)
 {
 	int		start;
@@ -117,7 +116,6 @@ void	check_quotes(t_msh *msh, const char *input, int *i)
 	none. modifies the token list in the minishell structure based on the
 	redirection symbols found in the input string.
 */
-
 void	check_redir(t_msh *msh, const char *input, int *i)
 {
 	if (input[*i] == '|')

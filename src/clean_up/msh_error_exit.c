@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_error_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 22:52:11 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:01:12 by atang            ###   ########.fr       */
+/*   Updated: 2024/04/14 17:56:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,12 @@
 	message to the terminal.
 
 	Inputs
-	[t_msh *] msh: the main structure.
-	[char *] error_message: the error message to be printed to the terminal.
+	[t_msh *] msh: pointer to the main minishell structure.
+	[char *] error_message: the error message to be displayed.
 
 	Outputs
-	none.
+	none. exits the program with the appropriate exit status.
 */
-/* void	msh_error_exit(t_msh *msh, char *error_message)
-{
-	free_everything(msh);
-	error_exit(error_message);
-} */
-
 void	msh_error_exit(t_msh *msh, char *error_message)
 {
 	int		exit_status;

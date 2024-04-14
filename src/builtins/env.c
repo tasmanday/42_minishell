@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:24:21 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 16:38:02 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:48:23 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,17 @@ static void	print_envvar(int fd, t_envv *envv_element)
 
 /*
 	Summary
-	prints the key-value pairs of each element in a given doubly linked list.
+	implements the env command in the minishell, printing all environment
+	variables.
 
 	Inputs
-	[t_msh *] msh: the main struct of minishell contianing a doubly linked
-		list of cloned environment variables.
-	[t_cmd *] cmd: the command struct containing the data from the current
-		command.
+	[t_msh *] msh: pointer to the main minishell structure.
+	[t_cmd *] cmd: pointer to the command structure containing output file
+		descriptor.
 
 	Outputs
-	none. the function only prints the key-value pairs of the environment
-	variables.
+	[int] 0 if successful, 1 if an error occurs.
 */
-/* void	ft_env(t_msh *msh, t_cmd *cmd)
-{
-	t_dlist	*current;
-
-	current = msh->envvar;
-	while (current)
-	{
-		print_envvar(cmd->out_fd, (t_envv *)current->data);
-		current = current->next;
-	}
-} */
-
 int	ft_env(t_msh *msh, t_cmd *cmd)
 {
 	t_dlist	*current;

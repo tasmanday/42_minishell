@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 16:23:49 by atang             #+#    #+#             */
-/*   Updated: 2024/04/14 17:43:17 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:32:21 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ bool	is_redirect(char *str)
 		return (false);
 }
 
+/*
+	Summary
+	Gets the open flags for file opening based on whether or not append mode
+	is requested.
+
+	Inputs
+	[bool] is_append: Flag indicating whether append mode is requested.
+
+	Outputs
+	[int] Open flags for file opening.
+
+	Note
+	Uses bitwise OR operator (|) to combine flags for file creation (O_CREAT),
+	write-only mode (O_WRONLY), and append mode (O_APPEND or 0) or
+	truncate mode (O_TRUNC or 0), depending on the value of is_append.
+*/
 int	get_open_flags(bool is_append)
 {
 	int	open_flags;
@@ -44,6 +60,18 @@ int	get_open_flags(bool is_append)
 	return (open_flags);
 }
 
+/*
+	Summary
+	Processes file descriptors for pipe redirection between consecutive commands
+	in the minishell.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	None. Modifies file descriptors for pipe redirection between consecutive
+	commands.
+*/
 void	process_pipe_fds(t_msh *msh)
 {
 	int		pipefd[2];

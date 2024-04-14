@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:50:49 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:13:05 by atang            ###   ########.fr       */
+/*   Updated: 2024/04/14 18:18:19 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/* static char	*get_prompt(t_msh *msh)
+/* 
+better prompt
+
+static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;
 
@@ -20,8 +23,22 @@
 		":", CYAN, get_env_value(msh->envvar, "SHLVL"), DEF, ":", BLUE, \
 		get_env_value(msh->envvar, "PWD"), CYAN, "$ ", DEF);
 	return (prompt);
-} */
+}
+*/
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory allocated for the returned string needs to be freed after use.
+
+	Summary
+	Constructs the prompt string for the minishell.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	[char *] Pointer to the constructed prompt string.
+*/
 static char	*get_prompt(t_msh *msh)
 {
 	char	*prompt;

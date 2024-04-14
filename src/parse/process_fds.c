@@ -6,12 +6,23 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 21:08:26 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:42:29 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:35:52 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Handles input file redirection for a command.
+
+	Inputs
+	[t_cmd *] cmd_data: Pointer to the command structure.
+
+	Outputs
+	None. Modifies the command structure with the input file descriptor if the
+	file exists.
+*/
 static void	handle_input_file(t_cmd *cmd_data)
 {
 	int		in_fd;
@@ -31,6 +42,21 @@ static void	handle_input_file(t_cmd *cmd_data)
 		cmd_data->in_fd = in_fd;
 	}
 }
+
+/*
+	Summary
+	Handles output file redirection for a command.
+
+	Inputs
+	[t_cmd *] cmd_data: Pointer to the command structure.
+	[t_dlist *] curr_cmd: Pointer to the current command node in the linked
+		list.
+
+	Outputs
+	None. Modifies the command structure with the output file descriptor if
+	the file can be opened successfully. Resets input file descriptor of the
+	next command if applicable.
+*/
 
 static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
 {
@@ -59,6 +85,18 @@ static void	handle_output_file(t_cmd *cmd_data, t_dlist *curr_cmd)
 	}
 }
 
+/*
+	Summary
+	Handles heredoc redirection for a command.
+
+	Inputs
+	[t_cmd *] cmd_data: Pointer to the command structure.
+
+	Outputs
+	None. Modifies the command structure with the input file descriptor set to
+	the read end of a pipe containing the heredoc data.
+*/
+
 static void	handle_heredoc(t_cmd *cmd_data)
 {
 	int	fds[2];
@@ -74,6 +112,19 @@ static void	handle_heredoc(t_cmd *cmd_data)
 		close(cmd_data->in_fd);
 	cmd_data->in_fd = fds[0];
 }
+
+/*
+	Summary
+	Processes input and output file descriptors for redirections in each command
+	of the minishell.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	None. Modifies file descriptors for input and output redirections in each
+	command.
+*/
 
 static void	process_redir_fds(t_msh *msh)
 {
@@ -96,6 +147,17 @@ static void	process_redir_fds(t_msh *msh)
 	}
 }
 
+/*
+	Summary
+	Processes file descriptors for input and output redirections, including
+	pipes between commands if there are multiple commands.
+
+	Inputs
+	[t_msh *] msh: Pointer to the main minishell structure.
+
+	Outputs
+	None. Modifies file descriptors for input and output redirections.
+*/
 void	process_fds(t_msh *msh)
 {
 	if (msh->num_of_cmds > 1)

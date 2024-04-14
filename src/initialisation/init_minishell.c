@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:42:47 by tday              #+#    #+#             */
-/*   Updated: 2024/03/24 10:14:14 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:19:57 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ static void	increment_shlvl(t_msh *msh)
 }
 
 /*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the t_msh struct.
+
 	Summary
 	initializes the t_msh structure with environment variables, increments
  	the shell level, and sets up the signal handlers.

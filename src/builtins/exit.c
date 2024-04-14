@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 21:03:45 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/14 15:06:13 by atang            ###   ########.fr       */
+/*   Updated: 2024/04/14 17:48:44 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 	Outputs
 	Returns int(1).
 */
-
 int	handle_too_many_args(void)
 {
 	ft_printf("cd: too many arguments\n");
@@ -41,7 +40,6 @@ int	handle_too_many_args(void)
 	1 if the given string is a valid numeric argument, 0 otherwise (e.g. if 
 	given argument is NULL, empty string, or not a 0-9 digit).
 */
-
 static int	is_valid_numeric(const char *arg)
 {
 	if (arg == NULL || *arg == '\0')
@@ -83,7 +81,6 @@ static int	is_valid_numeric(const char *arg)
 	exits the shell with an exit_status of 0 and prints "exit\n" to stdout if 
 	no arguments.  
 */
-
 int	ft_exit(t_msh *msh, t_cmd *cmd)
 {
 	int	exit_status;
@@ -112,36 +109,3 @@ int	ft_exit(t_msh *msh, t_cmd *cmd)
 	exit(exit_status);
 	return (exit_status);
 }
-
-/*
-// OG FT_EXIT (working but > 25 lines)
-int	ft_exit(t_msh *msh, t_cmd *cmd)
-{
-	int		exit_status;
-	char	*arg;
-
-	exit_status = 0;
-	if (!cmd->arguments)
-		exit_status = EXIT_SUCCESS;
-	else
-	{
-		arg = (char *)cmd->arguments->data;
-		if (!is_valid_numeric(arg))
-		{
-			msh->last_exit_status = 2;
-			msh_error_exit(msh, "exit\nvalid numeric argument required");
-		}
-		exit_status = ft_atoi(arg);
-		if (cmd->arguments->next != NULL)
-		{
-			msh->last_exit_status = EXIT_FAILURE;
-			error("exit\ntoo many arguments");
-			return (EXIT_FAILURE);
-		}
-	}
-	ft_printf("exit\n");
-	msh->last_exit_status = exit_status;
-	exit(exit_status);
-	return (exit_status);
-}
-*/

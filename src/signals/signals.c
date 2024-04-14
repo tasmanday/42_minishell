@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sentry <sentry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:37:43 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/13 23:01:12 by sentry           ###   ########.fr       */
+/*   Updated: 2024/04/14 18:36:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 	Outputs
 	None.
 */
-
 void	handle_interrupt(int sig)
 {
 	(void)sig;
@@ -51,7 +50,6 @@ void	handle_interrupt(int sig)
 	Outputs
 	None.
 */
-
 void	handle_quit(int sig)
 {
 	if (isatty(STDIN_FILENO))
@@ -74,7 +72,6 @@ void	handle_quit(int sig)
 	Outputs
 	None.
 */
-
 void	setup_signal_handlers(void)
 {
 	signal(SIGINT, handle_interrupt);
@@ -94,7 +91,6 @@ void	setup_signal_handlers(void)
 	Outputs
 	None.
 */
-
 void	reset_signal_handlers(void)
 {
 	signal(SIGINT, SIG_DFL);

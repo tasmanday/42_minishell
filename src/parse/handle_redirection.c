@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 12:15:47 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:42:31 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:38:16 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 /*
 	**** ALLOCATES MEMORY ****
 	memory is allocated for return which is freed by free_cmd_struct function.
+
+	Summary
+	Reads input from the user until a specified delimiter is encountered,
+	concatenating the input lines into a single string.
+
+	Inputs
+	[char *] delimiter: The delimiter indicating the end of input.
+
+	Outputs
+	[char *] Pointer to the concatenated string. 
 */
 char	*read_heredoc(char *delimiter)
 {
@@ -45,6 +55,16 @@ char	*read_heredoc(char *delimiter)
 	return (result);
 }
 
+/*
+	Summary
+	Checks if a file exists.
+
+	Inputs
+	[const char *] file_name: The name of the file to check.
+
+	Outputs
+	[bool] true if the file exists, otherwise false.
+*/
 bool	file_exists(const char *file_name)
 {
 	struct stat	buffer;
@@ -52,6 +72,21 @@ bool	file_exists(const char *file_name)
 	return (stat(file_name, &buffer) == 0);
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the cmd->input_file
+
+	Summary
+	Handles input redirection and heredoc token parsing for a command.
+
+	Inputs
+	[t_cmd *] cmd: Pointer to the command structure.
+	[t_list **] token_ptr: Pointer to the current token in the list of tokens.
+
+	Outputs
+	None. Modifies the command structure with input file and heredoc data if
+	applicable.
+*/
 static void	handle_input(t_cmd *cmd, t_list **token_ptr)
 {
 	if ((*token_ptr)->next)
@@ -77,6 +112,21 @@ static void	handle_input(t_cmd *cmd, t_list **token_ptr)
 	}
 }
 
+/*
+	**** ALLOCATES MEMORY ****
+	memory is allocated for the cmd->output_file
+
+	Summary
+	Handles output redirection for a command.
+
+	Inputs
+	[t_cmd *] cmd: Pointer to the command structure.
+	[t_list **] token_ptr: Pointer to the current token in the list of tokens.
+
+	Outputs
+	None. Modifies the command structure with output file and append mode if
+	applicable.
+*/
 static void	handle_output(t_cmd *cmd, t_list **token_ptr)
 {
 	if ((*token_ptr)->next)
@@ -95,9 +145,6 @@ static void	handle_output(t_cmd *cmd, t_list **token_ptr)
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated for the input and output files
-
 	Summary
 	handles the redirection of input and output files in a command structure.
 	

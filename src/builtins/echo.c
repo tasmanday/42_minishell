@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:13:56 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 16:34:16 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:47:14 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,30 +106,13 @@ static void	print_tokens(t_msh *msh, t_cmd *cmd_struct)
 	as echo would.
 
 	Inputs
-	[t_msh *] msh: the main struct of minishell contianing a linked	list of
-		strings from the user imput that are separated into relevant tokens.
+	[t_msh *] msh: pointer to the main minishell structure.
+	[t_cmd *] cmd: pointer to the command structure containing arguments and
+		output file descriptor.
 
 	Outputs
-	prints the given strings to the standard output.
+	[int] 0 if successful, 1 if an error occurs.
 */
-/* void	ft_echo(t_msh *msh, t_cmd *cmd)
-{
-	bool	print_newline;
-
-	if (!cmd)
-		msh_error_exit(msh, "ft_echo !cmd");
-	print_newline = true;
-	if (!cmd->arguments)
-	{
-		ft_printf_fd(cmd->out_fd, "\n");
-		return ;
-	}
-	check_for_nl_flags(&(cmd->arguments), &print_newline);
-	print_tokens(msh, cmd);
-	if (print_newline)
-		ft_printf_fd(cmd->out_fd, "\n");
-} */
-
 int	ft_echo(t_msh *msh, t_cmd *cmd)
 {
 	bool	print_newline;

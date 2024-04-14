@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atang <atang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 22:09:54 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 16:04:45 by atang            ###   ########.fr       */
+/*   Updated: 2024/04/14 18:00:28 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Checks if a character is a quotation mark.
+
+	Inputs
+	[char] c: The character to be checked.
+
+	Outputs
+	[bool] true if the character is a quotation mark (' or "), otherwise false.
+*/
 static bool	is_quotes(char c)
 {
 	if (c == '\'' || c == '\"')

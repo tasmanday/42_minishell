@@ -6,12 +6,22 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:02:08 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 17:02:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:55:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+/*
+	Summary
+	Frees memory allocated for the list of arguments.
+
+	Inputs
+	[t_list *] arguments: Pointer to the list of arguments to be freed.
+
+	Outputs
+	None. Frees memory for each argument node in the list.
+*/
 static void	free_arguments(t_list *arguments)
 {
 	t_list	*curr_arg;
