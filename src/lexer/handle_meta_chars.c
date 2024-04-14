@@ -6,198 +6,160 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:07:01 by tday              #+#    #+#             */
-/*   Updated: 2024/03/21 20:41:56 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:40:26 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated for a linked list node in safe_new_token_node function.
-
 	Summary
-	adds redirection tokens to msh->tokens based on the current character in
-	the input string.
+	checks and updates the state based on if the current character in the input
+	string is a single or souble quote. used by process_envvars() to know which
+	environmental variables should be expanded. 
 
 	Inputs
-	[t_msh *] msh: a pointer to the minishell main structure.
-	[char *] str: the input string to be processed.
-	[int *] i: a pointer to the index variable.
+	[char] current_char: the current character being processed.
+	[int *] state: pointer to the state variable to be updated.
 
 	Outputs
-	none. the function modifies the minishell structure by adding tokens to the
-	msh->tokens linked list.
+	none. updates the state variable based on the current character.
 */
-static void	add_redirection_tokens(t_msh *msh, char *str, int *i)
+static void	check_state(char current_char, int *state)
 {
-	t_list	*new_node;
-	char	*temp_str;
-	int		length;
-
-	if (!msh || !str || !i)
-		return ;
-	new_node = NULL;
-	length = 1;
-	if (str[*i] == '<' || str[*i] == '>')
+	if (*state == 0)
 	{
-		if (str[*i] == str[*i + 1])
-			length = 2;
-		temp_str = ft_substr(str, *i, length);
-		new_node = safe_new_token_node(msh, temp_str);
-		*i += length;
+		if (current_char == '\'')
+			*state = 1;
+		else if (current_char == '\"')
+			*state = 2;
 	}
-	if (new_node)
-		lst_add_tail(&(msh->tokens), new_node);
+	else if (*state == 1 && current_char == '\'')
+		*state = 0;
+	else if (*state == 2 && current_char == '\"')
+		*state = 0;
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated for a linked list node in safe_new_token_node function.
-
 	Summary
-	adds a pipe token to msh->tokens if the current character in the input
-	string is a pipe symbol ('|').
+	processes environment variables in the input string and expands them depending
+	on if they are in single or double quotes or no quotes at all.
 
 	Inputs
-	[t_msh *] msh: a pointer to the minishell main structure.
-	[char *] str: the input string to be processed.
-	[int *] i: a pointer to the index variable.
+	[t_msh *] msh: pointer to the main minishell structure.
 
 	Outputs
-	none. the function modifies the minishell structure by adding tokens to the
-	msh->tokens linked list.
+	none. modifies the input string by expanding environment variables.
 */
-static void	add_pipe_token(t_msh *msh, char *str, int *i)
+void	process_envvars(t_msh *msh)
 {
-	t_list	*new_node;
-	char	*temp_str;
+	int		state;
+	int		i;
 
-	if (str[*i] == '|')
+	i = 0;
+	state = 0;
+	while (msh->input[i])
 	{
-		temp_str = ft_substr(str, (*i), 1);
-		new_node = safe_new_token_node(msh, temp_str);
-		lst_add_tail(&(msh->tokens), new_node);
-		*i += 1;
+		check_state(msh->input[i], &state);
+		if ((state == 0 || state == 2) && msh->input[i] == '$')
+			expand_envvar(msh, &i);
+		else
+			i++;
 	}
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory allocated for token_str and new_node. token_str is stored in
-	new_node->data.
-	
 	Summary
-	handles single quote tokens in a given string by extracting the substring
-	between the single quotes and adding it as a new token to msh->tokens.
+	checks for quoted strings (single or double quotes) in the input string and
+	adds corresponding tokens to the token list.
 
 	Inputs
-	[t_msh *] msh: a pointer to the minishell main structure.
-	[char *] str: the input string to be processed.
-	[int *] i: a pointer to the index variable.
+	[t_msh *] msh: pointer to the main minishell structure.
+	[const char *] input: the input string to be checked for quoted strings.
+	[int *] i: pointer to the index in the input string.
 
 	Outputs
-	none. the function modifies the minishell structure by adding tokens to the
-	msh->tokens linked list.
+	none. modifies the token list in the minishell structure based on the quoted
+	strings found in the input string.
 */
-static void	handle_s_quote_token(t_msh *msh, char *str, int *i)
+
+void	check_quotes(t_msh *msh, const char *input, int *i)
 {
 	int		start;
-	char	*temp_substr;
-	t_list	*new_node;
+	int		end;
+	char	quote;
 
-	if (str[*i] == '\'')
+	if (input[*i] == '\'' || input[*i] == '\"')
 	{
+		start = *i + 1;
+		quote = input[*i];
 		(*i)++;
-		start = *i;
-		while (str[*i] && str[*i] != '\'')
+		while (input[*i] != quote)
 			(*i)++;
-		temp_substr = ft_substr(str, start, (*i) - start);
-		if (!temp_substr)
-			error("s_quote substr error");
-		new_node = safe_new_token_node(msh, temp_substr);
-		lst_add_tail(&(msh->tokens), new_node);
-		if (str[*i] == '\'')
-			(*i)++;
+		end = *i;
+		create_and_add_token(msh, start, end);
+		(*i)++;
 	}
+	return ;
 }
 
 /*
-	**** ALLOCATES MEMORY ****
-	memory allocated for token_str and new_node. token_str is stored in
-	new_node->data.
-
 	Summary
-	handles double quote tokens in a given string by extracting the substring
-	between the double quotes and adding it as a new token to msh->tokens.
+	checks for redirection symbols ('|', '<', '>') in the input string and adds
+	corresponding tokens to the token list.
 
 	Inputs
-	[t_msh *] msh: a pointer to the minishell main structure.
-	[char *] str: the input string to be processed.
-	[int *] i: a pointer to the index variable.
+	[t_msh *] msh: pointer to the main minishell structure.
+	[const char *] input: the input string to be checked for redirection symbols.
+	[int *] i: pointer to the index in the input string.
 
 	Outputs
-	none. the function modifies the minishell structure by adding tokens to the
-	msh->tokens linked list.
+	none. modifies the token list in the minishell structure based on the
+	redirection symbols found in the input string.
 */
-static void	handle_d_quote_token(t_msh *msh, char *str, int *i)
-{
-	int		start;
-	char	*temp_substr;
-	t_list	*new_node;
 
-	if (str[*i] == '\"')
+void	check_redir(t_msh *msh, const char *input, int *i)
+{
+	if (input[*i] == '|')
 	{
+		create_and_add_token(msh, *i, *i + 1);
 		(*i)++;
-		start = *i;
-		while (str[*i] && str[*i] != '\"')
+	}
+	else if (input[*i] == '<' || input[*i] == '>')
+	{
+		if (input[*i] == input[*i + 1])
 		{
-			if (str[*i] == '$')
-				expand_envvar(msh->envvar, &str, i);
-			else
-				(*i)++;
+			create_and_add_token(msh, *i, *i + 2);
+			*i += 2;
 		}
-		temp_substr = ft_substr(str, start, (*i) - start);
-		if (!temp_substr)
-			error("s_quote substr error");
-		new_node = safe_new_token_node(msh, temp_substr);
-		lst_add_tail(&(msh->tokens), new_node);
-		debug_int(*i);
-		putchar(str[*i]);
-		if (str[*i] == '\"')
+		else
+		{
+			create_and_add_token(msh, *i, *i + 1);
 			(*i)++;
-		debug_int(*i);
+		}
 	}
 	return ;
 }
 
-
 /*
-	**** ALLOCATES MEMORY ****
-	memory is allocated for linked list nodes in sub functions
-
 	Summary
-	handles meta characters in a given string by calling different helper
-	functions based on the character encountered.
+	checks if a character is a valid argument character.
 
 	Inputs
-	[t_msh *] msh: a pointer to the minishell main structure.
-	[char *] str: the input string to be processed.
-	[int *] i: a pointer to the index variable.
+	[char] c: the character to be checked.
 
 	Outputs
-	none. the function modifies the minishell structure by adding tokens to the
-	msh->tokens linked list.
+	[bool] true if the character is valid for an argument, otherwise false.
 */
-void	handle_meta_chars(t_msh *msh, char *str, int *i)
+bool	is_valid_arg_char(char c)
 {
-	if (str[*i] == '<' || str[*i] == '>')
-		add_redirection_tokens(msh, str, i);
-	else if (str[*i] == '|')
-		add_pipe_token(msh, str, i);
-	else if (str[*i] == '\'')
-		handle_s_quote_token(msh, str, i);
-	else if (str[*i] == '\"')
-		handle_d_quote_token(msh, str, i);
-	return ;
+	char	*invalid_chars;
+
+	invalid_chars = "<>|\'\"";
+	if (ft_strchr(invalid_chars, c))
+		return (false);
+	else if (!ft_isprint(c) || ft_isspace(c))
+		return (false);
+	else
+		return (true);
 }

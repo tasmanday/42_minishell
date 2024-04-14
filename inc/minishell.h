@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 15:46:34 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 17:00:21 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_msh
 	int		num_of_cmds;
 	t_list	*pids;
 	int		last_exit_status;
+	bool	print_paths;
 }				t_msh;
 
 /* elements in envvar*/
@@ -91,8 +92,12 @@ char		*get_input(t_msh *msh);
 /* lexer */
 
 void		add_tokens_to_list(t_msh *msh);
-void		handle_meta_chars(t_msh *msh, char *str, int *i);
+void		create_and_add_token(t_msh *msh, int start, int end);
 t_list		*safe_new_token_node(t_msh *msh, char *str);
+bool		is_valid_arg_char(char c);
+void		check_redir(t_msh *msh, const char *input, int *i);
+void		check_quotes(t_msh *msh, const char *input, int *i);
+void		process_envvars(t_msh *msh);
 
 /* parse */
 
@@ -100,12 +105,12 @@ void		extract_commands(t_msh *msh);
 void		process_input(t_msh *msh);
 void		process_fds(t_msh *msh);
 void		handle_redirection(t_cmd *cmd, t_list **token_ptr);
-bool 		file_exists(const char *file_name);
+bool		file_exists(const char *file_name);
 
 /* signals.c */
 
 void		handle_interrupt(int sig);
-void		handle_quit(int	sig);
+void		handle_quit(int sig);
 void		setup_signal_handlers(void);
 void		reset_signal_handlers(void);
 
@@ -131,6 +136,7 @@ void		execute_parent(t_msh *msh, t_cmd *cmd_data);
 void		execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data);
 char		*get_path(t_msh *msh, char *command);
 bool		has_path(char *string);
+void		print_paths(t_msh *msh);
 
 /* clean_up */
 

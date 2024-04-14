@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:50:58 by tday              #+#    #+#             */
-/*   Updated: 2024/03/10 14:32:06 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 15:59:09 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ typedef struct s_dlist
 	struct s_dlist	*prev;
 	struct s_dlist	*next;
 }				t_dlist;
+
+/* dumb ft_printf_fd norm struct */
+typedef struct s_param
+{
+	int		fd;
+	char	fs;
+}				t_param;
 
 /*
 ** prototypes

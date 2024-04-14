@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 10:36:45 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 19:46:34 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:59:32 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	execute_commands(t_msh *msh)
 	while (curr_cmd)
 	{
 		cmd_data = (t_cmd *)curr_cmd->data;
-		if (cmd_is_builtin(cmd_data->command))
+		if (ft_strcmp(cmd_data->command, "print_paths") == 0)
+			print_paths(msh);
+		else if (cmd_is_builtin(cmd_data->command))
 			execute_builtin(msh, curr_cmd);
 		else
 			execute_parent(msh, cmd_data);

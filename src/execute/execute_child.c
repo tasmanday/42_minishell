@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 20:48:33 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 19:46:10 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 16:20:01 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	execute_child(t_msh *msh, char **env, char **arg, t_cmd *cmd_data)
 		msh_error_exit(msh, "");
 	if (has_path(arg[0]))
 	{
-		debug("HAS PATH");
 		path = ft_strdup(arg[0]);
 		if (!path)
 			msh_error_exit(msh, "execute_child path error");

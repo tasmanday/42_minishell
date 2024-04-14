@@ -6,20 +6,11 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:18:52 by tday              #+#    #+#             */
-/*   Updated: 2024/03/31 20:18:52 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 15:59:08 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
-
-/*
-	a dumb struct to get around the dumb norminette limit on parameters
-*/
-typedef struct s_param
-{
-	int		fd;
-	char	fs;
-}				t_param;
 
 /*
 	Summary

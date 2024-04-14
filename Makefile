@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 21:50:54 by tday              #+#    #+#              #
-#    Updated: 2024/04/07 18:34:00 by tday             ###   ########.fr        #
+#    Updated: 2024/04/14 17:01:05 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,15 @@ SRCS 			:= 		$(addprefix src/builtins/, pwd.c echo.c env.c export.c	\
 						$(addprefix src/get_input/, get_input.c)				\
 						$(addprefix src/signals/, signals.c)					\
 						$(addprefix src/lexer/, add_tokens_to_list.c			\
-									safe_new_token_node.c)						\
+									safe_new_token_node.c handle_meta_chars.c)	\
 						$(addprefix src/parse/, extract_commands.c 				\
 									process_input.c process_fds.c 				\
 									handle_redirection.c)						\
 						$(addprefix src/execute/, put_args_in_array.c 			\
 									convert_envvar_to_array.c execute_builtin.c \
 									cmd_is_builtin.c execute_commands.c 		\
-									execute_parent.c execute_child.c cmd_path.c)\
+									execute_parent.c execute_child.c cmd_path.c \
+									print_paths.c)								\
 						$(addprefix src/clean_up/, free_envv_struct.c			\
 									free_data.c free_everything.c				\
 									clean_exit.c free_cloned_list.c 			\

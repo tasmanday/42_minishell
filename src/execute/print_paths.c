@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   print_paths.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dda-silv <dda-silv@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 09:17:16 by dda-silv          #+#    #+#             */
-/*   Updated: 2021/04/08 12:04:52 by dda-silv         ###   ########.fr       */
+/*   Created: 2024/04/14 16:42:59 by tday              #+#    #+#             */
+/*   Updated: 2024/04/14 16:59:33 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/minishell.h"
 
-int	ft_putstr(char *str)
+void	print_paths(t_msh *msh)
 {
-	return (write(1, str, ft_strlen(str)));
+	if (msh->print_paths == true)
+		msh->print_paths = false;
+	else
+		msh->print_paths = true;
 }
