@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:38:42 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 18:23:46 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 19:25:01 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envv)
 	while (1)
 	{
 		msh->input = get_input(msh);
-		if (ft_strcmp(msh->input, "") == 0)
+		if (ft_strcmp(msh->input, "") == 0 || is_just_whitespace(msh->input))
 			continue ;
 		process_input(msh);
 		execute_commands(msh);

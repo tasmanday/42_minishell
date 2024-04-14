@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 17:42:33 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 18:48:49 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		update_node_value(t_dlist *envvar_node, char *new_value);
 /* get_input */
 
 char		*get_input(t_msh *msh);
+bool		is_just_whitespace(char *input);
 
 /* lexer */
 
