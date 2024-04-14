@@ -3,20 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sentry <sentry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:37:43 by sentry            #+#    #+#             */
-/*   Updated: 2024/04/07 18:20:23 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/13 23:01:12 by sentry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /*
-(CTRL-C)
-handle_interrupt() - writes a new line, moves the readline cursor to 
-a new line, replaces the current line with an empty string and redisplays 
-the prompt if standard input is a terminal
+	Summary
+	(Ctrl+C) handle_interrupt() handles SIGINT signal to write a new line, move 
+	the readline cursor to a new line, replace the current line with an empty 
+	string and redisplays the prompt if standard input is a terminal 
+	(isatty(STDIN_FILENO)==1). If stdin is not a terminal, do nothing.
+
+	Inputs
+	[int sig] signal number (void) not used.
+
+	Outputs
+	None.
 */
 
 void	handle_interrupt(int sig)
@@ -32,9 +39,17 @@ void	handle_interrupt(int sig)
 }
 
 /*
-(CTRL-\)
-handle_quit() checks if the standard input is a terminal. If yes, the 
-SIGQUIT(CTRL-\) signal is ignored. fn does nothing (as CTRL-\ is supposed to)
+	Summary
+	(CTRL-\) handle_quit() checks if the standard input is a terminal 
+	(isatty(STDIN_FILENO)==1). If yes, the SIGQUIT(CTRL-\) signal is 
+	ignored by setting to SIG_IGN and the the shell continues to run as usual as 
+	fn does nothing (as CTRL-\ is supposed to).
+
+	Inputs
+	[int sig] signal number (void) not used.
+
+	Outputs
+	None.
 */
 
 void	handle_quit(int sig)
@@ -44,13 +59,20 @@ void	handle_quit(int sig)
 		(void)sig;
 		signal(SIGQUIT, SIG_IGN);
 	}
-	//printf("Do nothing\n");
 	return ;
 }
 
 /*
-(CTRL-C and CTRL-\)
-Registers signal handlers for SIGINT(CTRL-C) and SIGQUIT(CTRL-\)
+	Summary 
+	(CTRL+C and CTRL-\) setup_signal_handlers() registers signal handlers for 
+	SIGINT(CTRL+C) to interrupt the current command being run by the shell, 
+	and SIGQUIT(CTRL-\) to quit the shell.
+
+	Inputs
+	None.
+
+	Outputs
+	None.
 */
 
 void	setup_signal_handlers(void)
@@ -60,8 +82,17 @@ void	setup_signal_handlers(void)
 }
 
 /*
-(CTRL-C and CTRL-\)
-Resets signal handlers for SIGINT(CTRL-C) and SIGQUIT(CTRL-\) to defaults
+	Summary
+	(CTRL+C and CTRL-\) reset_signal_handlers() resets signal handlers 
+	for SIGINT(CTRL+C) and SIGQUIT(CTRL-\) to defaults. This means that:
+	- SIGINT: the process is terminated immediately
+	- SIGQUIT: the process terminates with a core dump
+
+	Inputs
+	None.
+
+	Outputs
+	None.
 */
 
 void	reset_signal_handlers(void)

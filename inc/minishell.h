@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 22:45:23 by tday              #+#    #+#             */
-/*   Updated: 2024/04/13 19:46:41 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/14 15:46:34 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int			ft_export(t_msh *msh, t_cmd *cmd);
 int			ft_unset(t_msh *msh, t_cmd *cmd);
 int			ft_cd(t_msh *msh, t_cmd *cmd);
 int			ft_exit(t_msh *msh, t_cmd *cmd);
+int			handle_too_many_args(void);
 
 /* execute */
 
