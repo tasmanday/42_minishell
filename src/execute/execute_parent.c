@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:16:39 by tday              #+#    #+#             */
-/*   Updated: 2024/04/14 18:09:51 by tday             ###   ########.fr       */
+/*   Updated: 2024/04/21 12:21:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ void	execute_parent(t_msh *msh, t_cmd *cmd_data)
 	if (*pid < 0)
 		msh_error_exit(msh, "exec_parent fork error");
 	else if (*pid == 0)
+	{
+		reset_signal_handlers();
 		execute_child(msh, env, arg, cmd_data);
+	}
 	new_node = lst_new_node(pid);
 	if (!new_node)
 		msh_error_exit(msh, "exec_parent new_node error");
