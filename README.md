@@ -1,26 +1,3 @@
-# 42_minishell
-
-minishell is a replication of a bash shell.
-
-to run it, clone this repository, then run the "make" command, and then execute the minishell executable with "./minishell".
-when you're done "make fclean" will clean everything up.
-
-it includes the builtins:
-- echo with option -n
-- cd with only a relative or absolute path
-- pwd with no options
-- export with no options
-- unset with no options
-- env with no options or arguments
-- exit with no options
-
-it can expand environmental variables and handle single and double quotes but it doesn't need to be able to handle unclosed quotes or special characters like backslash and semicolon.
-
-it also can handle pipes and redirections including heredocs (<<), and the ctrl-C, ctrl-D, & ctrl-\ signals.
-
----
-
-
 # minishell
 
 A bash shell implementation built as part of the [42 School](https://www.42adel.org.au/) curriculum. `minishell` replicates core bash functionality including built-in commands, environment variable expansion, pipes, redirections, and signal handling.
@@ -31,34 +8,20 @@ This project is written in C and provides a functional command-line interface si
 
 ## 🚀 Features
 
+### Core Functionality
 - **Built-in Commands**: echo, cd, pwd, export, unset, env, exit
-- **Environment Variable Expansion**: Handles `$VAR` syntax
-- **Quoting**: Single and double quote support
-- **Pipes**: Command chaining with `|`
-- **Redirections**: Input/output redirection (`>`, `<`, `>>`, `<<`)
-- **Heredocs**: Multi-line input with `<<`
-- **Signal Handling**: Ctrl-C, Ctrl-D, Ctrl-\
-- **Interactive Shell**: Real-time command execution
+- **Environment Variable Expansion**: Handles `$VAR` syntax with full quoting support
+- **Command Chaining**: Pipes (`|`) for command composition
+- **File Redirections**: Input/output redirection (`>`, `<`, `>>`, `<<`)
+- **Heredocs**: Multi-line input processing
+- **Signal Handling**: Ctrl-C, Ctrl-D, Ctrl-\ with proper cleanup
+- **Interactive Shell**: Real-time command execution with prompt
 
----
-
-## 🖥️ Example Usage
-
-```bash
-$ ./minishell
-minishell$ echo "Hello, World!"
-Hello, World!
-minishell$ ls -la
-total 8
-drwxr-xr-x  2 user user 4096 Jan 15 10:00 .
-drwxr-xr-x 10 user user 4096 Jan 15 10:00 ..
--rw-r--r--  1 user user  123 Jan 15 10:00 file.txt
-minishell$ cat < file.txt | grep "search"
-minishell$ export MY_VAR="Hello"
-minishell$ echo $MY_VAR
-Hello
-minishell$ exit
-```
+### Advanced Features
+- **Quoting System**: Single quotes (literal) and double quotes (with expansion)
+- **Process Management**: Proper fork/exec with signal inheritance
+- **File Descriptor Management**: Automatic cleanup and redirection
+- **Error Handling**: Graceful error recovery and meaningful messages
 
 ---
 
@@ -66,9 +29,9 @@ minishell$ exit
 
 ### Prerequisites
 
-- `gcc`
-- `make`
-- `Linux`
+- `gcc` (GNU Compiler Collection)
+- `make` (Build automation tool)
+- `Linux` (Tested on Ubuntu/Debian)
 
 ### Building
 
@@ -92,6 +55,28 @@ make fclean
 
 ---
 
+## 🖥️ Usage Examples
+
+```bash
+# Basic functionality
+echo "Hello World"
+cd /tmp && pwd
+
+# Environment variables
+export TEST_VAR="test"
+echo $TEST_VAR
+
+# Pipes and redirections
+echo "test" | grep "test"
+echo "hello" > test.txt
+cat < test.txt
+
+# Signal handling
+# Press Ctrl-C to test interrupt handling
+```
+
+---
+
 ## 📋 Built-in Commands
 
 | Command | Options | Description |
@@ -106,7 +91,7 @@ make fclean
 
 ---
 
-## �� Supported Features
+## ⚙️ Technical Details
 
 ### Environment Variables
 - Expand variables using `$VAR` syntax
@@ -136,7 +121,7 @@ make fclean
 
 ---
 
-## �� How It Works
+## ⚡ Architecture
 
 - **Lexical Analysis**: Parse input into tokens
 - **Command Parsing**: Identify built-ins vs external commands
@@ -147,6 +132,46 @@ make fclean
 
 ---
 
+## 📋 Project Limitations
+
+### Compilation Requirements
+- **Compiler Flags**: Must compile with `-Wall -Wextra -Werror`
+- **No Re-linking**: Makefile must not re-link unnecessarily
+- **Error-Free Compilation**: No compilation errors or warnings allowed
+
+### Code Restrictions
+- **Global Variables**: Limited to one global variable for signal handling only
+- **Authorized Libraries**: Only `libft` (our custom library) is allowed
+- **External Functions**: Limited to specific authorized functions only
+
+### Allowed External Functions
+- **Interactive Input**: `readline`, `rl_clear_history`, `rl_on_new_line`, `rl_replace_line`, `rl_redisplay`, `add_history`
+- **Standard I/O**: `printf`, `write`, `access`, `open`, `read`, `close`
+- **Memory Management**: `malloc`, `free`
+- **Process Control**: `fork`, `wait`, `waitpid`, `wait3`, `wait4`, `signal`, `sigaction`, `sigemptyset`, `sigaddset`, `kill`, `exit`
+- **File System**: `getcwd`, `chdir`, `stat`, `lstat`, `fstat`, `unlink`, `execve`
+- **File Descriptors**: `dup`, `dup2`, `pipe`
+- **Directory Operations**: `opendir`, `readdir`, `closedir`
+- **Error Handling**: `strerror`, `perror`
+- **Terminal Control**: `isatty`, `ttyname`, `ttyslot`, `ioctl`, `getenv`, `tcsetattr`, `tcgetattr`
+- **Terminal Capabilities**: `tgetent`, `tgetflag`, `tgetnum`, `tgetstr`, `tgoto`, `tputs`
+
+### Makefile Requirements
+- **Required Targets**: `NAME`, `all`, `clean`, `fclean`, `re`
+- **Submission Files**: `Makefile`, `*.h`, `*.c`
+
+---
+
 ## 🛠️ Made With
 
-C
+- **C** - Core implementation language
+- **Make** - Build system
+- **Linux** - Target platform
+- **libft** - Custom C library for utility functions
+
+---
+
+## 🤝 Contributors
+
+- [Andrew](https://github.com/valedictum)
+- [Tasman](https://github.com/tasmanday)
